@@ -1,0 +1,2 @@
+데이터베이스 모델 또는 스키마 정의 파일들을 저장
+ORM(Object-Relational Mapping) 사용 시 모델 정의에 활용
