@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user</title>
+    <link rel = "stylesheet" href = "../../public/css/user.css">
+</head>
+<body>
+    <div class="sub_container">
+      <div class="skyblue_circle"></div>
+      <div class="skyblue_circle2"></div>
+      <div class="blue_circle"></div>
+      <div class="blue_circle2"></div>
+        <!-- 우측상단 톱니바퀴 -->
+        <nav>
+            <ul>
+              <li>
+                <a href="#">
+                    <img src="./images/setting_img.svg" id="start_setting">
+                </a>
+                <!-- hover 세팅 / 로그아웃 메뉴 -->
+                <ul>
+                  <li><a href="#">Setting</a></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+          <!-- -와 -일 째 함께 중 ! -->
+          <div class = "withPokeBox">
+            <!-- <img src = "/pubilc 폴더로 메인포켓몬 등록 / 해당 페이지 주소로 반환" class = "user_mainpoke_img">
+             -->
+            <div class = "pickup_box_mini">
+              <div class = "bar">
+                <!-- 게이지바로 사용자의 행위에 따라 길이가 조정된다. -->
+                <div>
+                  <img src = "images/bar_gauge.svg" class = "bar_gauge">
+                </div>
+              </div>
+              <img src="./images/random_box.svg" class ="random_box_mini1">
+              <div>
+                <img src = "./images/yellowcircle.svg" class = "yellow_circle1">
+                <div>
+                  <img src = "./images/key.svg" class = "box_key_mini1">
+                </div>
+              </div>
+            </div>
+            <!-- text -->
+          <div class = "text_congra">축하해요 !</div>
+          <div class = text>
+            <div><span class = "with_main">{{with_date}}</span>
+              <span class = "text2">째<br/></span>
+              <span class = "with_main">{{main_poke}}</span>
+              <span class = "text2">와<br/>함께 중!</span>
+            </div>
+          </div>
+          </div>
+
+          <!-- 도감페이지 이동탭 -->
+          <div class = "collec"style=" cursor: pointer;" onclick="<!-- 도감페이지로 이동 -->">
+            <div class = "bar_mini">
+              <!-- 게이지바로 사용자의 행위에 따라 길이가 조정된다. -->
+              <div>
+                <img src = "images/bar_gauge.svg" class = "bar_mini_gauge">
+              </div>
+            </div>
+            <div class = "pickup_box">
+              <img src="./images/random_box.svg" class ="random_box_mini1">
+              <div>
+                <img src = "./images/yellowcircle.svg" class = "yellow_circle1">
+                <div>
+                  <img src = "./images/key.svg" class = "box_key_mini1">
+                </div>
+              </div>
+            </div>
+            <!-- text -->
+             <div class = "collec_pickup">도감페이지</div>
+             <!-- {{len(poke_img) + 1}}개의 포켓몬을 수집했어요 ! -->
+             <div>
+              <div class = "collec_text">
+                <span class = "poke_img_text">{{len(poke_img) + 1}}개</span>
+                <span class = "collected_text">의<br/>포켓몬을<br/>수집했어요!</span>
+              </div>
+              <div class = "collec_gauge">{{len(poke_img) + 1}}/150</div>
+              
+            </div>
+          </div>
+
+          <!-- 뽑기페이지 이동탭 -->
+          <div class = "pickup" style=" cursor: pointer;" onclick="window.open=('./pickuppoke');">
+            <!-- text -->
+            <div class = "collec_pickup">뽑기페이지</div>
+            <!-- {{pickup_cnt}}번 뽑기를 실행했어요 !  -->
+            <div class = "pickup_text">
+              <div><span class = "pickup_cnt">{{pickup_cnt}}번<br/></span>
+                <span class = "pickup_cnt_text">뽑기를<br/>실행했어요 !</span>
+              </div>
+            </div>
+          </div>
+    </div>
+        
+          
+</body>
+</html>

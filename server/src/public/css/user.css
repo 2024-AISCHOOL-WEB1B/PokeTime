@@ -1,0 +1,314 @@
+body{
+    margin: 0 ;
+    padding: 0 ;
+    box-sizing: border-box ;
+}
+
+body {
+    font-family: Arial, sans-serif ;
+    background-color:rgb(207, 204, 193) ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
+    height: 100vh ;
+    overflow: hidden ;
+}
+
+.sub_container{
+    width: 375px ;
+    height: 667px ;
+    background: #E9F3FF ;
+    border-radius: 35px ;
+    border : 10px solid rgb(179, 172, 163) ;
+    justify-content: center ;
+    align-items: center ;
+    display : flex ;
+    overflow: hidden ;
+    position: relative ;
+}
+
+.skyblue_circle{
+    width: 359px ;
+    height: 359px ;
+    flex-shrink: 0 ;
+    border-radius: 359px ;
+    background: #9DC8FF ;
+    left : -110px ;
+    top : -240px ;
+    position : absolute ;
+}
+
+.skyblue_circle2{
+    width: 359px ;
+    height: 359px ;
+    flex-shrink: 0;
+    border-radius: 359px ;
+    background: #9DC8FF ;
+    left : 220px ;
+    top : 550px ;
+    position : absolute ;
+
+}
+
+.blue_circle{
+    width : 466px ;
+    height : 466px ;
+    flex-shrink : 0 ;
+    border-radius : 466px ;
+    background : #0466c2;
+    top : 600px ;
+    right : 50px ;
+    position : absolute ;
+}
+
+.blue_circle2{
+    width : 466px ;
+    height : 466px ;
+    flex-shrink : 0 ;
+    border-radius : 466px ;
+    background : #0466c2;
+    top : -400px ;
+    left : 150px ;
+    position : absolute ;
+}
+
+/* 톱니바퀴 */
+nav{
+    position : absolute ;
+    top : -8px ;
+    right : 20px ;
+}
+
+nav ul{list-style:none;z-index: 2;}
+nav a{color: #0466c2;text-decoration: none;}
+nav > ul{display: flex; justify-content: space-between; padding:10px;}
+nav > ul > li{position: relative; padding: 0px ; margin : 0;}
+nav > ul > li > a{font-size: 20px; font-weight: bold;padding:10px 0;}
+nav > ul > li > a:hover{color:#cee3fe; border-radius: 15px;}
+nav > ul > li > ul{display: none; position: absolute; text-align: center; align-content: center; transform: translateX(-70%);border-radius: 15px;background: #9DC8FF; font-family: 'LaundryGothic'; padding : 0; }
+nav > ul > li:hover ul{display:block;}
+nav > ul > li  li a{display: block; padding:10px;}
+nav > ul > li  li a:hover{background:#cee3fe; border-radius: 15px;}
+nav > ul > li > li + li{margin-top:5px;}
+
+.withPokeBox{
+    /* width: 376px;
+    height: 243px; */
+    width: 321px;
+    height: 201px;
+    flex-shrink: 0;
+    position : relative;
+    top : -85px;
+    border-radius: 32px;
+    background: #FFF;
+}
+
+.random_box_mini1{
+    width: 25px;
+    height: 22px;
+    flex-shrink: 0;
+    position : absolute;
+    bottom : 33px;
+    right : 7px;
+}
+
+.yellow_circle1{
+    width: 6.969px;
+    height: 7.482px;
+    flex-shrink: 0;
+    position : absolute;
+    bottom : 39px;
+    right : 16px;
+}
+
+.box_key_mini1{
+    width: 2.091px;
+    height: 3.919px;
+    flex-shrink: 0;
+    position : absolute;
+    bottom : 41px;
+    right : 18.3px;
+}
+
+.bar{
+    width: 260px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 32px;
+    border: 4px solid rgba(255, 255, 255, 0.20);
+    background: #D9D1C2;
+    position : absolute;
+    bottom : 35px;
+    left : 20px;
+}
+
+.bar_gauge{
+    width: 5%;
+    height: 10px;
+    flex-shrink: 0;
+    border-radius: 32px;
+    background: #1877F2;
+    position : absolute;
+    top : -25%;
+}
+
+.collec{
+    width : 153px;
+    height : 180px;
+    flex-shrink : 0;
+    position : absolute;
+    top : 360px;
+    left : 27px;
+    
+    border-radius: 32px;
+    background: #FFF;
+}
+
+.bar_mini{
+    width: 116px;
+    height: 11px;
+    flex-shrink: 0;
+    border-radius: 32px;
+    border: 4px solid rgba(255, 255, 255, 0.20);
+    background: #D9D1C2;
+    position : absolute;
+    bottom : 19%;
+    left : 5%;
+}
+
+.bar_mini_gauge{
+    width: 5%;
+    height: 12px;
+    flex-shrink: 0;
+    border-radius: 32px;
+    background: #1877F2;
+    position : absolute;
+    bottom : 1%;
+}
+
+.pickup{
+    width : 153px;
+    height : 180px;
+    flex-shrink : 0;
+    position : absolute;
+    top : 360px;
+    right : 27px;
+    
+    border-radius: 32px;
+    background: #FFF;
+}
+
+/* withPokeBox Text CSS */
+.text_congra{
+    color: #877777;
+    font-family: LaundryGothic;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.4px;
+    position : absolute;
+    top : 35px;
+    right : 25%;
+}
+
+.text{
+    position : absolute;
+    top : 53px;
+    right : 20%
+}
+
+.text2{
+    color: #321C1C;
+    font-size: 14px;
+    font-family: LaundryGothic;
+    font-weight: 200;
+    word-wrap: break-word
+}
+
+.with_main{
+    color: #321C1C;
+    font-size:16px;
+    font-family: LaundryGothic;
+    font-weight: 500;
+    word-wrap: break-word
+}
+
+/* collec / pickup Text CSS */
+
+.collec_pickup{ /* -- 페이지 */
+    color: #877777;
+    font-family: LaundryGothic;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.4px;
+    position : relative;
+    top : 30px;
+    right : -70px;
+}
+
+.poke_img_text{ /* -개 */
+    color: #321C1C;
+    font-size: 15px;
+    font-family: LaundryGothic;
+    font-weight: 700;
+    word-wrap: break-word
+}
+
+.collected_text{ /*의 포켓몬을 수집했어요 !*/
+    color: #321C1C;
+    font-size: 13px;
+    font-family: LaundryGothic;
+    font-weight: 400;
+    word-wrap: break-word
+}
+
+.pickup_cnt{ /* -번 */
+    color: #321C1C;
+    font-size: 15px;
+    font-family: LaundryGothic;
+    font-weight: 700;
+    word-wrap: break-word   
+}
+
+.pickup_cnt_text{ /* 뽑기를 실행했어요 ! */
+    color: #321C1C;
+    font-size: 13px;
+    font-family: LaundryGothic;
+    font-weight: 400;
+    word-wrap: break-word   
+}
+
+.collec_text{ /* 텍스트 위치조정 */
+    position : absolute;
+    top : 25%;
+    left : 10%;
+}
+
+.pickup_text{
+    position : absolute;
+    top : 35%;
+    left : 10%;
+}
+
+.collec_gauge{
+    color: #877777;
+    font-family: "LaundryGothic";
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;  
+    position : absolute;
+    bottom : 10%;
+    left : 5%;
+}
+
+@font-face{
+    font-family: 'LaundryGothic' ;
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff') ;
+    font-weight : normal ;
+    font-style: normal ;
+
+}
