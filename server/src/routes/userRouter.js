@@ -8,14 +8,22 @@ router.post("/join", (req, res) => {
   let sql =
     "insert into user_info (user_id, user_pw, user_nick) values (?, ?, ?)";
   conn.query(sql, [email, pw, nick], (err, rows) => {
-    if (rows & (pw === pwck)) {
-      // res.redirect("/login");
-      console.log("성공", rows);
-      res.json({ result: "가입성공" });
+    // if (rows & (pw === pwck)) {
+    //   // res.redirect("/login");
+    //   console.log("성공", rows);
+    //   res.json({ result: "가입성공" });
+    // } else {
+    //   // res.render("/");
+    //   console.log("실패", rows);
+    //   res.json({ result: "가입실패" });
+    // }
+
+    if (err) {
+      console.error("가입 실패", err);
+      res.status(500).json({ result: "가입실패", error: err.message });
     } else {
-      // res.render("/");
-      console.log("실패", rows);
-      res.json({ result: "가입실패" });
+      console.log("가입 성공", rows);
+      res.json({ result: "가입성공" });
     }
   });
 });

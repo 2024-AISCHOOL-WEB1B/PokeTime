@@ -39,11 +39,17 @@ const handleLogin = () => {
 
   // axios 통신
   axios
-    .post("http://localhost:5000/user/login", {
+    .post("http://localhost:3000/user/login", {
       userEmail,
       userPw,
     })
     .then((res) => {
       console.log(res);
+      if (res.data.result == "로그인실패") {
+        alert("이메일 또는 비밀번호를 확인하세요.");
+      } else if (res.data.result == "로그인성공") {
+        // 로그인 성공 시 메인 페이지로 리다이렉션
+        window.location.hre = "/main";
+      }
     });
 };

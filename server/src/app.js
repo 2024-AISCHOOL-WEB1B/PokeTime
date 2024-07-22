@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const nunjucks = require("nunjucks");
 const bp = require("body-parser");
@@ -22,6 +23,9 @@ app.use(
     saveUninitialized: false, // 세션에 저장할 내용이 없더라도 저장하겠냐?
   })
 );
+
+// 정적 파일 제공 설정(css)
+app.use("/public", express.static(path.join(__dirname, "public")));
 
 // 라우터 등록
 app.use("/", mainRouter);

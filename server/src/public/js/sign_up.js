@@ -1,5 +1,7 @@
 // sign_up.js
 
+// import axios from "axios";
+
 // nick input
 let inputNick = document.querySelector("#nick_name");
 // email input
@@ -11,7 +13,7 @@ let inputPwCk = document.querySelector("#join_password_check");
 // email 유효성 검사를 위한 패턴
 const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
 
-const handleSingUn = () => {
+const handleSignUp = () => {
   console.log("signup btn ck");
 
   //  이메일 유효성 검사
@@ -52,8 +54,34 @@ const handleSingUn = () => {
     ckPwCk.innerHTML = "비밀번호가 일치하지 않습니다.";
   }
 
-  // localStorage에 nick, id, pw 값 저장
-  localStorage.setItem("userNick", userNick);
-  localStorage.setItem("userEmail", userEmail);
-  localStorage.setItem("userPw", userPw);
+  // axios 통신
+  axios
+    .post(
+      "http://localhost:3000/user/join",
+      {
+        email: userEmail,
+        pw: userPw,
+        nick: userNick,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+
+    // 서버 => 클라이언트 : response로 {ok:ture} or {ok: false}
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.result == "가입성공") {
+        window.alert("회원가입이 완료되었습니다.");
+        window.location.href = "./login";
+      } else {
+        window.alert("회원가입에 실패하였습니다. 다시 시도해주세요.");
+      }
+    })
+    .catch((error) => {
+      window.alert("회원가입에 실패했습니다. 관리자에게 문의하세요");
+      console.error(error);
+    });
 };
