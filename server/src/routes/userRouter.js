@@ -30,16 +30,19 @@ router.post("/join", (req, res) => {
 
 // 로그인
 router.post("/login", (req, res) => {
-  let { id, pw } = req.body;
+  let { userEmail, userPw } = req.body;
   let sql =
     "select user_id, user_pw from user_info where user_id = ? and user_pw = ?";
-  conn.query(sql, [id, pw], (err, rows) => {
+  conn.query(sql, [userEmail, userPw], (err, rows) => {
     if (rows.length > 0) {
+      console.log("rows", rows);
       // res.redirect("/mainpage");
       console.log("로그인 성공");
       res.json({ result: "로그인성공" });
     } else {
       // res.render("/");
+      console.log("rows", rows);
+
       console.log("로그인 실패");
       res.json({ result: "로그인실패" });
     }

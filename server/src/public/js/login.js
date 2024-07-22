@@ -48,8 +48,13 @@ const handleLogin = () => {
       if (res.data.result == "로그인실패") {
         alert("이메일 또는 비밀번호를 확인하세요.");
       } else if (res.data.result == "로그인성공") {
+        console.log("로그인 성공");
+        sessionStorage.setItem("userEmail", userEmail);
         // 로그인 성공 시 메인 페이지로 리다이렉션
-        window.location.hre = "/main";
+        window.location.href = "/";
       }
+    })
+    .catch((error) => {
+      console.error("로그인 요청 실패", error);
     });
 };
