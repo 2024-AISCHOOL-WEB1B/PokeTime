@@ -105,36 +105,54 @@ h3 {
   right: 280px;
 }
 
-.container #login_email {
+.container #skyblue_circle {
+  width: 359px;
+  height: 359px;
+  flex-shrink: 0;
+  border-radius: 359px;
+  background: #9dc8ff;
+  left: -110px;
+  top: -240px;
   position: absolute;
-  top: 250px;
-  width: 280px;
-  height: 20px;
-  border-radius: 5px;
-  border: 2px #9dc8ff solid;
-  font-family: Inter;
-  font-weight: 400;
-  word-wrap: break-word;
-  font-family: "LaundryGothic";
-  padding: 10px;
 }
 
-input::placeholder {
-  color: #abb4bd;
+.container #skyblue_circle2 {
+  width: 359px;
+  height: 359px;
+  flex-shrink: 0;
+  border-radius: 359px;
+  background: #9dc8ff;
+  left: 220px;
+  top: 550px;
+  position: absolute;
 }
 
-.container #login_password {
+.container #blue_circle {
+  width: 466px;
+  height: 466px;
+  flex-shrink: 0;
+  border-radius: 466px;
+  background: #0466c2;
+  top: 600px;
+  right: 50px;
   position: absolute;
-  top: 310px;
+}
+
+.container #blue_circle2 {
+  width: 466px;
+  height: 466px;
+  flex-shrink: 0;
+  border-radius: 466px;
+  background: #0466c2;
+  top: -400px;
+  left: 150px;
+  position: absolute;
+}
+
+.container #input_container {
   width: 280px;
-  height: 20px;
-  border-radius: 5px;
-  border: 2px #9dc8ff solid;
-  font-family: Inter;
-  font-weight: 400;
-  word-wrap: break-word;
-  font-family: "LaundryGothic";
-  padding: 10px;
+  justify-content: center;
+  justify-items: center;
 }
 
 #forget_pw {
@@ -144,26 +162,6 @@ input::placeholder {
   right: 46px;
   font-family: "LaundryGothic";
   color: #0466c2;
-}
-
-#btn_login {
-  width: 280px;
-  height: 30px;
-  position: absolute;
-  background: #1877f2;
-  border-radius: 5px;
-  border: 0 solid;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: white;
-  font-size: 10px;
-  font-family: "LaundryGothic";
-  font-weight: 700;
-  word-wrap: break-word;
-  bottom: 270px;
-  cursor: pointer;
-  padding: 10px;
 }
 
 hr {
@@ -191,7 +189,7 @@ hr {
 }
 
 #join_word {
-  position: absolute;
+  /* position: absolute; */
   font-size: 12px;
   bottom: 42px;
   left: 90px;
@@ -201,7 +199,7 @@ hr {
 }
 
 #join_page {
-  position: absolute;
+  /* position: absolute; */
   font-size: 16px;
   bottom: 40px;
   right: 90px;
@@ -221,8 +219,8 @@ hr {
 }
 
 .input_inform {
-  position: absolute;
-  width: 280px;
+  /* position: absolute; */
+  width: 90%;
   height: 20px;
   border-radius: 5px;
   border: 2px #9dc8ff solid;
@@ -230,6 +228,7 @@ hr {
   font-weight: 400;
   word-wrap: break-word;
   font-family: "LaundryGothic";
+  margin-top: 1rem;
 }
 
 @font-face {
@@ -267,8 +266,8 @@ hr {
 
 #btn_join {
   bottom: 210px;
-  width: 280px;
-  position: absolute;
+  width: 100%;
+  /* position: absolute; */
   background: #1877f2;
   border-radius: 5px;
   border: 0 solid;
@@ -282,6 +281,7 @@ hr {
   word-wrap: break-word;
   cursor: pointer;
   padding: 10px;
+  margin-top: 1rem;
 }
 
 #login_word {
@@ -304,10 +304,36 @@ hr {
   font-family: "LaundryGothic";
 }
 
+.container #result_login_nick,
+#result_login_email,
+#result_login_pw,
+#result_login_pwck {
+  color: red;
+  font-family: Interop;
+  font-size: 0.9rem;
+  letter-spacing: -1px;
+}
+
 @font-face {
   font-family: "LaundryGothic";
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
     format("woff");
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Interop";
+  src: url("https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Regular.woff2")
+      format("woff2"),
+    url("https://raw.githubusercontent.com/payw-org/Interop/main/web/fonts/Interop-Regular.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.container .input_inform {
+  color: #1877f2;
+  outline-color: #1877f2;
 }

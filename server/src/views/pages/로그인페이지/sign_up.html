@@ -8,43 +8,55 @@
   </head>
   <body>
     <div class="container">
+      <div id="skyblue_circle"></div>
+      <div id="blue_circle2"></div>
       <a href="./login.html" class="btn_back">< 뒤로</a>
       <h3 id="sign_word">회원가입</h3>
-      <input
-        type="text"
-        placeholder="닉네임"
-        name="nick"
-        class="input_inform"
-        id="nick_name"
-      />
-      <input
-        type="text"
-        placeholder="이메일"
-        name="nick"
-        class="input_inform"
-        id="join_email"
-      />
-      <input
-        type="password"
-        placeholder="비밀번호"
-        name="pw"
-        class="input_inform"
-        id="join_password"
-      />
-      <input
-        type="password"
-        placeholder="비밀번호확인"
-        name="pw"
-        class="input_inform"
-        id="join_password_check"
-      />
-      <input
-        type="submit"
-        id="btn_join"
-        name="frm_submit"
-        value="회원가입"
-        onclick="handleSingupBtn()"
-      />
+      <div id="input_container">
+        <input
+          type="text"
+          placeholder="닉네임"
+          name="nick"
+          class="input_inform"
+          id="nick_name"
+        />
+        <div id="result_login_nick"></div>
+
+        <input
+          type="text"
+          placeholder="이메일"
+          name="nick"
+          class="input_inform"
+          id="join_email"
+        />
+        <div id="result_login_email"></div>
+
+        <input
+          type="password"
+          placeholder="비밀번호"
+          name="pw"
+          class="input_inform"
+          id="join_password"
+        />
+        <div id="result_login_pw"></div>
+
+        <input
+          type="password"
+          placeholder="비밀번호확인"
+          name="pw"
+          class="input_inform"
+          id="join_password_check"
+        />
+        <div id="result_login_pwck"></div>
+
+        <input
+          type="submit"
+          id="btn_join"
+          name="frm_submit"
+          value="회원가입"
+          onclick="handleSingUn()"
+        />
+      </div>
       <a href="./login.html" id="login_word">이미 계정이 있으신가요?</a>
       <a href="./login.html" id="login_page">로그인</a>
     </div>
