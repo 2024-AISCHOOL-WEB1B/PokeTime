@@ -269,3 +269,8 @@ hr {
   font-style: normal;
   font-display: block;
 }
+
+#login_container i {
+  color: #abb4bd;
+  width: 100px;
+}
