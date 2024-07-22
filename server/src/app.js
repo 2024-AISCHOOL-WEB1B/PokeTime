@@ -10,6 +10,21 @@ const pointRouter = require("./routes/pointRouter");
 const session = require("express-session"); // 세션을 쓰기 위한 모듈 호출
 const fileStore = require("session-file-store")(session);
 
+// 정적 파일 제공 설정(css)
+app.use(
+  "/public",
+  express.static(path.join(__dirname, "public"), {
+    setHeaders: (res, path, stat) => {
+      if (path.endsWith(".css")) {
+        res.set("Contetn-Type", "text/css");
+      }
+      if (path.endsWith(".svg")) {
+        res.set("Content-Type", "image/svg+xml");
+      }
+    },
+  })
+);
+
 // post 데이터 처리 등록
 app.use(bp.json());
 
@@ -23,9 +38,6 @@ app.use(
     saveUninitialized: false, // 세션에 저장할 내용이 없더라도 저장하겠냐?
   })
 );
-
-// 정적 파일 제공 설정(css)
-app.use("/public", express.static(path.join(__dirname, "public")));
 
 // 라우터 등록
 app.use("/", mainRouter);
