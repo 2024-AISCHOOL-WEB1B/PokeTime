@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>scheduler</title>
+    <link rel = "stylesheet" href = "../../public/css/scheduler.css">
+</head>
+<body>
+    <div class="sub_container">
+        <div class="skyblue_circle"></div>
+        <div class="blue_circle2"></div>
+          <!-- 우측상단 톱니바퀴 -->
+          <nav>
+              <ul>
+                <li>
+                  <a href="#">
+                      <img src="../../public/images/setting_img.svg" id="start_setting">
+                  </a>
+                  <!-- hover 세팅 / 로그아웃 메뉴 -->
+                  <ul>
+                    <li><a href="#">Setting</a></li>
+                    <li><a href="#">Logout</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+
+            <!-- 달력 -->
+            <div class="calendar-container">
+                <div class = "calendar">
+                    <div class="calendar-header">
+                        <button id="prevMonth">&lt;</button>
+                        <div id="calendarTitle"></div>
+                        <button id="nextMonth">&gt;</button>
+                    </div>
+                    <table id="calendarTable">
+                        <thead>
+                            <tr>
+                                <th id = "SUN">SUN</th>
+                                <th>MON</th>
+                                <th>TUE</th>
+                                <th>WED</th>
+                                <th>THU</th>
+                                <th>FRI</th>
+                                <th id = "SAT">SAT</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendarBody">
+                            <!-- 날짜가 여기에 삽입됩니다 -->
+                        </tbody>
+                    </table>
+                </div>
+                
+            </div>
+            <div class = Todo>
+                <div class = Todo_Title>오늘 해야 할 일 🔖</div>
+                <!-- 모달창에서 저장한 todolist를 출력한다. -->
+                <ul id="todoList"></ul>
+            </div>
+
+            
+            <!-- 모달창 -->
+        </div>
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+              
+                    <div id = "modalText"><span>오늘의</span>
+                        <span>Todolist를<br/></span>
+                        <span >적어보세요 !</span>
+                    </div>
+                <Textarea id="todoInput" placeholder="오늘 할 일을 적어주세요 !"></Textarea>
+                <button id="saveTodo">저장하기</button>
+            </div>
+        </div>
+        
+
+
+    </div>
+    <script src = "../../public/js/scheduler.js"></script>
+</body>
+</html>
