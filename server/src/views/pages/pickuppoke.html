@@ -1,77 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pickupPoke</title>
-    <link rel = "stylesheet" href = "../../public/css/pickuppoke.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../public/css/pickuppoke.css" />
+  </head>
+  <body>
     <div class="sub_container">
-        <div class="skyblue_circle"></div>
-        <div class="blue_circle2"></div>
-        <!-- 우측상단 톱니바퀴 -->
-        <nav>
+      <div class="skyblue_circle"></div>
+      <div class="blue_circle2"></div>
+      <!-- 우측상단 톱니바퀴 -->
+      <nav>
+        <ul>
+          <li>
+            <a href="#">
+              <img
+                src="../../public/images/setting_img.svg"
+                id="start_setting"
+              />
+            </a>
+            <!-- hover 세팅 / 로그아웃 메뉴 -->
             <ul>
-              <li>
-                <a href="#">
-                    <img src="../../public/images/setting_img.svg" id="start_setting">
-                </a>
-                <!-- hover 세팅 / 로그아웃 메뉴 -->
-                <ul>
-                  <li><a href="#">Setting</a></li>
-                  <li><a href="#">Logout</a></li>
-                </ul>
-              </li>
+              <li><a href="#">Setting</a></li>
+              <li><a href="#">Logout</a></li>
             </ul>
-          </nav>
-        <!-- 화면 내 흰색박스 -->
-        <div class = "random_back">
-          <!-- 뽑기박스 -->
-          <div class = "pickup_box"  id = "openPickupModal">
-            <img src="../../public/images/random_box.svg" class ="random_box">
+          </li>
+        </ul>
+      </nav>
+      <!-- 화면 내 흰색박스 -->
+      <div class="random_back">
+        <!-- 뽑기박스 -->
+        <div class="pickup_box" id="openPickupModal">
+          <img src="../../public/images/random_box.svg" class="random_box" />
+          <div>
+            <img src="../../public/images/yellowbox.svg" class="yellow_box" />
             <div>
-              <img src = "../../public/images/yellowbox.svg" class = "yellow_box">
-              <div>
-                <img src = "../../public/images/key.svg" class = "box_key">
-              </div>
+              <img src="../../public/images/key.svg" class="box_key" />
             </div>
           </div>
-            <!-- rand_cnt : 뽑기 실행 횟수 -->
-            <h1 class = "rand_cnt">상자를 눌러 새로운 포켓몬을 만나보세요 !</h1>
         </div>
-        <!-- 모달창 기본구조 -->
-         <div id = "myModal" class = "modal">
-          <div class = "modal_content">
-            <span class = "close" id = "closePickupModal">&times;</span>
-            <!-- 뽑기를 통해 나온 포켓몬을 출력한다. 코드상에는 임의의 포켓몬 사진 등록-->
-             <img src = "../../public/images/grayscale_images(png)/101.png" class = "pickup_result_img">
-             <div class = "pickup_result">{{pickup_result}}가 나왔습니다!</div>
-              <!-- <div><span class = "pickup_result">{{pickup_result}}</span>
-              <span class = "pickup_text">가 나왔습니다 !</span></div> -->
+        <!-- rand_cnt : 뽑기 실행 횟수 -->
+        <h1 class="rand_cnt">상자를 눌러 새로운 포켓몬을 만나보세요 !</h1>
+      </div>
+      <!-- 모달창 기본구조 -->
+      <div id="myModal" class="modal">
+        <div class="modal_content">
+          <span class="close" id="closePickupModal">&times;</span>
+          <!-- 뽑기를 통해 나온 포켓몬을 출력한다. 코드상에는 임의의 포켓몬 사진 등록-->
+          <img
+            src="../../public/images/grayscale_images(png)/101.png"
+            class="pickup_result_img"
+          />
+          <div class="pickup_result">
+            {{pickuppoke.pickup_result}}가 나왔습니다!
           </div>
-         </div>
-        
+          <!-- <div><span class = "pickup_result">{{pickup_result}}</span>
+              <span class = "pickup_text">가 나왔습니다 !</span></div> -->
+        </div>
+      </div>
     </div>
 
-  <!-- 모달 출력 JS문 -->
+    <!-- 모달 출력 JS문 -->
     <script>
       // div를 클릭했을 때, 모달을 연다.
-      document.getElementById('openPickupModal').onclick = function(){
-        document.getElementById('myModal').style.display = 'block'
+      document.getElementById("openPickupModal").onclick = function () {
+        document.getElementById("myModal").style.display = "block";
       };
 
       // 모달을 닫는다.
-      document.getElementById('closePickupModal').onclick = function(){
-        document.getElementById('myModal').style.display = 'none';
+      document.getElementById("closePickupModal").onclick = function () {
+        document.getElementById("myModal").style.display = "none";
       };
 
       // 모달창 바깥을 클릭했을 때에도 모달창을 닫을 수 있도록 한다.
-      window.onclick = function(event){
-        if (event.target == document.getElementById('myModal')){
-          document.getElementById('myModal').sytle.display = 'none';
+      window.onclick = function (event) {
+        if (event.target == document.getElementById("myModal")) {
+          document.getElementById("myModal").sytle.display = "none";
         }
       };
     </script>
-</body>
+  </body>
 </html>

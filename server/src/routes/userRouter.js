@@ -94,7 +94,38 @@ router.get("/logout", (req, res) => {
 
 // 포켓몬 뽑기
 router.post("/pickuppoke", (req, res) => {
-  let sql = "";
+  let sql = `
+    SELECT a.*
+    FROM poke_info a
+    LEFT JOIN user_poke_info b ON a.poke_name = b.poke_name
+    where a.poke_name not in (select poke_name from user_poke_info)
+    `;
+  conn.query(sql, (err, rows) => {
+    if (err) {
+      console.error("쿼리 실행 중 오류 발생:", err);
+      return res.status(500).json({ result: "서버 오류" });
+    }
+
+    if (rows.length > 0) {
+      console.log("rows", rows[0]);
+      let pokeImgs = rows
+        .map((row) => row.user_mainpoke_img)
+        .filter((img) => img);
+
+      const pickuppoke = {
+        pickup_result: rows[0].poke_name,
+        poke_img: rows[0].poke_img,
+      };
+
+      req.session.pickuppoke = pickuppoke;
+
+      console.log("뽑기 성공");
+      res.json({ result: "뽑기성공" });
+    } else {
+      console.log("뽑기 실패");
+      res.json({ result: "뽑기실패" });
+    }
+  });
 });
 
 // 스케줄러

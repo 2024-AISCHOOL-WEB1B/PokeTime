@@ -25,4 +25,27 @@ router.get("/mainpage", (req, res) => {
   }
 });
 
+// 사용자가 포켓몬 뽑기 페이지를 요청했을 때
+router.get("/pickuppoke", (req, res) => {
+  if (req.session.pickuppoke) {
+    res.render("pickuppoke", { pickuppoke: req.session.pickuppoke });
+  } else {
+    res.redirect("/pickuppoke");
+  }
+});
+
+// 사용자가 관리 페이지를 요청했을 때
+router.get("/management", (req, res) => {
+  res.render("management");
+});
+
+// 사용자가 스케쥴러 페이지를 요청했을 때
+router.get("/scheduler", (req, res) => {
+  res.render("scheduler");
+});
+
+router.get("/setting", (req, res) => {
+  res.render("setting");
+});
+
 module.exports = router;
