@@ -8,16 +8,6 @@ router.post("/join", (req, res) => {
   let sql =
     "insert into user_info (user_id, user_pw, user_nick) values (?, ?, ?)";
   conn.query(sql, [email, pw, nick], (err, rows) => {
-    // if (rows & (pw === pwck)) {
-    //   // res.redirect("/login");
-    //   console.log("성공", rows);
-    //   res.json({ result: "가입성공" });
-    // } else {
-    //   // res.render("/");
-    //   console.log("실패", rows);
-    //   res.json({ result: "가입실패" });
-    // }
-
     if (err) {
       console.error("가입 실패", err);
       res.status(500).json({ result: "가입실패", error: err.message });
@@ -36,22 +26,36 @@ router.post("/join", (req, res) => {
 // 로그인
 router.post("/login", (req, res) => {
   let { userEmail, userPw } = req.body;
-  let sql =
-    "select user_id, user_pw from user_info where user_id = ? and user_pw = ?";
+  let sql = `
+    SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_mainpoke_img, a.user_pickup_cnt
+    FROM user_info a
+    LEFT JOIN user_poke_info b ON a.user_id = b.user_id
+    WHERE a.user_id = ? AND a.user_pw = ?
+  `;
   conn.query(sql, [userEmail, userPw], (err, rows) => {
+    if (err) {
+      console.error("쿼리 실행 중 오류 발생:", err);
+      return res.status(500).json({ result: "서버 오류" });
+    }
+
     if (rows.length > 0) {
       console.log("rows", rows);
-      req.session.user = {
-        id: rows[0].user_id,
+      let pokeImgs = rows
+        .map((row) => row.user_mainpoke_img)
+        .filter((img) => img);
+
+      const userInfo = {
+        user_id: rows[0].user_id,
+        with_date: rows[0].user_poke_date,
+        main_poke: rows[0].poke_name,
+        poke_img: rows[0].user_mainpoke_img,
+        pickup_cnt: rows[0].user_pickup_cnt,
       };
-      // res.redirect("/mainpage");
+
+      req.session.userInfo = userInfo;
       console.log("로그인 성공");
-      console.log(req.session.user);
       res.json({ result: "로그인성공" });
     } else {
-      // res.render("/");
-      console.log("rows", rows);
-
       console.log("로그인 실패");
       res.json({ result: "로그인실패" });
     }
@@ -89,7 +93,9 @@ router.get("/logout", (req, res) => {
 });
 
 // 포켓몬 뽑기
-router.post("/pickuppoke", (req, res) => {});
+router.post("/pickuppoke", (req, res) => {
+  let sql = "";
+});
 
 // 스케줄러
 router.get("/scheduler", (req, res) => {});

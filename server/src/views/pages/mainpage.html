@@ -32,7 +32,6 @@
       </nav>
       <!-- -와 -일 째 함께 중 ! -->
       <div class="withPokeBox">
-        <!-- <img src = "/pubilc 폴더로 메인포켓몬 등록 / 해당 페이지 주소로 반환" class = "user_mainpoke_img">-->
         <div class="pickup_box_mini">
           <div class="bar">
             <!-- 게이지바로 사용자의 행위에 따라 길이가 조정된다. -->
@@ -58,9 +57,9 @@
         <div class="text_congra">축하해요 !</div>
         <div class="text">
           <div>
-            <span class="with_main">{{with_date}}</span>
+            <span class="with_main">{{ userInfo.with_date }}</span>
             <span class="text2">째<br /></span>
-            <span class="with_main">{{main_poke}}</span>
+            <span class="with_main">{{ userInfo.main_poke }}</span>
             <span class="text2">와<br />함께 중!</span>
           </div>
         </div>
@@ -94,15 +93,17 @@
         </div>
         <!-- text -->
         <div class="collec_pickup">도감페이지</div>
-        <!-- {{len(poke_img) + 1}}개의 포켓몬을 수집했어요 ! -->
+        <!-- {{ poke_img.length + 1 }}개의 포켓몬을 수집했어요 ! -->
         <div>
           <div class="collec_text">
-            <span class="poke_img_text">{{len(poke_img) + 1}}개</span>
+            <span class="poke_img_text"
+              >{{ userInfo.poke_img.length + 1 }}개</span
+            >
             <span class="collected_text"
               >의<br />포켓몬을<br />수집했어요!</span
             >
           </div>
-          <div class="collec_gauge">{{len(poke_img) + 1}}/150</div>
+          <div class="collec_gauge">{{ userInfo.poke_img.length + 1 }}/150</div>
         </div>
       </div>
 
@@ -114,15 +115,16 @@
       >
         <!-- text -->
         <div class="collec_pickup">뽑기페이지</div>
-        <!-- {{pickup_cnt}}번 뽑기를 실행했어요 !  -->
+        <!-- {{ pickup_cnt }}번 뽑기를 실행했어요 ! -->
         <div class="pickup_text">
           <div>
-            <span class="pickup_cnt">{{pickup_cnt}}번<br /></span>
+            <span class="pickup_cnt">{{ userInfo.pickup_cnt }}번<br /></span>
             <span class="pickup_cnt_text">뽑기를<br />실행했어요 !</span>
           </div>
         </div>
       </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="../../public/js/user.js"></script>
   </body>
 </html>

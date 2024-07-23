@@ -51,7 +51,7 @@ const handleLogin = () => {
         console.log("로그인 성공");
         sessionStorage.setItem("userEmail", userEmail);
         // 로그인 성공 시 메인 페이지로 리다이렉션
-        window.location.href = "/";
+        window.location.href = "/mainpage";
       }
     })
     .catch((error) => {

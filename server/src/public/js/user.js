@@ -1,18 +1,17 @@
 // user.js
 
-const { default: axios } = require("axios");
-const { response } = require("express");
+// import axios from "axios ";
 
 const handleLogout = () => {
   // logout btn ck
   console.log("logout btn ck");
 
-  axios.post("/user/logout").then((res) => {
-    if (response.data.success) {
-      console.log(window.history);
+  axios.get("/user/logout").then((res) => {
+    console.log(res);
+    if (res.status === 200) {
+      console.log("로그아웃 성공");
       localStorage.clear();
-      console.log(localStorage.getItem("userEmail"));
-      window.location.href("/main");
+      window.location.href = "/";
     } else {
       alert("로그아웃 실패!");
       console.log(localStorage.getItem("userEmail"));
