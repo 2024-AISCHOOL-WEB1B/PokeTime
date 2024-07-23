@@ -72,12 +72,6 @@ body {
     position : absolute ;
 }
 
-#start_setting{
-    position : absolute ;
-    top : 20px ;
-    right : 20px ;
-}
-
 /* start 버튼 css */
 @import url('https://fonts.googleapis.com/css?family=Poppins:900i');
 

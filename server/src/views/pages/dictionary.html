@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../public/css/dict_style.css">
+</head>
+<body>
+    <div class="sub_container">
+        <div class="skyblue_circle" id="skyblue_top_circle"></div>
+        <div class="skyblue_circle" id="skyblue_bottom_circle"></div>
+        <div class="blue_circle" id="blue_top_circle"></div>
+        <div class="blue_circle" id="blue_bottom_circle"></div>
+        
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="../../public/images/setting_img.svg" id="start_setting">
+                    </a>
+                    <ul>
+                        <li><a href="#">Setting</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <a href="./user.html" class="btn_back">< 뒤로</a>
+        <div class="dict_box" id="top_box">{{% len(poke_img)+1 %}}개의 포켓몬을 수집했어요!</div>
+        <div class = "bar1"></div>
+        <div class="dict_box" id="bottom_box">
+            <div class="wrapper">
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/1.png" class="pokemon_pic" alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/2.png" class="pokemon_pic" alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/3.png" class="pokemon_pic" alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/4.png" class="pokemon_pic"alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/5.png" class="pokemon_pic"alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/6.png" class="pokemon_pic"alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/7.png" class="pokemon_pic"alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/8.png" class="pokemon_pic"alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/9.png" class="pokemon_pic"alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/10.png" class="pokemon_pic"alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/11.png" class="pokemon_pic"alt="">
+                </div>
+                <div class="pocket_card">
+                    <img src="../../public/images/grayscale_images(png)/12.png" class="pokemon_pic" alt="">
+                </div>
+                
+            </div>
+            <div class="page_btn">
+                <button id="left"><</button>
+                <button id="right">></button>
+            </div>
+        </div>
+        <div class = "pickup_box">
+            <img src="../../public/images/random_box.svg" id="box">
+            <div>
+              <img src = "../../public/images/yellowcircle.svg" id="circle">
+                <div>
+                    <img src = "../../public/images/key.svg" id="key_hole">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
