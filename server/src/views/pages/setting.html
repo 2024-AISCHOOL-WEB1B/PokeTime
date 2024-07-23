@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../public/css/setting.css">
+</head>
+<body>
+    <div class="sub_container">
+        <div class="skyblue_circle" id="skyblue_top_circle"></div>
+        <div class="skyblue_circle" id="skyblue_bottom_circle"></div>
+        <div class="blue_circle" id="blue_top_circle"></div>
+        <div class="blue_circle" id="blue_bottom_circle"></div>
+        
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="../../public/images/setting_img.svg" id="start_setting">
+                    </a>
+                    <ul>
+                        <li><a href="#">Setting</a></li>
+                        <li><a href="#">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <a href="./mainpage.html" class="btn_back">< 뒤로</a>
+        <div id="setting_text">회원정보수정</div>
+        <div id="input_container">
+            <input
+              type="text"
+              placeholder="닉네임"
+              name="nick"
+              class="input_inform"
+              id="nick_name"
+            />
+            <input
+              type="password"
+              placeholder="비밀번호 변경"
+              name="pw"
+              class="input_inform"
+              id="join_password"
+            />
+            <input
+              type="password"
+              placeholder="비밀번호 변경확인"
+              name="pwck"
+              class="input_inform"
+              id="join_password_check"
+            />
+            <div id="submit_btn">
+                <input
+                  type="submit"
+                  id="btn_out"
+                  name="frm_out"
+                  value="회원탈퇴"
+                  onclick=""
+                />
+                <input
+                  type="submit"
+                  id="btn_join"
+                  name="frm_submit"
+                  value="확인"
+                  onclick=""
+                />
+
+            </div>
+        </div>
+        
+    </div>
+</body>
+</html>
