@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pickupPoke</title>
+    <link rel = "stylesheet" href = "../../public/css/pickuppoke.css">
+</head>
+<body>
+    <div class="sub_container">
+        <div class="skyblue_circle"></div>
+        <div class="blue_circle2"></div>
+        <!-- 우측상단 톱니바퀴 -->
+        <nav>
+            <ul>
+              <li>
+                <a href="#">
+                    <img src="../../public/images/setting_img.svg" id="start_setting">
+                </a>
+                <!-- hover 세팅 / 로그아웃 메뉴 -->
+                <ul>
+                  <li><a href="#">Setting</a></li>
+                  <li><a href="#">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        <!-- 화면 내 흰색박스 -->
+        <div class = "random_back">
+          <!-- 뽑기박스 -->
+          <div class = "pickup_box"  id = "openPickupModal">
+            <img src="../../public/images/random_box.svg" class ="random_box">
+            <div>
+              <img src = "../../public/images/yellowbox.svg" class = "yellow_box">
+              <div>
+                <img src = "../../public/images/key.svg" class = "box_key">
+              </div>
+            </div>
+          </div>
+            <!-- rand_cnt : 뽑기 실행 횟수 -->
+            <h4 class = "rand_cnt">지금까지 {{rand_cnt}}번의 뽑기를 실행했어요!</h4>
+        </div>
+        <!-- 모달창 기본구조 -->
+         <div id = "myModal" class = "modal">
+          <div class = "modal_content">
+            <span class = "close" id = "closePickupModal">&times;</span>
+            <!-- 뽑기를 통해 나온 포켓몬을 출력한다. 코드상에는 임의의 포켓몬 사진 등록-->
+             <img src = "../../public/images/grayscale_images(png)/101.png" class = "pickup_result_img">
+             <div class = "pickup_result">{{pickup_result}}가 나왔습니다!</div>
+              <!-- <div><span class = "pickup_result">{{pickup_result}}</span>
+              <span class = "pickup_text">가 나왔습니다 !</span></div> -->
+          </div>
+         </div>
+        
+    </div>
+
+  <!-- 모달 출력 JS문 -->
+    <script>
+      // div를 클릭했을 때, 모달을 연다.
+      document.getElementById('openPickupModal').onclick = function(){
+        document.getElementById('myModal').style.display = 'block'
+      };
+
+      // 모달을 닫는다.
+      document.getElementById('closePickupModal').onclick = function(){
+        document.getElementById('myModal').style.display = 'none';
+      };
+
+      // 모달창 바깥을 클릭했을 때에도 모달창을 닫을 수 있도록 한다.
+      window.onclick = function(event){
+        if (event.target == document.getElementById('myModal')){
+          document.getElementById('myModal').sytle.display = 'none';
+        }
+      };
+    </script>
+</body>
+</html>
