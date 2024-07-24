@@ -4,11 +4,16 @@ const conn = require("../config/db");
 
 // 도감 조회
 router.get("/info", (req, res) => {
-  let { email, pw, nick } = req.body;
-  let sql = "select poke_img from poke_info";
-  conn.query(sql, [email], (err, rows) => {
+  let id = req.session.userInfo.user_id;
+  let sql = `
+  SELECT a.*, b.*
+  FROM poke_info a
+  LEFT JOIN user_poke_info b ON a.poke_name = b.poke_name
+  WHERE b.user_id = ?
+  `;
+  conn.query(sql, [id], (err, rows) => {
     if (err) {
-      console.err("도감 조회 실패", err);
+      console.log("도감 조회 실패", err);
       res.status(500).json({ result: "조회실패", error: err.message });
     }
     if (rows) {

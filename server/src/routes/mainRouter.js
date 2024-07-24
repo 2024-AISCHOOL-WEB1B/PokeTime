@@ -44,10 +44,12 @@ router.get("/scheduler", (req, res) => {
   res.render("scheduler");
 });
 
+// 사용자가 회원정보 수정을 요청했을 때
 router.get("/setting", (req, res) => {
   res.render("setting");
 });
 
+// 사용자가 도감 페이지를 요철했을 때
 router.get("/dictionary", (req, res) => {
   res.render("dictionary");
 });

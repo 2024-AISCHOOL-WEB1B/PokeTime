@@ -66,14 +66,42 @@ router.post("/login", (req, res) => {
 
 // 회원정보 수정
 router.post("/update", (req, res) => {
-  let { id, pw, nick } = req.body;
+  let { nick, pw } = req.body;
+  let id = req.session.userInfo.user_id;
+
+  // 입력된 값에 따라 동적으로 쿼리를 생성
+  let fields = [];
+  let values = [];
+
+  if (nick) {
+    fields.push("user_nick = ?");
+    values.push(nick);
+  }
+  if (pw) {
+    fields.push("user_pw = ?");
+    values.push(pw);
+  }
+  values.push(id);
+
+  // 동적으로 쿼리를 생성
+  let sql = `UPDATE user_info SET ${fields.join(", ")} WHERE user_id = ?`;
+
+  conn.query(sql, values, (err, result) => {
+    if (err) {
+      console.error("쿼리 실행 중 오류 발생:", err);
+      return res.status(500).json({ result: "서버 오류" });
+    } else {
+      console.log("수정완료");
+      res.json({ result: "수정완료" });
+    }
+  });
 });
 
 // 회원 탈퇴
 router.post("/delete", (req, res) => {
-  let { id, pw } = req.body;
-  let sql = "delete from user_info where user_id = ? and user_pw = ?";
-  conn.query(sql, [id, pw], (err, rows) => {
+  let id = req.session.userInfo.user_id;
+  let sql = "delete from user_info where user_id = ?";
+  conn.query(sql, [id], (err, rows) => {
     if (rows.affectedRows > 0) {
       console.log("삭제 성공");
       res.json({ result: "삭제 성공" });
@@ -100,7 +128,7 @@ router.post("/pickuppoke", (req, res) => {
     SELECT a.*
     FROM poke_info a
     LEFT JOIN user_poke_info b ON a.poke_name = b.poke_name
-    WHERE a.poke_name NOT IN (SELECT poke_name FROM user_poke_info)
+    WHERE a.poke_name NOT IN (SELECT poke_name FROM user_poke_info) and a.poke_init = 1
   `;
 
   conn.query(sql, (err, rows) => {
