@@ -1,71 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../../public/css/manage_style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../../public/css/manage_style.css" />
+  </head>
+  <body>
     <div class="sub_container">
-        <div class="skyblue_circle" id="skyblue_top_circle"></div>
-        <div class="skyblue_circle" id="skyblue_bottom_circle"></div>
-        <div class="blue_circle" id="blue_top_circle"></div>
-        <div class="blue_circle" id="blue_bottom_circle"></div>
-        
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">
-                        <img src="../../public/images/setting_img.svg" id="start_setting">
-                    </a>
-                    <ul>
-                        <li><a href="#">Setting</a></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <a href="./mainpage.html" class="btn_back">< 뒤로</a>
+      <div class="skyblue_circle" id="skyblue_top_circle"></div>
+      <div class="skyblue_circle" id="skyblue_bottom_circle"></div>
+      <div class="blue_circle" id="blue_top_circle"></div>
+      <div class="blue_circle" id="blue_bottom_circle"></div>
 
-        <div id="left_box" style="cursor: pointer" onclick="">
-            <img id="camera" src="../../public/images/camera.svg" alt="">
-            <span id="left_box_text">사진 등록하기</span>
+      <nav>
+        <ul>
+          <li>
+            <a href="#">
+              <img
+                src="../../public/images/setting_img.svg"
+                id="start_setting"
+              />
+            </a>
+            <ul>
+              <li><a href="#">Setting</a></li>
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <a href="./mainpage.html" class="btn_back">< 뒤로</a>
+
+      <div id="left_box" style="cursor: pointer" onclick="">
+        <img id="camera" src="../../public/images/camera.svg" alt="" />
+        <span id="left_box_text">사진 등록하기</span>
+      </div>
+      <div id="right_box" style="cursor: pointer" onclick="">
+        <img id="check" src="../../public/images/check.svg" alt="" />
+        <span id="right_box_text">출석하기</span>
+      </div>
+      <!-- 달력 -->
+      <div class="calendar-container">
+        <div class="calendar">
+          <div class="calendar-header">
+            <button id="prevMonth">&lt;</button>
+            <div id="calendarTitle"></div>
+            <button id="nextMonth">&gt;</button>
+          </div>
+          <table id="calendarTable">
+            <thead>
+              <tr>
+                <th id="SUN">SUN</th>
+                <th>MON</th>
+                <th>TUE</th>
+                <th>WED</th>
+                <th>THU</th>
+                <th>FRI</th>
+                <th id="SAT">SAT</th>
+              </tr>
+            </thead>
+            <tbody id="calendarBody">
+              <!-- 날짜가 여기에 삽입됩니다 -->
+            </tbody>
+          </table>
         </div>
-        <div id="right_box" style="cursor: pointer" onclick="">
-            <img id="check" src="../../public/images/check.svg" alt="">
-            <span id="right_box_text">출석하기</span>
-        </div>
-        <!-- 달력 -->
-        <div class="calendar-container">
-            <div class = "calendar">
-                <div class="calendar-header">
-                    <button id="prevMonth">&lt;</button>
-                    <div id="calendarTitle"></div>
-                    <button id="nextMonth">&gt;</button>
-                </div>
-                <table id="calendarTable">
-                    <thead>
-                        <tr>
-                            <th id = "SUN">SUN</th>
-                            <th>MON</th>
-                            <th>TUE</th>
-                            <th>WED</th>
-                            <th>THU</th>
-                            <th>FRI</th>
-                            <th id = "SAT">SAT</th>
-                        </tr>
-                    </thead>
-                    <tbody id="calendarBody">
-                        <!-- 날짜가 여기에 삽입됩니다 -->
-                    </tbody>
-                </table>
-            </div>
-            
-        </div>
-        
-        
+      </div>
     </div>
     <script src="../../public/js/manage.js"></script>
-</body>
+  </body>
 </html>

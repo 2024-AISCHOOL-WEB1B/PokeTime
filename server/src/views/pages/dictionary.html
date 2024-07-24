@@ -31,101 +31,9 @@
       </nav>
       <a href="./user.html" class="btn_back">< 뒤로</a>
       <div class="dict_box" id="top_box">
-        {{% len(poke_img)+1 %}}개의 포켓몬을 수집했어요!
+        {{% poke_img.length %}}개의 포켓몬을 수집했어요!
       </div>
       <div class="bar1"></div>
-      <div class="dict_box" id="bottom_box">
-        <div class="wrapper">
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/1.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/2.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/3.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/4.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/5.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/6.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/7.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/8.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/9.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/10.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/11.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-          <div class="pocket_card">
-            <img
-              src="../../public/images/grayscale_images(png)/12.png"
-              class="pokemon_pic"
-              alt=""
-            />
-          </div>
-        </div>
-        <div class="page_btn">
-          <button id="left"><</button>
-          <button id="right">></button>
-        </div>
-      </div>
       <div class="pickup_box">
         <img src="../../public/images/random_box.svg" id="box" />
         <div>
@@ -135,6 +43,15 @@
           </div>
         </div>
       </div>
+      <div id="data-container"></div>
+      <div id="pagination"></div>
+      <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage" />
+        <div id="caption"></div>
+      </div>
     </div>
+  </div>
+  <script src="../../public/js/dict.js"></script>
   </body>
 </html>

@@ -1,233 +1,295 @@
-body{
-    margin: 0 ;
-    padding: 0 ;
-    box-sizing: border-box ;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif ;
-    background-color:rgb(207, 204, 193) ;
-    display: flex ;
-    justify-content: center ;
-    align-items: center ;
-    height: 100vh ;
-    overflow: hidden ;
+  font-family: Arial, sans-serif;
+  background-color: rgb(207, 204, 193);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.sub_container{
-    width: 375px ;
-    height: 667px ;
-    background: #E9F3FF ;
-    border-radius: 35px ;
-    border : 10px solid rgb(179, 172, 163) ;
-    justify-content: center ;
-    align-items: center ;
-    display : flex ;
-    overflow: hidden ;
-    position: relative ;
+.sub_container {
+  width: 375px;
+  height: 667px;
+  background: #e9f3ff;
+  border-radius: 35px;
+  border: 10px solid rgb(179, 172, 163);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  position: relative;
 }
 
-.skyblue_circle{
-    width: 359px ;
-    height: 359px ;
-    flex-shrink: 0 ;
-    border-radius: 359px ;
-    background: #9DC8FF ;
+.skyblue_circle {
+  width: 359px;
+  height: 359px;
+  flex-shrink: 0;
+  border-radius: 359px;
+  background: #9dc8ff;
 }
 
-#skyblue_top_circle{
-    left : -110px ;
-    top : -240px ;
-    position : absolute ;
+#skyblue_top_circle {
+  left: -110px;
+  top: -240px;
+  position: absolute;
 }
 
-#skyblue_bottom_circle{
-    left : 220px ;
-    top : 550px ;
-    position : absolute ;
+#skyblue_bottom_circle {
+  left: 220px;
+  top: 550px;
+  position: absolute;
 }
 
-.blue_circle{
-    width : 466px ;
-    height : 466px ;
-    flex-shrink : 0 ;
-    border-radius : 466px ;
-    background : #0466c2;
+.blue_circle {
+  width: 466px;
+  height: 466px;
+  flex-shrink: 0;
+  border-radius: 466px;
+  background: #0466c2;
 }
 
-#blue_top_circle{
-    top : -400px ;
-    left : 150px ;
-    position : absolute ;
+#blue_top_circle {
+  top: -400px;
+  left: 150px;
+  position: absolute;
 }
 
-#blue_bottom_circle{
-    top : 600px ;
-    right : 50px ;
-    position : absolute ;
+#blue_bottom_circle {
+  top: 600px;
+  right: 50px;
+  position: absolute;
 }
-nav{
-    position : absolute ;
-    top : -8px ;
-    right : 20px ;
+nav {
+  position: absolute;
+  top: -8px;
+  right: 20px;
 }
 
-nav ul{list-style:none;z-index: 2;}
-nav a{color: #0466c2;text-decoration: none;}
-nav > ul{display: flex; justify-content: space-between; padding:10px;}
-nav > ul > li{position: relative; padding: 0px ; margin : 0;}
-nav > ul > li > a{font-size: 20px; font-weight: bold;padding:10px 0;}
-nav > ul > li > a:hover{color:#cee3fe; border-radius: 15px;}
-nav > ul > li > ul{display: none; position: absolute; text-align: center; align-content: center; transform: translateX(-70%);border-radius: 15px;background: #9DC8FF; font-family: 'LaundryGothic'; padding : 0; }
-nav > ul > li:hover ul{display:block;}
-nav > ul > li  li a{display: block; padding:10px;}
-nav > ul > li  li a:hover{background:#cee3fe; border-radius: 15px;}
-nav > ul > li > li + li{margin-top:5px;}
+nav ul {
+  list-style: none;
+  z-index: 2;
+}
+nav a {
+  color: #0466c2;
+  text-decoration: none;
+}
+nav > ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+nav > ul > li {
+  position: relative;
+  padding: 0px;
+  margin: 0;
+}
+nav > ul > li > a {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+nav > ul > li > a:hover {
+  color: #cee3fe;
+  border-radius: 15px;
+}
+nav > ul > li > ul {
+  display: none;
+  position: absolute;
+  text-align: center;
+  align-content: center;
+  transform: translateX(-70%);
+  border-radius: 15px;
+  background: #9dc8ff;
+  font-family: "LaundryGothic";
+  padding: 0;
+}
+nav > ul > li:hover ul {
+  display: block;
+}
+nav > ul > li li a {
+  display: block;
+  padding: 10px;
+}
+nav > ul > li li a:hover {
+  background: #cee3fe;
+  border-radius: 15px;
+}
+nav > ul > li > li + li {
+  margin-top: 5px;
+}
 
 .btn_back {
-    position: absolute;
-    font-size: 16px;
-    color: #0466c2;
-    text-decoration: none;
-    font-family: "LaundryGothic";
-    top: 25px;
-    left: 30px;
+  position: absolute;
+  font-size: 16px;
+  color: #0466c2;
+  text-decoration: none;
+  font-family: "LaundryGothic";
+  top: 25px;
+  left: 30px;
 }
 
-#left_box{
-    width: 153px;
-    height: 180px;
-    flex-shrink: 0;
-    position: absolute;
-    top: 360px;
-    left: 27px;
-    border-radius: 32px;
-    background: #fff;
-
+#left_box {
+  width: 153px;
+  height: 180px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 360px;
+  left: 27px;
+  border-radius: 32px;
+  background: #fff;
 }
-#right_box{
-    width: 153px;
-    height: 180px;
-    flex-shrink: 0;
-    position: absolute;
-    top: 360px;
-    right: 27px;
-    border-radius: 32px;
-    background: #fff;
-}
-
-#camera{
-    position: absolute;
-    top: 25%;
-    right: 30%;
+#right_box {
+  width: 153px;
+  height: 180px;
+  flex-shrink: 0;
+  position: absolute;
+  top: 360px;
+  right: 27px;
+  border-radius: 32px;
+  background: #fff;
 }
 
-#left_box_text{
-    bottom: 23%;
-    position: absolute;
-    left: 20%;
-    font-family: "LaundryGothic";
-    color: #0466c2;
+#camera {
+  position: absolute;
+  top: 25%;
+  right: 30%;
 }
 
-#check{
-    position: absolute;
-    top: 25%;
-    right: 30%;
+#left_box_text {
+  bottom: 23%;
+  position: absolute;
+  left: 20%;
+  font-family: "LaundryGothic";
+  color: #0466c2;
 }
 
-#right_box_text{
-    bottom: 23%;
-    position: absolute;
-    left: 32%;
-    font-family: "LaundryGothic";
-    color: #0466c2;
+#check {
+  position: absolute;
+  top: 25%;
+  right: 30%;
+}
+
+#right_box_text {
+  bottom: 23%;
+  position: absolute;
+  left: 32%;
+  font-family: "LaundryGothic";
+  color: #0466c2;
 }
 
 .calendar-container {
-    font-family: 'LaundryGothic';
-    background-color: #f9f9f9;
-    border-radius: 32px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 86%;
-    max-width: 343px; /* 최대 너비 조정 */
-    height : 250px;
-    margin-top: 20px;
-    padding: 10px;
-    box-sizing: border-box;
-    position : relative;
-    top : -18%;
+  font-family: "LaundryGothic";
+  background-color: #f9f9f9;
+  border-radius: 32px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 86%;
+  max-width: 343px; /* 최대 너비 조정 */
+  height: 250px;
+  margin-top: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+  top: -18%;
 }
 
-.calendar{
-    width : 300px;
-    height : 280px;
-    position : absolute;
-    top : 10%;
+.calendar {
+  width: 300px;
+  height: 280px;
+  position: absolute;
+  top: 10%;
 }
 
 .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
 }
 
 #calendarTitle {
-    font-size: 16px;
-    font-weight: bold;
-    color: #1877F2;
+  font-size: 16px;
+  font-weight: bold;
+  color: #1877f2;
 }
 
-#calendarTable{
-    font-size: 14px;
+#calendarTable {
+  font-size: 14px;
 }
 
-#calendarBody{
-    font-size : 13px;
+#calendarBody {
+  font-size: 13px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-th, td {
-    width: 14.28%;
-    text-align: center;
-    padding: 5px;
+th,
+td {
+  width: 14.28%;
+  text-align: center;
+  padding: 5px;
 }
 
 th {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 td {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #SUN {
-    color: rgb(205, 75, 75);
+  color: rgb(205, 75, 75);
 }
 
-#SAT{
-    color :#1e6dd4;
+#SAT {
+  color: #1e6dd4;
 }
 
 td.today {
-    background-color: #1877F2;
-    color: #fff;
-    border-radius: 50%;
+  background-color: #1877f2;
+  color: #fff;
+  border-radius: 30%;
 }
 
+#prevMonth,
+#nextMonth {
+  background-color: #0466c2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+#prevMonth:hover,
+#nextMonth:hover {
+  background-color: #9dc8ff;
+}
+
+#prevMonth:active,
+#nextMonth:active {
+  background-color: #03478a;
+}
 
 @font-face {
-    font-family: "LaundryGothic";
-    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
-      format("woff");
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: "LaundryGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}

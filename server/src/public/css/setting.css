@@ -1,199 +1,239 @@
-body{
-    margin: 0 ;
-    padding: 0 ;
-    box-sizing: border-box ;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif ;
-    background-color:rgb(207, 204, 193) ;
-    display: flex ;
-    justify-content: center ;
-    align-items: center ;
-    height: 100vh ;
-    overflow: hidden ;
+  font-family: Arial, sans-serif;
+  background-color: rgb(207, 204, 193);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.sub_container{
-    width: 375px ;
-    height: 667px ;
-    background: #E9F3FF ;
-    border-radius: 35px ;
-    border : 10px solid rgb(179, 172, 163) ;
-    justify-content: center ;
-    align-items: center ;
-    display : flex ;
-    overflow: hidden ;
-    position: relative ;
+.sub_container {
+  width: 375px;
+  height: 667px;
+  background: #e9f3ff;
+  border-radius: 35px;
+  border: 10px solid rgb(179, 172, 163);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  position: relative;
 }
 
-.skyblue_circle{
-    width: 359px ;
-    height: 359px ;
-    flex-shrink: 0 ;
-    border-radius: 359px ;
-    background: #9DC8FF ;
+.skyblue_circle {
+  width: 359px;
+  height: 359px;
+  flex-shrink: 0;
+  border-radius: 359px;
+  background: #9dc8ff;
 }
 
-#skyblue_top_circle{
-    left : -110px ;
-    top : -240px ;
-    position : absolute ;
+#skyblue_top_circle {
+  left: -110px;
+  top: -240px;
+  position: absolute;
 }
 
-#skyblue_bottom_circle{
-    left : 220px ;
-    top : 550px ;
-    position : absolute ;
+#skyblue_bottom_circle {
+  left: 220px;
+  top: 550px;
+  position: absolute;
 }
 
-.blue_circle{
-    width : 466px ;
-    height : 466px ;
-    flex-shrink : 0 ;
-    border-radius : 466px ;
-    background : #0466c2;
+.blue_circle {
+  width: 466px;
+  height: 466px;
+  flex-shrink: 0;
+  border-radius: 466px;
+  background: #0466c2;
 }
 
-#blue_top_circle{
-    top : -400px ;
-    left : 150px ;
-    position : absolute ;
+#blue_top_circle {
+  top: -400px;
+  left: 150px;
+  position: absolute;
 }
 
-#blue_bottom_circle{
-    top : 600px ;
-    right : 50px ;
-    position : absolute ;
+#blue_bottom_circle {
+  top: 600px;
+  right: 50px;
+  position: absolute;
 }
-nav{
-    position : absolute ;
-    top : -8px ;
-    right : 20px ;
+nav {
+  position: absolute;
+  top: -8px;
+  right: 20px;
 }
 
-nav ul{list-style:none;z-index: 2;}
-nav a{color: #0466c2;text-decoration: none;}
-nav > ul{display: flex; justify-content: space-between; padding:10px;}
-nav > ul > li{position: relative; padding: 0px ; margin : 0;}
-nav > ul > li > a{font-size: 20px; font-weight: bold;padding:10px 0;}
-nav > ul > li > a:hover{color:#cee3fe; border-radius: 15px;}
-nav > ul > li > ul{display: none; position: absolute; text-align: center; align-content: center; transform: translateX(-70%);border-radius: 15px;background: #9DC8FF; font-family: 'LaundryGothic'; padding : 0; }
-nav > ul > li:hover ul{display:block;}
-nav > ul > li  li a{display: block; padding:10px;}
-nav > ul > li  li a:hover{background:#cee3fe; border-radius: 15px;}
-nav > ul > li > li + li{margin-top:5px;}
+nav ul {
+  list-style: none;
+  z-index: 2;
+}
+nav a {
+  color: #0466c2;
+  text-decoration: none;
+}
+nav > ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+nav > ul > li {
+  position: relative;
+  padding: 0px;
+  margin: 0;
+}
+nav > ul > li > a {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+nav > ul > li > a:hover {
+  color: #cee3fe;
+  border-radius: 15px;
+}
+nav > ul > li > ul {
+  display: none;
+  position: absolute;
+  text-align: center;
+  align-content: center;
+  transform: translateX(-70%);
+  border-radius: 15px;
+  background: #9dc8ff;
+  font-family: "LaundryGothic";
+  padding: 0;
+}
+nav > ul > li:hover ul {
+  display: block;
+}
+nav > ul > li li a {
+  display: block;
+  padding: 10px;
+}
+nav > ul > li li a:hover {
+  background: #cee3fe;
+  border-radius: 15px;
+}
+nav > ul > li > li + li {
+  margin-top: 5px;
+}
 
 .btn_back {
-    position: absolute;
-    font-size: 16px;
-    color: #0466c2;
-    text-decoration: none;
-    font-family: "LaundryGothic";
-    top: 25px;
-    left: 30px;
+  position: absolute;
+  font-size: 16px;
+  color: #0466c2;
+  text-decoration: none;
+  font-family: "LaundryGothic";
+  top: 25px;
+  left: 30px;
 }
 
-#setting_text{
-    font-family: "LaundryGothic";
-    font-size: 32px;
-    color: #0466c2;
-    border-bottom: 3px solid #0466c2;
-    width : 50%;
-    height: 6%;
-    text-align: center;
-    position: absolute;
-    top: 25%;
+#setting_text {
+  font-family: "LaundryGothic";
+  font-size: 32px;
+  color: #0466c2;
+  border-bottom: 3px solid #0466c2;
+  width: 50%;
+  height: 6%;
+  text-align: center;
+  position: absolute;
+  top: 25%;
 }
 
 #input_container {
-    position:absolute ;
-    width: 80%;
-    justify-items: center;
-    align-items: center;
-    text-align: center;
-  }
+  position: absolute;
+  width: 80%;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+}
 
 .input_inform {
-    /* position: absolute; */
-    width: 90%;
-    height: 20px;
-    border-radius: 5px;
-    border: 2px #9dc8ff solid;
-    font-family: Inter;
-    font-weight: 400;
-    word-wrap: break-word;
-    font-family: "LaundryGothic";
-    margin-top: 1rem;
-  }
-  
-#nick_name {
-    top: 200px;
-    padding: 10px;
-  }
+  /* position: absolute; */
+  width: 90%;
+  height: 20px;
+  border-radius: 5px;
+  border: 2px #9dc8ff solid;
+  font-family: Inter;
+  font-weight: 400;
+  word-wrap: break-word;
+  font-family: "LaundryGothic";
+  margin-top: 1rem;
+}
 
-  #join_password {
-    top: 300px;
-    padding: 10px;
-  }
-  
+#nick_name {
+  top: 200px;
+  padding: 10px;
+}
+
+#join_password {
+  top: 300px;
+  padding: 10px;
+}
+
 #join_password_check {
-    top: 350px;
-    padding: 10px;
-  }  
+  top: 350px;
+  padding: 10px;
+}
 
 #btn_join {
-    bottom: 210px;
-    width: 20%;
-    /* position: absolute; */
-    background: #1877f2;
-    border-radius: 5px;
-    border: 0 solid;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    font-size: 12px;
-    font-family: "LaundryGothic";
-    font-weight: 700;
-    word-wrap: break-word;
-    cursor: pointer;
-    padding: 10px;
-    margin-top: 1rem;
-    margin-left: 65px;
-  }
+  bottom: 210px;
+  width: 20%;
+  /* position: absolute; */
+  background: #1877f2;
+  border-radius: 5px;
+  border: 0 solid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  font-family: "LaundryGothic";
+  font-weight: 700;
+  word-wrap: break-word;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: 1rem;
+  margin-left: 65px;
+}
 
-  #btn_out {
-    bottom: 210px;
-    width: 20%;
-    /* position: absolute; */
-    background: #ff3c3c;
-    border-radius: 5px;
-    border: 0 solid;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: rgb(0, 0, 0);
-    font-size: 12px;
-    font-family: "LaundryGothic";
-    font-weight: 700;
-    word-wrap: break-word;
-    cursor: pointer;
-    padding: 10px;
-    margin-top: 2rem;
-    left: 20px;
+#btn_out {
+  bottom: 210px;
+  width: 20%;
+  /* position: absolute; */
+  background: #979797;
+  border-radius: 5px;
+  border: 0 solid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  font-size: 12px;
+  font-family: "LaundryGothic";
+  font-weight: 700;
+  word-wrap: break-word;
+  cursor: pointer;
+  padding: 10px;
+  margin-top: 2rem;
+  left: 20px;
+}
 
-  }
-
-#submit_btn{
-    position: absolute;
-    width: 100%;
+#submit_btn {
+  position: absolute;
+  width: 100%;
 }
 
 @font-face {
-    font-family: "LaundryGothic";
-    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
-      format("woff");
-    font-weight: normal;
-    font-style: normal;
-  }
+  font-family: "LaundryGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
