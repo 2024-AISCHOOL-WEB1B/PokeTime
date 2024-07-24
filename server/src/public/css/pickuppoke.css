@@ -91,7 +91,15 @@ nav > ul > li  li a{display: block; padding:10px;}
 nav > ul > li  li a:hover{background:#cee3fe; border-radius: 15px;}
 nav > ul > li > li + li{margin-top:5px;}
 
-
+.btn_back {
+    position: absolute;
+    font-size: 16px;
+    color: #0466c2;
+    text-decoration: none;
+    font-family: "LaundryGothic";
+    top: 25px;
+    left: 30px;
+}
 
 .random_back{
     width: 321px;

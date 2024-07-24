@@ -28,6 +28,7 @@
           </li>
         </ul>
       </nav>
+      <a href="./mainpage.html" class="btn_back">< 뒤로</a>
       <!-- 화면 내 흰색박스 -->
       <div class="random_back">
         <!-- 뽑기박스 -->
@@ -61,24 +62,6 @@
       </div>
     </div>
 
-    <!-- 모달 출력 JS문 -->
-    <script>
-      // div를 클릭했을 때, 모달을 연다.
-      document.getElementById("openPickupModal").onclick = function () {
-        document.getElementById("myModal").style.display = "block";
-      };
-
-      // 모달을 닫는다.
-      document.getElementById("closePickupModal").onclick = function () {
-        document.getElementById("myModal").style.display = "none";
-      };
-
-      // 모달창 바깥을 클릭했을 때에도 모달창을 닫을 수 있도록 한다.
-      window.onclick = function (event) {
-        if (event.target == document.getElementById("myModal")) {
-          document.getElementById("myModal").sytle.display = "none";
-        }
-      };
-    </script>
+    <script src = "../../public/js/pickuppoke.js"></script>
   </body>
 </html>
