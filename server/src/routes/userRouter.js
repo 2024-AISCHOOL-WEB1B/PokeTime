@@ -40,10 +40,6 @@ router.post("/login", (req, res) => {
 
     if (rows.length > 0) {
       console.log("rows", rows);
-      let pokeImgs = rows
-        .map((row) => row.user_mainpoke_img)
-        .filter((img) => img);
-
       const userInfo = {
         user_id: rows[0].user_id,
         with_date: rows[0].user_poke_date,
@@ -53,8 +49,14 @@ router.post("/login", (req, res) => {
       };
 
       req.session.userInfo = userInfo;
-      console.log("로그인 성공");
-      res.json({ result: "로그인성공" });
+      req.session.save((err) => {
+        if (err) {
+          console.error("세션 저장 오류:", err);
+          return res.status(500).json({ result: "서버 오류" });
+        }
+        console.log("로그인 성공, 세션 저장됨:", req.session);
+        res.json({ result: "로그인성공" });
+      });
     } else {
       console.log("로그인 실패");
       res.json({ result: "로그인실패" });
@@ -84,11 +86,11 @@ router.post("/delete", (req, res) => {
 
 // 로그아웃
 router.get("/logout", (req, res) => {
-  if (req.session.user) {
-    delete req.session.user; // 세션에서 사용자 정보만 삭제
-    console.log("로그아웃 성공");
-    console.log(req.session.user);
-  }
+  // if (req.session.user) {
+  //   delete req.session.user; // 세션에서 사용자 정보만 삭제
+  //   console.log("로그아웃 성공");
+  //   console.log(req.session.user);
+  // }
   res.redirect("/");
 });
 
@@ -98,8 +100,9 @@ router.post("/pickuppoke", (req, res) => {
     SELECT a.*
     FROM poke_info a
     LEFT JOIN user_poke_info b ON a.poke_name = b.poke_name
-    where a.poke_name not in (select poke_name from user_poke_info)
-    `;
+    WHERE a.poke_name NOT IN (SELECT poke_name FROM user_poke_info)
+  `;
+
   conn.query(sql, (err, rows) => {
     if (err) {
       console.error("쿼리 실행 중 오류 발생:", err);
@@ -107,20 +110,19 @@ router.post("/pickuppoke", (req, res) => {
     }
 
     if (rows.length > 0) {
-      console.log("rows", rows[0]);
-      let pokeImgs = rows
-        .map((row) => row.user_mainpoke_img)
-        .filter((img) => img);
+      // 랜덤으로 하나의 포켓몬을 선택
+      const randomIndex = Math.floor(Math.random() * rows.length);
+      const selectedPoke = rows[randomIndex];
 
       const pickuppoke = {
-        pickup_result: rows[0].poke_name,
-        poke_img: rows[0].poke_img,
+        pickup_result: selectedPoke.poke_name,
+        poke_img: selectedPoke.poke_img,
       };
 
       req.session.pickuppoke = pickuppoke;
 
-      console.log("뽑기 성공");
-      res.json({ result: "뽑기성공" });
+      console.log("뽑기 성공:", pickuppoke);
+      res.json({ result: "뽑기성공", pickuppoke });
     } else {
       console.log("뽑기 실패");
       res.json({ result: "뽑기실패" });
@@ -129,11 +131,28 @@ router.post("/pickuppoke", (req, res) => {
 });
 
 // 스케줄러
-router.get("/scheduler", (req, res) => {});
+router.post("/scheduler", (req, res) => {
+  console.log("Session in scheduler:", req.session.userInfo);
 
-router.get("/test", (req, res) => {
-  console.log("테스트", req.session.user);
-  res.json({ result: "테스트" });
+  if (!req.session.userInfo) {
+    return res.status(401).json({ error: "로그인이 필요합니다." });
+  }
+
+  let { todo } = req.body;
+  let id = req.session.userInfo.user_id;
+  let today = new Date();
+  let schedule_date = today.toISOString().split("T")[0]; // YYYY-MM-DD 형식
+
+  let sql =
+    "INSERT INTO scheduler (user_id, schedule_name, schedule_date) VALUES (?, ?, ?)";
+  conn.query(sql, [id, todo, schedule_date], (err, result) => {
+    if (err) {
+      console.error("SQL 오류:", err);
+      return res.status(500).json({ error: "데이터베이스 오류" });
+    }
+    console.log("삽입된 행:", result);
+    res.json({ message: "일정이 저장되었습니다." });
+  });
 });
 
 module.exports = router;

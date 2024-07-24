@@ -48,4 +48,8 @@ router.get("/setting", (req, res) => {
   res.render("setting");
 });
 
+router.get("/dictionary", (req, res) => {
+  res.render("dictionary");
+});
+
 module.exports = router;
