@@ -51,10 +51,8 @@ def train_and_evaluate_model():
     optimizer = torch.optim.AdamW(model.parameters(), lr=5e-5)
     num_epochs = 10
 
-    # 클래스 가중치 계산
-    total_samples = 10782
-    class_weights = torch.tensor([total_samples / 1500, total_samples / 9282]).to(device)
-    criterion = torch.nn.CrossEntropyLoss(weight=class_weights)
+    # 손실 함수 설정 (가중치 없음)
+    criterion = torch.nn.CrossEntropyLoss()
 
     # 학습 루프
     for epoch in range(num_epochs):

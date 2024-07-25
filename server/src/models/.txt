@@ -1,2 +1,3 @@
-데이터베이스 모델 또는 스키마 정의 파일들을 저장
-ORM(Object-Relational Mapping) 사용 시 모델 정의에 활용
+1300장의 이미지를
+augumenation(flip,rotation degree=15)을 통해 3112장으로 늘렸습니다.
+
