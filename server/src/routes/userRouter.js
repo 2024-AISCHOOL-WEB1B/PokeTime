@@ -44,7 +44,7 @@ router.post("/login", (req, res) => {
         user_id: rows[0].user_id,
         with_date: rows[0].user_poke_date,
         main_poke: rows[0].poke_name,
-        poke_img: rows[0].user_mainpoke_img,
+        poke_img: rows[0].user_poke_img,
         pickup_cnt: rows[0].user_pickup_cnt,
         point: rows[0].user_point,
       };
