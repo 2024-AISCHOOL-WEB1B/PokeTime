@@ -166,7 +166,6 @@ router.post("/pickuppoke", (req, res) => {
       console.log(pickuppoke);
       req.session.pickuppoke = pickuppoke;
 
-      let id = req.session.userInfo.user_id;
       let inputpokesql = `
         INSERT INTO user_poke_info
         (poke_name, user_id, user_poke_img)
@@ -182,14 +181,29 @@ router.post("/pickuppoke", (req, res) => {
             return res.status(500).json({ result: "서버 오류" });
           }
 
-          req.session.save((err) => {
+          // user_info 테이블의 user_pickup_cnt 증가
+          let updatePickupCntSql = `
+            UPDATE user_info
+            SET user_pickup_cnt = user_pickup_cnt + 1
+            WHERE user_id = ?
+          `;
+
+          conn.query(updatePickupCntSql, [id], (err, updateResult) => {
             if (err) {
-              console.error("세션 저장 오류:", err);
+              console.error("pickup_cnt 업데이트 중 오류 발생:", err);
               return res.status(500).json({ result: "서버 오류" });
             }
-            console.log("뽑기 성공, 세션 저장됨:", req.session);
-            console.log("뽑은 포켓몬 값 DB 저장 완료");
-            res.json({ result: "뽑기성공", pickuppoke });
+
+            req.session.save((err) => {
+              if (err) {
+                console.error("세션 저장 오류:", err);
+                return res.status(500).json({ result: "서버 오류" });
+              }
+              console.log("뽑기 성공, 세션 저장됨:", req.session);
+              console.log("뽑은 포켓몬 값 DB 저장 완료");
+              console.log("user_pickup_cnt 증가 완료");
+              res.json({ result: "뽑기성공", pickuppoke });
+            });
           });
         }
       );
