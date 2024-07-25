@@ -55,6 +55,6 @@ const handleLogin = () => {
       }
     })
     .catch((error) => {
-      console.error("로그인 요청 실패", error);
+      console.error("로그인 요청 실패");
     });
 };

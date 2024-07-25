@@ -43,9 +43,9 @@
           style="
             position: absolute;
             top: 60px;
-            padding-left: 30%;
-            width: 50px;
-            height: 50px;
+            padding-left: 20%;
+            width: 60px;
+            height: 60px;
             border-radius: 32px;
           "
         />
@@ -126,6 +126,16 @@
         <!-- --개의 포켓몬을 수집했어요 ! -->
         <div>
           <div class="collec_text">
+            {% if userInfo.poke_count == 0%}
+            <div class="if_null">
+              <br />
+              <span class="with_main">
+                아직 포켓몬을 <br />수집하지 않았어요.</span
+              >
+            </div>
+            {% else %}
+            <br />
+
             <span class="poke_img_text" id="poke-img-text"
               >{{ userInfo.poke_count }}</span
             >
@@ -133,6 +143,7 @@
             <span class="collected_text"
               >의<br />포켓몬을<br />수집했어요!</span
             >
+            {% endif %}
           </div>
           <div class="collec_gauge" id="collec-gauge">
             <span class="collect_cnt">{{userInfo.poke_count}}</span>
@@ -152,8 +163,16 @@
         <!-- {{ pickup_cnt }}번 뽑기를 실행했어요 ! -->
         <div class="pickup_text">
           <div>
+            {% if userInfo.pickup_cnt == 0%}
+            <div class="if_null">
+              <span class="with_main">
+                아직 뽑기를 <br />실행하지 않았어요.</span
+              >
+            </div>
+            {% else %}
             <span class="pickup_cnt">{{userInfo.pickup_cnt}}번<br /></span>
             <span class="pickup_cnt_text">뽑기를<br />실행했어요 !</span>
+            {% endif %}
           </div>
         </div>
       </div>
