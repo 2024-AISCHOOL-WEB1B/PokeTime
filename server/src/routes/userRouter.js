@@ -27,7 +27,7 @@ router.post("/join", (req, res) => {
 router.post("/login", (req, res) => {
   let { userEmail, userPw } = req.body;
   let sql = `
-    SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_mainpoke_img, a.user_pickup_cnt, a.user_point
+    SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_poke_img, a.user_pickup_cnt, a.user_point
     FROM user_info a
     LEFT JOIN user_poke_info b ON a.user_id = b.user_id
     WHERE a.user_id = ? AND a.user_pw = ?
@@ -138,7 +138,6 @@ router.get("/logout", (req, res) => {
   }
 });
 
-// 포켓몬 뽑기
 router.post("/pickuppoke", (req, res) => {
   let sql = `
     SELECT a.*
@@ -154,7 +153,6 @@ router.post("/pickuppoke", (req, res) => {
     }
 
     if (rows.length > 0) {
-      // 랜덤으로 하나의 포켓몬을 선택
       const randomIndex = Math.floor(Math.random() * rows.length);
       const selectedPoke = rows[randomIndex];
 
@@ -164,17 +162,34 @@ router.post("/pickuppoke", (req, res) => {
       };
 
       req.session.pickuppoke = pickuppoke;
-      req.session.save((err) => {
-        if (err) {
-          console.error("세션 저장 오류:", err);
-          return res.status(500).json({ result: "서버 오류" });
-        }
-        console.log("뽑기 성공, 세션 저장됨:", req.session);
-        res.json({ result: "뽑기성공" });
-      });
 
-      console.log("뽑기 성공:", pickuppoke);
-      res.json({ result: "뽑기성공", pickuppoke });
+      let id = req.session.userInfo.user_id;
+      let inputpokesql = `
+        INSERT INTO user_poke_info
+        (poke_name, user_id, user_poke_img)
+        VALUES (?, ?, ?)
+      `;
+
+      conn.query(
+        inputpokesql,
+        [pickuppoke.pickup_result, id, pickuppoke.poke_img],
+        (err, result) => {
+          if (err) {
+            console.error("쿼리 실행 중 오류 발생:", err);
+            return res.status(500).json({ result: "서버 오류" });
+          }
+
+          req.session.save((err) => {
+            if (err) {
+              console.error("세션 저장 오류:", err);
+              return res.status(500).json({ result: "서버 오류" });
+            }
+            console.log("뽑기 성공, 세션 저장됨:", req.session);
+            console.log("뽑은 포켓몬 값 DB 저장 완료");
+            res.json({ result: "뽑기성공", pickuppoke });
+          });
+        }
+      );
     } else {
       console.log("뽑기 실패");
       res.json({ result: "뽑기실패" });
