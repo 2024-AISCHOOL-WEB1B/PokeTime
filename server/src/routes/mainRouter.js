@@ -28,11 +28,7 @@ router.get("/mainpage", (req, res) => {
 
 // 사용자가 포켓몬 뽑기 페이지를 요청했을 때
 router.get("/pickuppoke", (req, res) => {
-  if (req.session.pickuppoke) {
-    res.render("pickuppoke", { pickuppoke: req.session.pickuppoke });
-  } else {
-    res.redirect("/pickuppoke");
-  }
+  res.render("pickuppoke", { pickuppoke: req.session.pickuppoke || {} });
 });
 
 // 사용자가 관리 페이지를 요청했을 때

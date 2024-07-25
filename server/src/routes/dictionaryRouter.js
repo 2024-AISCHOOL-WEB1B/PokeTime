@@ -23,8 +23,15 @@ router.get("/info", (req, res) => {
   });
 });
 
-// 도감 색인
-router.get("/index", (req, res) => {});
+// 도감 검색
+router.get("/search", (req, res) => {
+  let sql = `
+  SELECT a.*, b*
+  FROM poke_info a
+  LEFT JOIN user_poke_info b ON a.poke_name = b.poke_nale
+  WHERE a.poke_name = ?
+  `;
+});
 
 // 대표 포켓몬 설정
 router.post("/mainpoke", (req, res) => {});

@@ -27,7 +27,7 @@ router.post("/join", (req, res) => {
 router.post("/login", (req, res) => {
   let { userEmail, userPw } = req.body;
   let sql = `
-    SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_mainpoke_img, a.user_pickup_cnt
+    SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_mainpoke_img, a.user_pickup_cnt, a.user_point
     FROM user_info a
     LEFT JOIN user_poke_info b ON a.user_id = b.user_id
     WHERE a.user_id = ? AND a.user_pw = ?
@@ -46,6 +46,7 @@ router.post("/login", (req, res) => {
         main_poke: rows[0].poke_name,
         poke_img: rows[0].user_mainpoke_img,
         pickup_cnt: rows[0].user_pickup_cnt,
+        point: rows[0].user_point,
       };
 
       req.session.userInfo = userInfo;
@@ -114,12 +115,15 @@ router.post("/delete", (req, res) => {
 
 // 로그아웃
 router.get("/logout", (req, res) => {
-  // if (req.session.user) {
-  //   delete req.session.user; // 세션에서 사용자 정보만 삭제
-  //   console.log("로그아웃 성공");
-  //   console.log(req.session.user);
-  // }
-  res.redirect("/");
+  if (req.session.userInfo) {
+    delete req.session.userInfo; // 세션에서 사용자 정보만 삭제
+    console.log("로그아웃 성공");
+    console.log(req.session.userInfo);
+    res.redirect("/");
+    res.json({ result: "삭제 성공" });
+  } else {
+    res.redirect("/");
+  }
 });
 
 // 포켓몬 뽑기
@@ -148,6 +152,14 @@ router.post("/pickuppoke", (req, res) => {
       };
 
       req.session.pickuppoke = pickuppoke;
+      req.session.save((err) => {
+        if (err) {
+          console.error("세션 저장 오류:", err);
+          return res.status(500).json({ result: "서버 오류" });
+        }
+        console.log("뽑기 성공, 세션 저장됨:", req.session);
+        res.json({ result: "뽑기성공" });
+      });
 
       console.log("뽑기 성공:", pickuppoke);
       res.json({ result: "뽑기성공", pickuppoke });
