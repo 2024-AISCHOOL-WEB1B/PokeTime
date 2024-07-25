@@ -25,12 +25,23 @@ router.get("/info", (req, res) => {
 
 // 도감 검색
 router.get("/search", (req, res) => {
+  let search = req.query;
   let sql = `
   SELECT a.*, b*
   FROM poke_info a
   LEFT JOIN user_poke_info b ON a.poke_name = b.poke_nale
   WHERE a.poke_name = ?
   `;
+  conn.query(sql, [search], (err, rows) => {
+    if (err) {
+      console.log("검색 실패", err);
+      res.status(500).json({ result: "검색실패", error: err.message });
+    }
+    if (rows) {
+      console.log("검색 성공", rows);
+      res.json({ result: "검색성공" });
+    }
+  });
 });
 
 // 대표 포켓몬 설정

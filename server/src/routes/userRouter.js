@@ -49,14 +49,26 @@ router.post("/login", (req, res) => {
         point: rows[0].user_point,
       };
 
-      req.session.userInfo = userInfo;
-      req.session.save((err) => {
-        if (err) {
-          console.error("세션 저장 오류:", err);
+      // 포켓몬 수 조회 쿼리 추가
+      let pokemonCountSql =
+        "SELECT COUNT(*) as poke_count FROM user_poke_info WHERE user_id = ?";
+      conn.query(pokemonCountSql, [userEmail], (countErr, countResult) => {
+        if (countErr) {
+          console.error("포켓몬 수 조회 중 오류 발생:", countErr);
           return res.status(500).json({ result: "서버 오류" });
         }
-        console.log("로그인 성공, 세션 저장됨:", req.session);
-        res.json({ result: "로그인성공" });
+
+        userInfo.poke_count = countResult[0].poke_count;
+
+        req.session.userInfo = userInfo;
+        req.session.save((saveErr) => {
+          if (saveErr) {
+            console.error("세션 저장 오류:", saveErr);
+            return res.status(500).json({ result: "서버 오류" });
+          }
+          console.log("로그인 성공, 세션 저장됨:", req.session);
+          res.json({ result: "로그인성공" });
+        });
       });
     } else {
       console.log("로그인 실패");
