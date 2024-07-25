@@ -48,7 +48,7 @@ router.get("/setting", (req, res) => {
 
 // 사용자가 도감 페이지를 요철했을 때
 router.get("/dictionary", (req, res) => {
-  res.render("dictionary");
+  res.render("dictionary", { userInfo: req.session.userInfo });
 });
 
 module.exports = router;
