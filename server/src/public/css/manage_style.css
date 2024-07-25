@@ -145,6 +145,11 @@ nav > ul > li > li + li {
   border-radius: 32px;
   background: #fff;
 }
+
+#left_box:hover{
+  background-color: #aaaaaa;
+}
+
 #right_box {
   width: 153px;
   height: 180px;
@@ -154,6 +159,10 @@ nav > ul > li > li + li {
   right: 27px;
   border-radius: 32px;
   background: #fff;
+}
+
+#right_box:hover{
+  background-color: #aaaaaa;
 }
 
 #camera {
@@ -285,6 +294,130 @@ td.today {
 #nextMonth:active {
   background-color: #03478a;
 }
+
+
+/* 모달창 */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  font-family: 'LaundryGothic' ;
+}
+
+.modal-content {
+  border-radius : 24px;
+  margin : 5%;
+  padding : 10px;
+  background-color: #fefefe;
+  position : fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 320px;  
+  height: 220px;
+  font-size : 20px;
+}
+
+#modalText{
+  font-size : 20px;
+  margin-top : 5%;
+  margin-bottom : 5%;
+  margin-left : 5%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#file_upload{
+  font-family: 'LaundryGothic';
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  margin-left : 5%;
+  cursor: pointer; 
+}
+
+#file_upload:hover{
+  background-color: #bbbbbb;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 기존 input 디자인 숨기기 */
+#file_choose{
+  visibility : hidden;
+}
+
+
+
+#camera_upload{
+  font-family: 'LaundryGothic';
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  margin-left : 5%;
+  cursor: pointer; 
+}
+
+#camera_upload:hover{
+  background-color: #bbbbbb;
+  border-bottom: 1px solid #ddd;
+}
+
+#preview{
+  max-width : 90px;
+  max-height : 90px;
+  margin-top : 2%;
+  margin-left : 5%;
+}
+
+#img_submit{
+  font-family: 'LaundryGothic';
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  margin-top : 2%;
+  margin-left : 5%;
+  cursor: pointer; 
+}
+
+#img_submit:hover{
+  background-color: #bbbbbb;
+  border-bottom: 1px solid #ddd;
+}
+
+video{
+  margin-left : 5%;
+}
+
+button{
+  font-family: 'LaundryGothic';
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  margin-left : 5%;
+  cursor: pointer; 
+}
+
+button:hover{
+  background-color: #bbbbbb;
+  border-bottom: 1px solid #ddd;
+}
+
 
 @font-face {
   font-family: "LaundryGothic";
