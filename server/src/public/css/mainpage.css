@@ -284,6 +284,18 @@ nav > ul > li > li + li {
   word-wrap: break-word;
 }
 
+/* 값 없는 경우 */
+
+body > div > div.withPokeBox > div.if_null {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* body > div > div.withPokeBox > span {} */
+
 /* collec / pickup Text CSS */
 
 .collec_pickup {

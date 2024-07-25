@@ -22,8 +22,8 @@
             </a>
             <!-- hover 세팅 / 로그아웃 메뉴 -->
             <ul>
-              <li><a href="#">Setting</a></li>
-              <li><a href="#">Logout</a></li>
+              <li><a href="/management">Setting</a></li>
+              <li><a href="/user/logout">Logout</a></li>
             </ul>
           </li>
         </ul>
@@ -49,10 +49,7 @@
         <div class="modal_content">
           <span class="close" id="closePickupModal">&times;</span>
           <!-- 뽑기를 통해 나온 포켓몬을 출력한다. 코드상에는 임의의 포켓몬 사진 등록-->
-          <img
-            src="../../public/images/grayscale_images(png)/101.png"
-            class="pickup_result_img"
-          />
+          <img src=" {{poke_img}} " class="pickup_result_img" />
           <div class="pickup_result">
             {{pickuppoke.pickup_result}}가 나왔습니다!
           </div>
@@ -62,6 +59,6 @@
       </div>
     </div>
 
-    <script src = "../../public/js/pickuppoke.js"></script>
+    <script src="../../public/js/pickuppoke.js"></script>
   </body>
 </html>

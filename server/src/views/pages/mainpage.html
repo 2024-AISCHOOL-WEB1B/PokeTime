@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>user</title>
-    <link rel="stylesheet" href="../../public/css/user.css" />
+    <link rel="stylesheet" href="../../public/css/mainpage.css" />
   </head>
   <body>
     <div class="sub_container">
@@ -35,8 +35,10 @@
       <!-- -와 -일 째 함께 중 ! -->
       <div class="withPokeBox">
         <!-- 유저 메인포켓몬 이미지 삽입위치 (임의 포켓몬 이미지 삽입) -->
+        {% if userInfo.poke_img == null %} {% else %}
+
         <img
-          src="../../public/images/grayscale_images(png)/1.png"
+          src="{{userInfo.mainPoke_img}}"
           class="userInfo.mainPoke.img"
           style="
             position: absolute;
@@ -47,7 +49,7 @@
             border-radius: 32px;
           "
         />
-
+        {% endif %}
         <div class="pickup_box_mini">
           <div class="bar">
             <!-- 게이지바로 사용자의 행위에 따라 길이가 조정된다. -->
@@ -70,6 +72,13 @@
           </div>
         </div>
         <!-- text -->
+        <!-- userInfo.main_poke / userInfo.with_date가 null이면 안내문구 출력 -->
+        {% if userInfo.main_poke == null %}
+        <div class="if_null">
+          <span class="with_main">대표 포켓몬을 설정해주세요.</span>
+        </div>
+        {% else %}
+        <!-- null 값이 아니면 렌더 -->
         <div class="text_congra">축하해요 !</div>
         <div class="text">
           <div>
@@ -79,6 +88,7 @@
             <span class="text2">와<br />함께 중!</span>
           </div>
         </div>
+        {% endif %}
       </div>
 
       <!-- 도감페이지 이동탭 -->

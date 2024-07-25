@@ -20,6 +20,7 @@ router.get("/join", (req, res) => {
 router.get("/mainpage", (req, res) => {
   if (req.session.userInfo) {
     res.render("mainpage", { userInfo: req.session.userInfo });
+    // console.log(req.session.userInfo);
   } else {
     res.redirect("/login"); // 로그인 페이지로 리다이렉트
   }
