@@ -145,12 +145,12 @@ nav > ul > li > li + li {
 
 /* 메인포켓몬 이미지 css 안먹는 오류로 html내에 style로 지정해둠.
 오류 해결 시 주석 삭제, html 태그 내 style 삭제 */
-/* #userInfo.mainPoke.img{
-  position : absolute;
-  top : 100px;
-  padding-left : 30%;
-  width : 50px;
-  height : 50px;
+/* #userInfo_mainPoke_img {
+  position: absolute;
+  top: 100px;
+  padding-left: 30%;
+  width: 50px;
+  height: 50px;
 } */
 
 .random_box_mini1 {

@@ -48,9 +48,32 @@ app.use("/point", pointRouter);
 
 // 넌적스 설정
 app.set("view engine", "html");
-nunjucks.configure("views/pages", {
+const env = nunjucks.configure("views/pages", {
   express: app,
   watch: true,
+});
+
+// 날짜 차이 계산 함수
+function dateDiffInDays(date1, date2) {
+  const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+  const utc1 = Date.UTC(date1.getFullYear(), date1.getMonth(), date1.getDate());
+  const utc2 = Date.UTC(date2.getFullYear(), date2.getMonth(), date2.getDate());
+
+  return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+}
+
+// 커스텀 필터 등록
+env.addFilter("daysSince", function (dateString) {
+  if (typeof dateString !== "string") {
+    dateString = dateString.toString();
+  }
+  const today = new Date();
+  const withDate = new Date(
+    dateString.substring(0, 4),
+    dateString.substring(4, 6) - 1,
+    dateString.substring(6, 8)
+  );
+  return dateDiffInDays(withDate, today);
 });
 
 app.listen(3000);

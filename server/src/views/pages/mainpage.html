@@ -38,14 +38,14 @@
         {% if userInfo.poke_img == null %} {% else %}
 
         <img
-          src="{{userInfo.mainPoke_img}}"
-          class="userInfo.mainPoke.img"
+          src="{{userInfo.poke_img}}"
+          class="userInfo_mainPoke_img"
           style="
             position: absolute;
-            top: 0%;
-            padding-left: 0%;
-            width: 60%;
-            height: 100%;
+            top: 60px;
+            padding-left: 30%;
+            width: 50px;
+            height: 50px;
             border-radius: 32px;
           "
         />
@@ -82,8 +82,8 @@
         <div class="text_congra">축하해요 !</div>
         <div class="text">
           <div>
-            <span class="with_main">{{ userInfo.with_date }}</span>
-            <span class="text2">째<br /></span>
+            <span class="with_main">{{ userInfo.with_date | daysSince }}</span>
+            <span class="text2">일째<br /></span>
             <span class="with_main">{{ userInfo.main_poke }}</span>
             <span class="text2">와<br />함께 중!</span>
           </div>
@@ -152,7 +152,7 @@
         <!-- {{ pickup_cnt }}번 뽑기를 실행했어요 ! -->
         <div class="pickup_text">
           <div>
-            <span class="pickup_cnt">{{pickup_cnt}}번<br /></span>
+            <span class="pickup_cnt">{{userInfo.pickup_cnt}}번<br /></span>
             <span class="pickup_cnt_text">뽑기를<br />실행했어요 !</span>
           </div>
         </div>
