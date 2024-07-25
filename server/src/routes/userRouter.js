@@ -161,6 +161,7 @@ router.post("/pickuppoke", (req, res) => {
         poke_img: selectedPoke.poke_img,
       };
 
+      console.log(pickuppoke);
       req.session.pickuppoke = pickuppoke;
 
       let id = req.session.userInfo.user_id;

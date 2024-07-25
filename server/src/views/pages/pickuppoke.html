@@ -49,15 +49,20 @@
         <div class="modal_content">
           <span class="close" id="closePickupModal">&times;</span>
           <!-- 뽑기를 통해 나온 포켓몬을 출력한다. 코드상에는 임의의 포켓몬 사진 등록-->
-          <img src=" {{poke_img}} " class="pickup_result_img" />
-          <div class="pickup_result">
-            {{pickuppoke.pickup_result}}가 나왔습니다!
+          <img
+            src="{{ res.data.pickuppoke.poke_img }}"
+            class="pickup_result_img"
+          />
+          <div id="pk_result">
+            <div class="pickup_result_txt">{{pickuppoke.pickup_result}}</div>
+            <span class="pickup_result">(이)가 나왔습니다!</span>
           </div>
           <!-- <div><span class = "pickup_result">{{pickup_result}}</span>
               <span class = "pickup_text">가 나왔습니다 !</span></div> -->
         </div>
       </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="../../public/js/pickuppoke.js"></script>
   </body>
