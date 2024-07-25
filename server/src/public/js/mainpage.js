@@ -4,7 +4,7 @@
 
 const handleLogout = () => {
   // logout btn ck
-  console.log("logout btn ck");
+  // console.log("logout btn ck");
 
   axios.get("/user/logout").then((res) => {
     console.log(res);

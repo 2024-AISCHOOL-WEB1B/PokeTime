@@ -24,8 +24,10 @@
             </a>
             <!-- hover 세팅 / 로그아웃 메뉴 -->
             <ul>
-              <li><a href="#">Setting</a></li>
-              <li><a href="#" onclick="handleLogout()">Logout</a></li>
+              <li><a href="/management">Setting</a></li>
+              <li>
+                <a href="/user/logout">Logout</a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -71,16 +73,20 @@
         <div class="text_congra">축하해요 !</div>
         <div class="text">
           <div>
-            <span class="with_main">{% userInfo.with_date %}</span>
+            <span class="with_main">{{ userInfo.with_date }}</span>
             <span class="text2">째<br /></span>
-            <span class="with_main">{% userInfo.main_poke %}</span>
+            <span class="with_main">{{ userInfo.main_poke }}</span>
             <span class="text2">와<br />함께 중!</span>
           </div>
         </div>
       </div>
 
       <!-- 도감페이지 이동탭 -->
-      <div class="collec" style="cursor: pointer" onclick="location.href='dictionary.html'">
+      <div
+        class="collec"
+        style="cursor: pointer"
+        onclick="location.href='/dictionary'"
+      >
         <div class="bar_mini">
           <!-- 게이지바로 사용자의 행위에 따라 길이가 조정된다. -->
           <div>
@@ -109,16 +115,19 @@
         <div class="collec_pickup">도감페이지</div>
         <!-- --개의 포켓몬을 수집했어요 ! -->
         <div>
-          <div class = "collec_text">
-            <span class = "poke_img_text" id = "poke-img-text">{% userInfo.length %}</span>
-            <span class = "poke_img_text">개</span>
-            <span class = "collected_text">의<br/>포켓몬을<br/>수집했어요!</span>
+          <div class="collec_text">
+            <span class="poke_img_text" id="poke-img-text"
+              >{{ userInfo.length }}</span
+            >
+            <span class="poke_img_text">개</span>
+            <span class="collected_text"
+              >의<br />포켓몬을<br />수집했어요!</span
+            >
           </div>
-          <div class = "collec_gauge" id = "collec-gauge">
-            <span class = "collect_cnt">{% userInfo.length %}</span>
-            <span class = "total_poke_text">/150</span>
+          <div class="collec_gauge" id="collec-gauge">
+            <span class="collect_cnt">{{userInfo.length}}</span>
+            <span class="total_poke_text">/150</span>
           </div>
-          
         </div>
       </div>
 
@@ -126,20 +135,20 @@
       <div
         class="pickup"
         style="cursor: pointer"
-        onclick="location.href='pickuppoke.html'"
+        onclick="location.href='/pickuppoke'"
       >
         <!-- text -->
         <div class="collec_pickup">뽑기페이지</div>
         <!-- {{ pickup_cnt }}번 뽑기를 실행했어요 ! -->
         <div class="pickup_text">
           <div>
-            <span class="pickup_cnt">{% pickup_cnt %}번<br /></span>
+            <span class="pickup_cnt">{{pickup_cnt}}번<br /></span>
             <span class="pickup_cnt_text">뽑기를<br />실행했어요 !</span>
           </div>
         </div>
       </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script type="text/javascript" src="../../public/js/user.js"></script>
+    <script type="text/javascript" src="../../public/js/mainpage.js"></script>
   </body>
 </html>

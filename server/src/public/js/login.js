@@ -33,9 +33,9 @@ const handleLogin = () => {
     ckPw.innerHTML = "올바른 형식의 비밀번호를 입력해주세요.";
   }
 
-  // localStorage에 id, pw 키값 저장
-  localStorage.setItem("userEmail", userEmail);
-  localStorage.setItem("userPw", userPw);
+  // // localStorage에 id, pw 키값 저장
+  // localStorage.setItem("userEmail", userEmail);
+  // localStorage.setItem("userPw", userPw);
 
   // axios 통신
   axios
