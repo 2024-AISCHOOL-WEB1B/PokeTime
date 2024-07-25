@@ -45,7 +45,13 @@ router.get("/search", (req, res) => {
 });
 
 // 대표 포켓몬 설정
-router.post("/mainpoke", (req, res) => {});
+router.post("/mainpoke", (req, res) => {
+  let id = req.session.userInfo.user_id;
+  let sql = `
+  UPDATE user_info set user_mainpoke_img = ? 
+  WHERE user_id = ?
+  `;
+});
 
 // 포켓몬 진화
 router.get("/evolution", (req, res) => {});

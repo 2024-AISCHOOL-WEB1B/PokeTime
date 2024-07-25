@@ -29,9 +29,9 @@ router.post("/login", (req, res) => {
   let sql = `
     SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_poke_img, a.user_pickup_cnt, a.user_point
     FROM user_info a
-    LEFT JOIN user_poke_info b ON a.user_id = b.user_id
+    LEFT JOIN user_poke_info b ON a.user_id = b.user_id AND a.user_mainpoke_img = b.user_poke_img
     WHERE a.user_id = ? AND a.user_pw = ?
-  `;
+`;
   conn.query(sql, [userEmail, userPw], (err, rows) => {
     if (err) {
       console.error("쿼리 실행 중 오류 발생:", err);
@@ -138,15 +138,17 @@ router.get("/logout", (req, res) => {
   }
 });
 
+// 포켓몬 뽑기
 router.post("/pickuppoke", (req, res) => {
+  let id = req.session.userInfo.user_id;
   let sql = `
     SELECT a.*
     FROM poke_info a
     LEFT JOIN user_poke_info b ON a.poke_name = b.poke_name
-    WHERE a.poke_name NOT IN (SELECT poke_name FROM user_poke_info) and a.poke_init = 1
+    WHERE a.poke_name NOT IN (SELECT poke_name FROM user_poke_info WHERE user_id = ?) and a.poke_init = 1
   `;
 
-  conn.query(sql, (err, rows) => {
+  conn.query(sql, [id], (err, rows) => {
     if (err) {
       console.error("쿼리 실행 중 오류 발생:", err);
       return res.status(500).json({ result: "서버 오류" });
