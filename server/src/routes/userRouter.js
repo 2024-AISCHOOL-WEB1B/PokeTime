@@ -166,8 +166,8 @@ router.post("/pickuppoke", (req, res) => {
 
       let inputpokesql = `
         INSERT INTO user_poke_info
-        (poke_name, user_id, user_poke_img)
-        VALUES (?, ?, ?)
+        (poke_name, user_id, user_poke_img, user_poke_date)
+        VALUES (?, ?, ?, curdate())
       `;
 
       conn.query(
@@ -182,7 +182,7 @@ router.post("/pickuppoke", (req, res) => {
           // user_info 테이블의 user_pickup_cnt 증가
           let updatePickupCntSql = `
             UPDATE user_info
-            SET user_pickup_cnt = user_pickup_cnt + 1
+            SET user_pickup_cnt = user_pickup_cnt + 1, user_point = user_point - 100
             WHERE user_id = ?
           `;
 
