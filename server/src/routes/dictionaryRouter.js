@@ -18,7 +18,7 @@ router.get("/info", (req, res) => {
     }
     if (rows) {
       console.log("조회성공", rows);
-      res.json({ result: "조회성공" });
+      res.json({ result: "조회성공", rows: rows });
     }
   });
 });
@@ -39,7 +39,7 @@ router.get("/search", (req, res) => {
     }
     if (rows) {
       console.log("검색 성공", rows);
-      res.json({ result: "검색성공" });
+      res.json({ result: "검색성공", rows: rows });
     }
   });
 });
@@ -68,14 +68,18 @@ router.post("/mainpoke", (req, res) => {
       }
       if (rows) {
         console.log("메인 포켓몬 변경 성공", rows);
-        res.json({ result: "메인 포켓몬 변경 성공" });
+        res.json({ result: "메인 포켓몬 변경 성공", rows: rows });
       }
     });
   });
 });
 
 // 포켓몬 진화
-router.get("/evolution", (req, res) => {});
+router.get("/evolution", (req, res) => {
+  let sql = `
+  
+  `;
+});
 
 // 포켓몬 경험치
 router.post("/exp", (req, res) => {});

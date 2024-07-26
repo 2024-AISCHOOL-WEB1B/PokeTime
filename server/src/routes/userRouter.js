@@ -16,9 +16,6 @@ router.post("/join", (req, res) => {
       // res.redirect("/login");
       console.log("성공", rows);
       res.json({ result: "가입성공" });
-    } else {
-      console.log("가입 성공", rows);
-      res.json({ result: "가입성공" });
     }
   });
 });
@@ -68,7 +65,7 @@ router.post("/login", (req, res) => {
             return res.status(500).json({ result: "서버 오류" });
           }
           console.log("로그인 성공, 세션 저장됨:", req.session);
-          res.json({ result: "로그인성공" });
+          res.json({ result: "로그인성공", rows: rows });
         });
       });
     } else {
@@ -203,7 +200,7 @@ router.post("/pickuppoke", (req, res) => {
               console.log("뽑기 성공, 세션 저장됨:", req.session);
               console.log("뽑은 포켓몬 값 DB 저장 완료");
               console.log("user_pickup_cnt 증가 완료");
-              res.json({ result: "뽑기성공", pickuppoke });
+              res.json({ result: "뽑기성공", rows });
             });
           });
         }
