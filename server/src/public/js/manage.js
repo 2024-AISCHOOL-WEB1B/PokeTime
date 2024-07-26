@@ -94,11 +94,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   closeModal.onclick = function () {
     modal.style.display = "none";
+
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      camera_preview.innerHTML = "";
+    }
   };
 
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
+
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+        camera_preview.innerHTML = "";
+      }
     }
   };
 
@@ -148,8 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const video = document.createElement("video");
         video.srcObject = mediaStream;
         video.autoplay = true;
-        video.style.maxWidth = "90px";
-        video.style.maxHeight = "90px";
+        video.style.maxWidth = "100px";
+        video.style.maxHeight = "100px";
         camera_preview.innerHTML = "";
         camera_preview.appendChild(video);
 
