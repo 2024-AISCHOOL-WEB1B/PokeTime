@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>user</title>
+    <title>Main Page</title>
     <link rel="stylesheet" href="../../public/css/mainpage.css" />
   </head>
   <body>
@@ -25,9 +25,7 @@
             <!-- hover 세팅 / 로그아웃 메뉴 -->
             <ul>
               <li><a href="/management">Setting</a></li>
-              <li>
-                <a href="/user/logout">Logout</a>
-              </li>
+              <li><a href="/user/logout">Logout</a></li>
             </ul>
           </li>
         </ul>
@@ -35,10 +33,9 @@
       <!-- -와 -일 째 함께 중 ! -->
       <div class="withPokeBox">
         <!-- 유저 메인포켓몬 이미지 삽입위치 (임의 포켓몬 이미지 삽입) -->
-        {% if userInfo.poke_img == null %} {% else %}
-
+        {% if userInfo.poke_img %}
         <img
-          src="{{userInfo.poke_img}}"
+          src="{{ userInfo.poke_img }}"
           class="userInfo_mainPoke_img"
           style="
             position: absolute;
@@ -73,12 +70,7 @@
         </div>
         <!-- text -->
         <!-- userInfo.main_poke / userInfo.with_date가 null이면 안내문구 출력 -->
-        {% if userInfo.main_poke == null %}
-        <div class="if_null">
-          <span class="with_main">대표 포켓몬을 설정해주세요.</span>
-        </div>
-        {% else %}
-        <!-- null 값이 아니면 렌더 -->
+        {% if userInfo.main_poke %}
         <div class="text_congra">축하해요 !</div>
         <div class="text">
           <div>
@@ -87,6 +79,10 @@
             <span class="with_main">{{ userInfo.main_poke }}</span>
             <span class="text2">와<br />함께 중!</span>
           </div>
+        </div>
+        {% else %}
+        <div class="if_null">
+          <span class="with_main">대표 포켓몬을 설정해주세요.</span>
         </div>
         {% endif %}
       </div>
@@ -126,16 +122,8 @@
         <!-- --개의 포켓몬을 수집했어요 ! -->
         <div>
           <div class="collec_text">
-            {% if userInfo.poke_count == 0%}
-            <div class="if_null">
-              <br />
-              <span class="with_main">
-                아직 포켓몬을 <br />수집하지 않았어요.</span
-              >
-            </div>
-            {% else %}
+            {% if userInfo.poke_count > 0 %}
             <br />
-
             <span class="poke_img_text" id="poke-img-text"
               >{{ userInfo.poke_count }}</span
             >
@@ -143,10 +131,17 @@
             <span class="collected_text"
               >의<br />포켓몬을<br />수집했어요!</span
             >
+            {% else %}
+            <div class="if_null">
+              <br />
+              <span class="with_main"
+                >아직 포켓몬을 <br />수집하지 않았어요.</span
+              >
+            </div>
             {% endif %}
           </div>
           <div class="collec_gauge" id="collec-gauge">
-            <span class="collect_cnt">{{userInfo.poke_count}}</span>
+            <span class="collect_cnt">{{ userInfo.poke_count }}</span>
             <span class="total_poke_text">/150</span>
           </div>
         </div>
@@ -163,20 +158,25 @@
         <!-- {{ pickup_cnt }}번 뽑기를 실행했어요 ! -->
         <div class="pickup_text">
           <div>
-            {% if userInfo.pickup_cnt == 0%}
+            {% if userInfo.pickup_cnt > 0 %}
+            <span class="pickup_cnt">{{ userInfo.pickup_cnt }}번<br /></span>
+            <span class="pickup_cnt_text">뽑기를<br />실행했어요 !</span>
+            {% else %}
             <div class="if_null">
-              <span class="with_main">
-                아직 뽑기를 <br />실행하지 않았어요.</span
+              <span class="with_main"
+                >아직 뽑기를 <br />실행하지 않았어요.</span
               >
             </div>
-            {% else %}
-            <span class="pickup_cnt">{{userInfo.pickup_cnt}}번<br /></span>
-            <span class="pickup_cnt_text">뽑기를<br />실행했어요 !</span>
             {% endif %}
           </div>
         </div>
       </div>
     </div>
+
+    <!-- JavaScript에 userInfo 전달 -->
+    <script>
+      window.userInfo = {{ userInfo | dump | safe }};
+    </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="../../public/js/mainpage.js"></script>
   </body>
