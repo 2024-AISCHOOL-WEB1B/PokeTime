@@ -18,3 +18,16 @@ const handleLogout = () => {
     }
   });
 };
+
+// handleGauge
+
+const setGaugeValue = (value) => {
+  // 값은 0~100
+  if (value < 0) value = 0;
+  if (value > 100) value = 100;
+
+  const guageContainer = document.querySelector(".bar_gauge");
+  console.log(guageContainer.style);
+  guageContainer.style.width = `${value}%`;
+};
+setGaugeValue(75);

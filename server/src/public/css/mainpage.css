@@ -193,13 +193,14 @@ nav > ul > li > li + li {
 }
 
 .bar_gauge {
-  width: 5%;
+  width: 5%; /* 초기 너비 */
   height: 10px;
   flex-shrink: 0;
   border-radius: 32px;
   background: #1877f2;
   position: absolute;
   top: -25%;
+  transition: width 0.5s ease;
 }
 
 .collec {
@@ -234,6 +235,7 @@ nav > ul > li > li + li {
   background: #1877f2;
   position: absolute;
   bottom: 1%;
+  transition: width 0.5s ease;
 }
 
 .pickup {
