@@ -33,6 +33,7 @@ router.get("/pickuppoke", (req, res) => {
 
 // 사용자가 관리 페이지를 요청했을 때
 router.get("/management", (req, res) => {
+  // console.log(req.session);
   res.render("management");
 });
 

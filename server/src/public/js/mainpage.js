@@ -19,7 +19,18 @@ const handleLogout = () => {
   });
 };
 
+// axios로 출석 일수 가져오기
+axios
+  .get("/management")
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.error("err: ", err);
+  });
+
 // handleGauge
+// 게이지에 넣을 값 가져와야 함
 
 const setGaugeValue = (value) => {
   // 값은 0~100
