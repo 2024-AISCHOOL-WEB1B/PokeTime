@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const predict_result = document.getElementById("predict_result");
 
   let uploadFile = null;
+  let stream;
 
   let today = new Date();
   let currentMonth = today.getMonth();
@@ -110,6 +111,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   file_choose.addEventListener("change", function (event) {
     const file = event.target.files[0];
+
+    // 카메라 이용 중 파일등록 버튼 클릭 시 카메라 종료 및 카메라 화면영역 삭제
+    if (stream) {
+      stream.getTracks().forEach(track => track.stop());
+      camera_preview.innerHTML = "";
+  }
+
     // 업로드 파일 변수에 저장
     uploadFile = file;
 

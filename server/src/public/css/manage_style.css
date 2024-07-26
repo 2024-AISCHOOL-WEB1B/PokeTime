@@ -161,9 +161,6 @@ nav > ul > li > li + li {
   background: #fff;
 }
 
-#right_box:hover{
-  background-color: #aaaaaa;
-}
 
 #camera {
   position: absolute;
