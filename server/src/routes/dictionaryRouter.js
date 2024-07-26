@@ -46,11 +46,32 @@ router.get("/search", (req, res) => {
 
 // 대표 포켓몬 설정
 router.post("/mainpoke", (req, res) => {
-  let id = req.session.userInfo.user_id;
+  let pokenum = 0;
   let sql = `
-  UPDATE user_info set user_mainpoke_img = ? 
-  WHERE user_id = ?
+  SELECT poke_img
+  FROM poke_info
+  WHERE poke_num = ?
   `;
+  conn.query(sql, [pokenum], (err, rows) => {
+    let id = req.session.userInfo.user_id;
+    let img = rows[0].poke_img;
+    let mainpokeupdatesql = `
+    UPDATE user_info set user_mainpoke_img = ? 
+    WHERE user_id = ?
+    `;
+    conn.query(mainpokeupdatesql, [img, id], (err, rows) => {
+      if (err) {
+        console.log("메인 포켓몬 변경 실패", err);
+        res
+          .status(500)
+          .json({ result: "메인 포켓몬 변경 실패", error: err.message });
+      }
+      if (rows) {
+        console.log("메인 포켓몬 변경 성공", rows);
+        res.json({ result: "메인 포켓몬 변경 성공" });
+      }
+    });
+  });
 });
 
 // 포켓몬 진화

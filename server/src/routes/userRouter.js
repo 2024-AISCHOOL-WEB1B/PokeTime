@@ -27,7 +27,7 @@ router.post("/join", (req, res) => {
 router.post("/login", (req, res) => {
   let { userEmail, userPw } = req.body;
   let sql = `
-    SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_poke_img, a.user_pickup_cnt, a.user_point
+    SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_poke_img, a.user_pickup_cnt, a.user_point, b.user_poke_exp
     FROM user_info a
     LEFT JOIN user_poke_info b ON a.user_id = b.user_id AND a.user_mainpoke_img = b.user_poke_img
     WHERE a.user_id = ? AND a.user_pw = ?
@@ -47,6 +47,7 @@ router.post("/login", (req, res) => {
         poke_img: rows[0].user_poke_img,
         pickup_cnt: rows[0].user_pickup_cnt,
         point: rows[0].user_point,
+        exp: rows[0].user_poke_exp,
       };
 
       // 포켓몬 수 조회 쿼리 추가

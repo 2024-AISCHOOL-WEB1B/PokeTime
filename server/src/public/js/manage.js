@@ -210,9 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
           try {
             const pointRes = await axios.post(
               "http://localhost:3000/point/picture",
-              {
-                point: 10,
-              }
+              
             );
             console.log(pointRes.data);
             modalText.textContent = "포인트 10점 획득!";
