@@ -52,6 +52,7 @@ router.post("/attend", (req, res) => {
       conn.query(sql2, [id], (err, rows) => {
         if (rows) {
           let attend_cnt = rows[0].attend_cnt;
+          res.json({ result: rows });
           if (attend_cnt % 7 == 0) {
             conn.query(sql3, [10, id], (err, rows) => {
               if (rows) {
@@ -77,8 +78,7 @@ router.post("/attend", (req, res) => {
                   .json({ result: "포인트증가실패", error: err.message });
               }
             });
-          }
-          if (attend_cnt % 7 != 0) {
+          } else if (attend_cnt % 7 != 0) {
             conn.query(sql3, [5, id], (err, rows) => {
               if (rows) {
                 console.log("포인트 증가 성공", rows);
