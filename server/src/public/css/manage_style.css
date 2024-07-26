@@ -476,6 +476,15 @@ button:hover{
   border-bottom: 1px solid #ddd;
 }
 
+.capture-button{
+  position : absolute;
+  width : 19%;
+  bottom : 29%;
+}
+
+#predict_result{
+  margin-top : 1%;
+}
 
 @font-face {
   font-family: "LaundryGothic";

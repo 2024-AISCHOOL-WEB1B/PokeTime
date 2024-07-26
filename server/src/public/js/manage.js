@@ -164,7 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
         camera_preview.appendChild(video);
 
         const captureButton = document.createElement("button");
-        captureButton.textContent = "Capture";
+        captureButton.textContent = "촬영하기";
+        captureButton.classList.add('capture-button');
         captureButton.addEventListener("click", function () {
           const canvas = document.createElement("canvas");
           canvas.width = video.videoWidth;
