@@ -181,35 +181,51 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // 서버 전송
-  img_submit.addEventListener("click", () => {
+  img_submit.addEventListener("click", async () => {
     if (uploadFile) {
       const formData = new FormData();
       formData.append("image", uploadFile);
 
-      axios
-        .post("http://localhost:5000/predict", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          if (res.data.confidence > 0.7) {
-            axios
-              .post("http://localhost:3000/point/picture", {
+      try {
+        const res = await axios.post(
+          "http://localhost:5000/predict",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+
+        console.log(res.data);
+        if (res.data.confidence > 0.7) {
+          try {
+            const pointRes = await axios.post(
+              "http://localhost:3000/point/picture",
+              {
                 point: 10,
-              })
-              .then((res) => {
-                console.log(res.data);
-                modalText.textContent = "포인트 10점 획득!";
-                modal.style.display = "block";
-              });
-          } else {
-            console.log("포인트 획득 실패");
+              }
+            );
+            console.log(pointRes.data);
+            modalText.textContent = "포인트 10점 획득!";
+            predict_result.innerHTML = `예측 결과: ${res.data.top}`;
+            modal.style.display = "block";
+          } catch (error) {
+            console.error("포인트 획득 요청 실패:", error);
             modalText.textContent = "포인트 획득 실패!";
             modal.style.display = "block";
           }
-        });
+        } else {
+          console.log("포인트 획득 실패");
+          modalText.textContent = "포인트 획득 실패!";
+          predict_result.innerHTML = `예측 결과: 먹을만한 음식이 아닙니다.`;
+          modal.style.display = "block";
+        }
+      } catch (error) {
+        console.error("이미지 예측 요청 실패:", error);
+        modalText.textContent = "이미지 예측 실패!";
+        modal.style.display = "block";
+      }
     }
   });
 });
