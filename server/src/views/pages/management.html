@@ -36,9 +36,16 @@
         <img id="camera" src="../../public/images/camera.svg" alt="" />
         <span id="left_box_text">사진 등록하기</span>
       </div>
-      <div id="right_box" style="cursor: pointer" onclick="">
-        <img id="check" src="../../public/images/check.svg" alt="" />
-        <span id="right_box_text">출석하기</span>
+      <div id="right_box">
+        <span class ="right_box_text1">지금까지</span></br> 
+        <span id = "attend_date">{{attend.date}}일</span>
+        </br><span class = "right_box_text2">연속 출석했어요 !</span>
+        <div class = "user_point">
+          <span class = "have_point">보유 포인트</span>
+          <img src="../../public/images/point2.svg" class = "point">
+        </br>
+          <span>{{user.point}}</span>
+        </div>
       </div>
       <!-- 달력 -->
       <div

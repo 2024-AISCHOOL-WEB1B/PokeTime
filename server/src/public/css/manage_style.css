@@ -185,12 +185,73 @@ nav > ul > li > li + li {
   right: 30%;
 }
 
+#check {
+  position: absolute;
+  top: 25%;
+  right: 30%;
+}
+
+#attend_date {
+  bottom: 35%;
+  left : 12%;
+  position: absolute;
+  font-family: "LaundryGothic";
+  font-size : 20px;
+  color: #0466c2;
+}                                                                                      
+
+.right_box_text1{
+  top: 23%;
+  position: absolute;
+  left: 12%;
+  font-family: "LaundryGothic";
+  font-size : 18px;
+  color: #0466c2;
+}
+
+.right_box_text2{
+  bottom: 25%;
+  position: absolute;
+  left: 12%;
+  font-family: "LaundryGothic";
+  font-size : 18px;
+  color: #0466c2;
+}
+
+.have_point{
+  position: absolute;
+  bottom: 60%;
+  font-family: "LaundryGothic";
+  font-size : 14px;
+  color: #3f3f3f;
+}
+
+.point{
+  position : absolute;
+  bottom : 60%;
+  right : 20%;
+  width : 20px;
+}
+
+.user_point{
+  bottom: 3%;
+  position: absolute;
+  left: 12%;
+  font-family: "LaundryGothic";
+  font-size : 14px;
+  color: #3f3f3f;
+}
+
 #right_box_text {
   bottom: 23%;
   position: absolute;
   left: 32%;
   font-family: "LaundryGothic";
   color: #0466c2;
+}
+
+#predict_result{
+  margin-left : 5%;
 }
 
 .calendar-container {
