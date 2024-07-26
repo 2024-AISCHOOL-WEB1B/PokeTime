@@ -1,8 +1,12 @@
-// 로컬 이미지 파일 경로 배열 생성 (여기서는 20개의 샘플 이미지 경로 사용)
-const images = Array.from(
+// 흑백 이미지 경로 배열 생성 (1부터 150까지의 포켓몬 이미지 경로를 포함)
+const grayscaleImages = Array.from(
   { length: 150 },
   (_, i) => `../../public/images/grayscale_images(png)/${i + 1}.png`
 );
+
+// 전역 변수 선언
+let userPokemons = [];
+let colorGifs = [];
 
 // 페이지당 항목 수 설정
 const itemsPerPage = 12;
@@ -23,17 +27,31 @@ function renderData() {
   // 현재 페이지에 해당하는 데이터 범위를 계산
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  const currentData = images.slice(start, end);
 
-  // 현재 페이지의 데이터를 HTML에 추가
-  currentData.forEach((src, index) => {
+  // start부터 end까지의 포켓몬 이미지를 순회하며 화면에 표시합니다.
+  for (let i = start; i < end && i < 150; i++) {
     const img = document.createElement("img");
-    img.src = src;
-    img.id = `image${start + index + 1}`;
-    img.alt = `Image ${start + index + 1}`; // 이미지에 대한 대체 텍스트 설정
-    img.addEventListener("click", openModal); // 이미지를 클릭하면 모달창을 여는 이벤트 추가
+    const pokemonId = i + 1;
+
+    // 사용자가 해당 포켓몬을 소유하고 있는지 확인합니다.
+    if (userPokemons.includes(pokemonId)) {
+      // 소유한 포켓몬이면 컬러 GIF를 표시합니다.
+      img.src =
+        colorGifs.find((gif) => gif.poke_num === pokemonId)?.poke_img ||
+        grayscaleImages[i];
+    } else {
+      // 소유하지 않은 포켓몬이면 흑백 이미지를 표시합니다.
+      img.src = grayscaleImages[i];
+    }
+
+    // 이미지에 ID와 대체 텍스트를 설정합니다.
+    img.id = `${pokemonId}`;
+    img.alt = `Pokemon ${pokemonId}`;
+    // 이미지 클릭 시 모달을 열도록 이벤트 리스너를 추가합니다.
+    img.addEventListener("click", openModal);
+    // 생성한 이미지를 컨테이너에 추가합니다.
     dataContainer.appendChild(img);
-  });
+  }
 }
 
 // 페이지네이션 버튼을 렌더링하는 함수
@@ -42,7 +60,7 @@ function renderPagination() {
   pagination.innerHTML = "";
 
   // 총 페이지 수 계산
-  const totalPages = Math.ceil(images.length / itemsPerPage);
+  const totalPages = Math.ceil(grayscaleImages.length / itemsPerPage);
 
   // 이전 페이지 버튼 생성
   const prevPage = document.createElement("div");
@@ -79,6 +97,30 @@ function renderPagination() {
   pagination.appendChild(nextPage);
 }
 
+// 사용자의 포켓몬 정보를 가져오고 이미지를 렌더링하는 함수
+function fetchUserPokemonsAndRender() {
+  axios
+    .get("/dictionary/info", {
+      params: {
+        userId: sessionStorage.getItem("userEmail"),
+      },
+    })
+    .then((res) => {
+      // 유저가 소유한 포켓몬 ID 목록을 저장
+      userPokemons = res.data.rows.map((row) => row.poke_num);
+      // 컬러 GIF 정보를 저장
+      colorGifs = res.data.rows.map((row) => ({
+        poke_num: row.poke_num,
+        poke_img: row.poke_img,
+      }));
+      render(); // 데이터를 가져온 후 렌더링 실행
+    })
+    .catch((error) => {
+      console.error("포켓몬 정보를 가져오는 데 실패했습니다:", error);
+      render(); // 에러 발생 시에도 렌더링은 실행
+    });
+}
+
 // 모달창 관련 기능
 
 // 모달창 요소들 선택
@@ -91,7 +133,12 @@ const span = document.getElementsByClassName("close")[0];
 function openModal(event) {
   modal.style.display = "block"; // 모달창을 보이게 설정
   modalImg.src = event.target.src; // 클릭한 이미지의 소스를 모달창 이미지로 설정
-  captionText.innerText = "포켓몬 도감 설명, 레벨 넣는 곳"; // 이미지의 alt 텍스트를 캡션으로 설정
+  const pokemonId = parseInt(event.target.id);
+  if (userPokemons.includes(pokemonId)) {
+    captionText.innerText = `포켓몬 #${pokemonId} - 획득한 포켓몬입니다!`;
+  } else {
+    captionText.innerText = `포켓몬 #${pokemonId} - 아직 획득하지 못한 포켓몬입니다.`;
+  }
 }
 
 // 모달창을 닫는 함수 (닫기 버튼 클릭 시)
@@ -107,4 +154,4 @@ window.onclick = function (event) {
 };
 
 // 초기 렌더링 호출
-render();
+fetchUserPokemonsAndRender();
