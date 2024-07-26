@@ -1,12 +1,20 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 import requests
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # CORS 설정 추가
+CORS(app, resources={r"/predict": {"origins": "http://localhost:3000"}})
 
 ROBOFLOW_API_KEY = "95Plu68fpnn7EPLmkdj5"
 ROBOFLOW_MODEL = "predictfood/1"
+
+@app.route('/predict', methods=['OPTIONS'])
+def handle_options_request():
+    response = make_response()
+    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type')
+    response.headers.add('Access-Control-Allow-Methods', 'POST')
+    return response
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -24,9 +32,11 @@ def predict():
 
     if response.status_code == 200:
         result = response.json()
-        return jsonify(result)
+        resp = jsonify(result)
+        resp.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+        return resp
     else:
         return jsonify({'error': 'Failed to get prediction from Roboflow'}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
