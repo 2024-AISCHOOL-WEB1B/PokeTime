@@ -21,9 +21,9 @@ const handleLogout = () => {
 
 // axios로 출석 일수 가져오기
 axios
-  .get("/management")
+  .get("/mainpage")
   .then((res) => {
-    console.log(res);
+    console.log(res.data);
   })
   .catch((err) => {
     console.error("err: ", err);
@@ -38,7 +38,7 @@ const setGaugeValue = (value) => {
   if (value > 100) value = 100;
 
   const guageContainer = document.querySelector(".bar_gauge");
-  console.log(guageContainer.style);
+  // console.log(guageContainer.style);
   guageContainer.style.width = `${value}%`;
 };
 setGaugeValue(75);
