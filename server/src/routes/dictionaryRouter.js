@@ -151,6 +151,19 @@ router.post("/levelup", (req, res) => {
         if (rows) {
           console.log("포인트 차감 성공!");
           res.json({ result: "포인트 차감 성공" });
+          let pointlogsql = `insert into user_point_log(user_id, point_log_name, point_log_date, point_log) values (?, ?,now(), ?)`;
+          conn.query(pointlogsql, [id, "레벨업", "-100"], (err, rows) => {
+            if (err) {
+              console.log("포인트 로그 실패", err);
+              res
+                .status(500)
+                .json({ result: "포인트로그실패", error: err.message });
+            }
+            if (rows) {
+              console.log("포인트 로그 성공", rows);
+              res.json({ result: "포인트로그성공" });
+            }
+          });
         }
       });
     }
