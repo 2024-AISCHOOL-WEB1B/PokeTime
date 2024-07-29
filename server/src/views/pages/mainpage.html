@@ -24,14 +24,14 @@
             </a>
             <!-- hover 세팅 / 로그아웃 메뉴 -->
             <ul>
-              <li><a href="/management">Setting</a></li>
+              <li><a href="/setting">Setting</a></li>
               <li><a href="/user/logout">Logout</a></li>
             </ul>
           </li>
         </ul>
       </nav>
       <!-- -와 -일 째 함께 중 ! -->
-      <div class="withPokeBox">
+      <div class="withPokeBox" onclick="location.href='/management'">
         <!-- 유저 메인포켓몬 이미지 삽입위치 (임의 포켓몬 이미지 삽입) -->
         {% if userInfo.poke_img %}
         <img
