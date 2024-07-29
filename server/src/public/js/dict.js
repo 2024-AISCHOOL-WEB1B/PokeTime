@@ -213,6 +213,22 @@ function openModal(event) {
     }
 
     modalButtons.appendChild(button3);
+    button3.addEventListener("click", async () => {
+      const pokenum = pokemonId;
+      try {
+        const res = await axios.post("/dictionary/mainpoke", {
+          pokenum: pokenum,
+        });
+        // res.data
+        // result : "대표포켓몬설정 성공"
+        console.log(res.data);
+        if (res.data.result === "대표포켓몬설정 성공") {
+          fetchUserPokemonsAndRender();
+        }
+      } catch (error) {
+        console.error("대표포켓몬설정에 실패했습니다:", error);
+      }
+    });
   } else {
     captionText.innerText = `포켓몬 #${pokemonId} - 아직 획득하지 못한 포켓몬입니다.`;
     modalButtons.innerHTML = "";
