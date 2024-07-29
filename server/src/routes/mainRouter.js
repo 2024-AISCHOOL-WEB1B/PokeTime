@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const conn = require("../config/db");
 
 // 사용자가 메인 페이지에 도착했을 때
 router.get("/", (req, res) => {
@@ -50,6 +51,23 @@ router.get("/setting", (req, res) => {
 // 사용자가 도감 페이지를 요철했을 때
 router.get("/dictionary", (req, res) => {
   res.render("dictionary", { userInfo: req.session.userInfo });
+});
+
+// 알림
+router.post("/notification", (req, res) => {
+  let id = req.session.userInfo.user_id;
+  const sql = `select user_point from user_info where user_id = ?`;
+  console.log("알림", id);
+  conn.query(sql, [id], (err, rows) => {
+    if (err) {
+      console.log("알림 실패", err);
+      res.status(500).json({ result: "알림실패", error: err.message });
+    }
+    if (rows) {
+      console.log("알림 성공", rows);
+      res.json({ rows: rows });
+    }
+  });
 });
 
 module.exports = router;
