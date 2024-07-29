@@ -227,13 +227,43 @@ router.post("/scheduler", (req, res) => {
 
   let sql =
     "INSERT INTO scheduler (user_id, schedule_name, schedule_date) VALUES (?, ?, ?)";
-  conn.query(sql, [id, todo, schedule_date], (err, result) => {
+  conn.query(sql, [id, todo, schedule_date], (err, rows) => {
     if (err) {
       console.error("SQL 오류:", err);
       return res.status(500).json({ error: "데이터베이스 오류" });
     }
-    console.log("삽입된 행:", result);
-    res.json({ message: "일정이 저장되었습니다." });
+    if (rows) {
+      let getpointsql = `
+        UPDATE user_info
+        SET user_point = user_point + 1
+        WHERE user_id = ?
+      `;
+      conn.query(getpointsql, [id], (err, pointrows) => {
+        if (err) {
+          console.error("SQL 오류:", err);
+          return res.status(500).json({ error: "데이터베이스 오류" });
+        }
+        if (pointrows) {
+          let pointlogsql = `INSERT into user_point_log(user_id, point_log_name, point_log_date, point_log) values (?, ?,now(), ?)`;
+          conn.query(
+            pointlogsql,
+            [id, "스케쥴 등록", "+1"],
+            (err, pointlogrows) => {
+              if (err) {
+                console.log("포인트 로그 실패", err);
+                res
+                  .status(500)
+                  .json({ result: "포인트로그실패", error: err.message });
+              }
+              if (pointlogrows) {
+                console.log("포인트 로그 성공", rows);
+                res.json({ result: "포인트로그성공" });
+              }
+            }
+          );
+        }
+      });
+    }
   });
 });
 
