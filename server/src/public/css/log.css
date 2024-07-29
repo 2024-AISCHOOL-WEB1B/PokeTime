@@ -1,0 +1,312 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(207, 204, 193);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sub_container {
+    width: 375px;
+    height: 667px;
+    background: #e9f3ff;
+    border-radius: 35px;
+    border: 10px solid rgb(179, 172, 163);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.skyblue_circle {
+    width: 359px;
+    height: 359px;
+    flex-shrink: 0;
+    border-radius: 359px;
+    background: #9dc8ff;
+}
+
+#skyblue_top_circle {
+    left: -110px;
+    top: -240px;
+    position: absolute;
+}
+
+#skyblue_bottom_circle {
+    left: 220px;
+    top: 550px;
+    position: absolute;
+}
+
+.blue_circle {
+    width: 466px;
+    height: 466px;
+    flex-shrink: 0;
+    border-radius: 466px;
+    background: #0466c2;
+}
+
+#blue_top_circle {
+    top: -400px;
+    left: 150px;
+    position: absolute;
+}
+
+#blue_bottom_circle {
+    top: 600px;
+    right: 50px;
+    position: absolute;
+}
+
+nav {
+    position: absolute;
+    top: -8px;
+    right: 20px;
+}
+
+nav ul {
+    list-style: none;
+    z-index: 2;
+}
+
+nav a {
+    color: #0466c2;
+    text-decoration: none;
+}
+
+nav > ul {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+nav > ul > li {
+    position: relative;
+    padding: 0px;
+    margin: 0;
+}
+
+nav > ul > li > a {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+nav > ul > li > a:hover {
+    color: #cee3fe;
+    border-radius: 15px;
+}
+
+nav > ul > li > ul {
+    display: none;
+    position: absolute;
+    text-align: center;
+    align-content: center;
+    transform: translateX(-70%);
+    border-radius: 15px;
+    background: #9dc8ff;
+    font-family: "LaundryGothic";
+    padding: 0;
+}
+
+nav > ul > li:hover ul {
+    display: block;
+}
+
+nav > ul > li li a {
+    display: block;
+    padding: 10px;
+}
+
+nav > ul > li li a:hover {
+    background: #cee3fe;
+    border-radius: 15px;
+}
+
+nav > ul > li > li + li {
+    margin-top: 5px;
+}
+
+.btn_back {
+    position: absolute;
+    font-size: 16px;
+    color: #0466c2;
+    text-decoration: none;
+    font-family: "LaundryGothic";
+    top: 25px;
+    left: 30px;
+}
+
+.log_box {
+    font-family: "LaundryGothic";
+    background: #FFF;
+    border-radius: 32px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 86%;
+    max-width: 343px; /* 최대 너비 조정 */
+    height: 400px;
+    margin-top: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    overflow-y: auto;
+}
+
+/* 로그박스 스크롤바 css */
+/* 웹킷 브라우저에서 스크롤바 스타일링 */
+.log_box::-webkit-scrollbar {
+    width: 12px; /* 스크롤바 너비 */
+}
+
+.log_box::-webkit-scrollbar-track {
+    background: #f1f1f1; /* 스크롤바 트랙 배경 */
+    border-radius: 12px; /* 트랙의 둥근 모서리 */
+}
+
+.log_box::-webkit-scrollbar-thumb {
+    background: #127de2; /* 스크롤바의 색상 */
+    border-radius: 10px; /* 스크롤바의 둥근 모서리 */
+}
+
+.log_box::-webkit-scrollbar-thumb:hover {
+    background: #0c355c; /* 스크롤바를 호버할 때 색상 */
+}
+
+
+
+/* 로그 기록 테이블 css */
+
+#log_table {
+    width: 95%;
+    border-collapse: collapse;
+    position : absolute;
+    left : 2%;
+    top : 5%;   
+}
+
+.table_head {
+    text-align: center !important;
+    background-color: #f2f2f2; /* 헤더 배경 색상 설정 */
+    padding: 8px;
+    border: 1px solid #ddd; /* 헤더 셀 테두리 설정 */
+}
+
+#log_table th, #log_table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#log_table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+#log_table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#log_table tr:hover {
+    background-color: #e0e0e0;
+}
+
+/* 알림 아이콘 */
+.bell_icon {
+    position: absolute;
+    top: 2.4%;
+    right: 18%;
+    width: 29px;
+    height: 29px;
+}
+
+.bell_icon:hover {
+    cursor: pointer;
+}
+
+@keyframes shake {
+    0% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    100% { transform: translateX(-2px); }
+}
+
+/* bell_icon의 기본 스타일 */
+.bell_icon {
+    position: absolute;
+    top: 2.4%;
+    right: 18%;
+    width: 29px;
+    height: 29px;
+}
+
+/* user_point가 100 이상일 때 애니메이션 적용 */
+.bell_icon.shake {
+    animation: shake 0.3s ease-in-out infinite; /* 좌우 흔들림 애니메이션 */
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    font-family: "LaundryGothic";
+    font-size : 16px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 240px;
+    height: 140px;
+    position : absolute;
+    display : flex;
+    top : 40%;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    z-index: 1;
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.current_point{
+    font-family: "LaundryGothic";
+    position : absolute;
+    top : 20%;
+    left : 5%;
+    
+}
+
+@font-face {
+    font-family: "LaundryGothic";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
