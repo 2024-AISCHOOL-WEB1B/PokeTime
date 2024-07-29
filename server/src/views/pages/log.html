@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>log</title>
+  <link rel="stylesheet" href="../../public/css/log.css" />
+</head>
+
+<body>
+  <div class="sub_container">
+    <div class="skyblue_circle" id="skyblue_top_circle"></div>
+    <div class="skyblue_circle" id="skyblue_bottom_circle"></div>
+    <div class="blue_circle" id="blue_top_circle"></div>
+    <div class="blue_circle" id="blue_bottom_circle"></div>
+
+    <nav>
+      <ul>
+        <li>
+          <a href="#">
+            <img src="../../public/images/setting_img.svg" id="start_setting" />
+          </a>
+          <ul>
+            <li><a href="#">Setting</a></li>
+            <li><a href="#">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <a href="./management.html" class="btn_back">
+      < 뒤로</a>
+        <!-- 알림창 아이콘 -->
+        <img src="../../public/images/bell_icon.png" class="bell_icon">
+
+        <!-- 로그 기록 박스 -->
+        <div class="log_box">
+          <!-- 사용자 포인트 적립 및 사용 로그 출력 -->
+          <table id="log_table">
+            <thead>
+              <tr>
+                <th class='table_head'>날짜</th>
+                <th class='table_head'>활동</th>
+                <th class='table_head'>포인트</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- JavaScript로 데이터 삽입 -->
+            </tbody>
+          </table>
+        </div>
+  </div>
+
+  <!-- 알림팝업창 -->
+  <div class="overlay">
+    <div class="popup">
+      <span class="current_point"></span>
+    </div>
+  </div>
+
+  <script src="../../public/js/log.js"></script>
+  
+</body>
+
+</html>
