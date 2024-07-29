@@ -100,27 +100,28 @@ function renderPagination() {
 }
 
 // 사용자의 포켓몬 정보를 가져오고 이미지를 렌더링하는 함수
-function fetchUserPokemonsAndRender() {
-  axios
-    .get("/dictionary/info", {
+async function fetchUserPokemonsAndRender() {
+  try {
+    const res = await axios.get("/dictionary/info", {
       params: {
         userId: sessionStorage.getItem("userEmail"),
       },
-    })
-    .then((res) => {
-      // 유저가 소유한 포켓몬 ID 목록을 저장
-      userPokemons = res.data.rows.map((row) => row.poke_num);
-      // 컬러 GIF 정보를 저장
-      colorGifs = res.data.rows.map((row) => ({
-        poke_num: row.poke_num,
-        poke_img: row.poke_img,
-      }));
-      render(); // 데이터를 가져온 후 렌더링 실행
-    })
-    .catch((error) => {
-      console.error("포켓몬 정보를 가져오는 데 실패했습니다:", error);
-      render(); // 에러 발생 시에도 렌더링은 실행
     });
+    // 유저가 소유한 포켓몬 ID 목록을 저장
+    console.log(res.data.rows);
+    userPokemons = res.data.rows.map((row) => row.poke_num);
+    // 컬러 GIF 정보를 저장
+    colorGifs = res.data.rows.map((row) => ({
+      poke_num: row.poke_num,
+      evol_poke_name: row.poke_evol,
+      poke_img: row.poke_img,
+      poke_lv: row.user_poke_lv,
+    }));
+    render(); // 데이터를 가져온 후 렌더링 실행
+  } catch (error) {
+    console.error("포켓몬 정보를 가져오는 데 실패했습니다:", error);
+    render(); // 에러 발생 시에도 렌더링은 실행
+  }
 }
 
 // 모달창 관련 기능
@@ -137,18 +138,81 @@ function openModal(event) {
   modal.style.display = "block"; // 모달창을 보이게 설정
   modalImg.src = event.target.src; // 클릭한 이미지의 소스를 모달창 이미지로 설정
   const pokemonId = parseInt(event.target.id);
+  let button1, button2, button3;
   if (userPokemons.includes(pokemonId)) {
     captionText.innerText = `포켓몬 #${pokemonId} - 획득한 포켓몬입니다!`;
+    const poke_lv = colorGifs.find((gif) => gif.poke_num === pokemonId).poke_lv;
+    if (poke_lv < 3) {
+      button1 = document.createElement("button");
+      button1.innerText = "레벨업";
+    } else {
+      button1 = document.createElement("button");
+      button1.innerText = "성장불가능";
+    }
+    if (poke_lv == 3) {
+      button2 = document.createElement("button");
+      button2.innerText = "진화";
+    } else {
+      button2 = document.createElement("button");
+      button2.innerText = "성장불가능";
+    }
 
-    const button1 = document.createElement("button");
-    button1.innerText = "레벨업";
-
-    const button2 = document.createElement("button");
-    button2.innerText = "진화";
+    button3 = document.createElement("button");
+    button3.innerText = "대표포켓몬설정";
 
     modalButtons.innerHTML = "";
     modalButtons.appendChild(button1);
+    // 버튼에 클릭이벤트 달기
+    if (button1.innerText === "레벨업") {
+      button1.addEventListener("click", async () => {
+        const img = modalImg.src;
+
+        try {
+          const res = await axios.post("/dictionary/levelup", {
+            img: img,
+          });
+          // res.data
+          // result : "레벨업 성공", newLevel : 레벨업 후 레벨
+          console.log(res.data);
+          if (res.data.result === "레벨업 성공") {
+            fetchUserPokemonsAndRender();
+          }
+        } catch (error) {
+          console.error("레벨업에 실패했습니다:", error);
+        }
+      });
+    } else {
+      button1.disabled = true;
+    }
     modalButtons.appendChild(button2);
+    if (button2.innerText === "진화") {
+      button2.addEventListener("click", async () => {
+        const img = modalImg.src;
+        const evol_poke_name = colorGifs.find(
+          (gif) => gif.poke_img === img
+        ).evol_poke_name;
+        try {
+          const res = await axios.get("/dictionary/evolution", {
+            params: {
+              name: evol_poke_name,
+              img: img,
+            },
+          });
+          // res.data
+          // result : "진화 성공", img : 진화 후 이미지, type : 진화 후 타입, name : 진화 후 이름
+          console.log(res.data);
+          if (res.data.result === "진화 성공") {
+            fetchUserPokemonsAndRender();
+          }
+        } catch (error) {
+          console.error("진화에 실패했습니다:", error);
+        }
+      });
+    } else {
+      button2.disabled = true;
+    }
+
+    modalButtons.appendChild(button3);
   } else {
     captionText.innerText = `포켓몬 #${pokemonId} - 아직 획득하지 못한 포켓몬입니다.`;
     modalButtons.innerHTML = "";
@@ -158,12 +222,16 @@ function openModal(event) {
 // 모달창을 닫는 함수 (닫기 버튼 클릭 시)
 span.onclick = function () {
   modal.style.display = "none";
+  // 페이지 새로고침
+  location.reload();
 };
 
 // 모달창을 닫는 함수 (모달창 외부 클릭 시)
 window.onclick = function (event) {
   if (event.target === modal) {
     modal.style.display = "none";
+    // 페이지 새로고침
+    location.reload();
   }
 };
 

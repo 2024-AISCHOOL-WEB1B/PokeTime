@@ -34,11 +34,16 @@ router.post("/picture", (req, res) => {
 // 출석 했을 때 경험치 획득
 router.post("/attend", (req, res) => {
   let id = req.session.userInfo.user_id;
+  // 마지막 출석일자 조회
+  let checkattend = "select check_date from Attend_info where user_id = ?";
+  // 출석일자 업데이트
   let sql = "call checkAttendance(?)";
+  // 출석 횟수 조회
   let sql2 = "select * from Attend_info where user_id = ?";
   // 기본 출석 5, attend_cnt가 7의 배수일 때 10
   let sql3 =
     "update user_info set user_point = user_point + ? where user_id = ?";
+  // 포인트 로그 저장
   let sql4 =
     "insert into user_point_log(user_id, point_log_name, point_log_date, point_log) values (?, ?,now(), ?)";
 
@@ -57,50 +62,38 @@ router.post("/attend", (req, res) => {
             conn.query(sql3, [10, id], (err, rows) => {
               if (rows) {
                 console.log("포인트 증가 성공", rows);
-                res.json({ attend: "출석성공", point: "포인트증가성공" });
                 conn.query(sql4, [id, "출석", "+10"], (err, rows) => {
                   if (rows) {
                     console.log("포인트 로그 성공", rows);
-                    res.json({ result: "포인트로그성공" });
                   }
                   if (err) {
                     console.log("포인트 로그 실패", err);
-                    res
-                      .status(500)
-                      .json({ result: "포인트로그실패", error: err.message });
+                    res.status(500);
                   }
                 });
               }
               if (err) {
                 console.log("포인트 증가 실패", err);
-                res
-                  .status(500)
-                  .json({ result: "포인트증가실패", error: err.message });
+                res.status(500);
               }
             });
           } else if (attend_cnt % 7 != 0) {
             conn.query(sql3, [5, id], (err, rows) => {
               if (rows) {
                 console.log("포인트 증가 성공", rows);
-                res.json({ attend: "출석성공", point: "포인트증가성공" });
                 conn.query(sql4, [id, "출석", "+5"], (err, rows) => {
                   if (rows) {
                     console.log("포인트 로그 성공", rows);
-                    res.json({ result: "포인트로그성공" });
                   }
                   if (err) {
                     console.log("포인트 로그 실패", err);
-                    res
-                      .status(500)
-                      .json({ result: "포인트로그실패", error: err.message });
+                    res.status(500);
                   }
                 });
               }
               if (err) {
                 console.log("포인트 증가 실패", err);
-                res
-                  .status(500)
-                  .json({ result: "포인트증가실패", error: err.message });
+                res.status(500);
               }
             });
           }
