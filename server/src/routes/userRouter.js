@@ -200,7 +200,7 @@ router.post("/pickuppoke", (req, res) => {
               console.log("뽑기 성공, 세션 저장됨:", req.session);
               console.log("뽑은 포켓몬 값 DB 저장 완료");
               console.log("user_pickup_cnt 증가 완료");
-              res.json({ result: "뽑기성공", rows });
+              res.json({ result: "뽑기성공", pickuppoke });
             });
           });
         }
