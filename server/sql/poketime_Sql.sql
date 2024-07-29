@@ -163,8 +163,7 @@ BEGIN
     -- 출석 정보가 없으면 첫 출석으로 간주하고 기록 추가
     IF lastCheckDate IS NULL THEN
         INSERT INTO Attend_info (User_id, attend_cnt, check_date)
-        VALUES (userId, 1, today);
-    ELSE
+      ELSE
         -- 마지막 출석일이 어제이면 연속 출석
         IF lastCheckDate = DATE_SUB(today, INTERVAL 1 DAY) THEN
             UPDATE Attend_info
