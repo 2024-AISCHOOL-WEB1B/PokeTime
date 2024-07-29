@@ -39,9 +39,11 @@ function renderData() {
       img.src =
         colorGifs.find((gif) => gif.poke_num === pokemonId)?.poke_img ||
         grayscaleImages[i];
+      img.classList.add("colorGIF"); // 컬러 GIF에 클래스 부여
     } else {
       // 소유하지 않은 포켓몬이면 흑백 이미지를 표시합니다.
       img.src = grayscaleImages[i];
+      img.classList.add("grayPNG"); // 흑백 PNG에 클래스 부여
     }
 
     // 이미지에 ID와 대체 텍스트를 설정합니다.
@@ -127,6 +129,7 @@ function fetchUserPokemonsAndRender() {
 const modal = document.getElementById("myModal");
 const modalImg = document.getElementById("modalImage");
 const captionText = document.getElementById("caption");
+const modalButtons = document.getElementById("modalButtons");
 const span = document.getElementsByClassName("close")[0];
 
 // 이미지를 클릭했을 때 모달창을 여는 함수
@@ -136,8 +139,19 @@ function openModal(event) {
   const pokemonId = parseInt(event.target.id);
   if (userPokemons.includes(pokemonId)) {
     captionText.innerText = `포켓몬 #${pokemonId} - 획득한 포켓몬입니다!`;
+
+    const button1 = document.createElement("button");
+    button1.innerText = "레벨업";
+
+    const button2 = document.createElement("button");
+    button2.innerText = "진화";
+
+    modalButtons.innerHTML = "";
+    modalButtons.appendChild(button1);
+    modalButtons.appendChild(button2);
   } else {
     captionText.innerText = `포켓몬 #${pokemonId} - 아직 획득하지 못한 포켓몬입니다.`;
+    modalButtons.innerHTML = "";
   }
 }
 
