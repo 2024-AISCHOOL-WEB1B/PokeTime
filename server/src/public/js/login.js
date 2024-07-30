@@ -39,7 +39,7 @@ const handleLogin = () => {
 
   // axios 통신
   axios
-    .post("http://localhost:3000/user/login", {
+    .post("http://54.180.231.199:3000/user/login", {
       userEmail,
       userPw,
     })
