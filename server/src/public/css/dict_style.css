@@ -149,47 +149,20 @@ nav > ul > li > li + li {
   font-family: "LaundryGothic";
 }
 
-.bar1 {
-  width: 260px;
-  height: 7px;
-  flex-shrink: 0;
-  border-radius: 32px;
-  border: 4px solid rgba(255, 255, 255, 0.2);
-  background: #d9d1c2;
+#search_name {
   position: absolute;
   top: 180px;
-  left: 10%;
+  left: 50px;
+  width: 60%;
+  border: 3px solid #0466c2;
+  border-radius: 15px;
+  font-family: "LaundryGothic";
 }
 
-.pickup_box {
+#search_btn {
   position: absolute;
-  top: 175px;
-  right: 65px;
-}
-
-#box {
-  width: 25px;
-  height: 22px;
-  flex-shrink: 0;
-  position: absolute;
-}
-
-#circle {
-  width: 6.969px;
-  height: 7.482px;
-  flex-shrink: 0;
-  position: absolute;
-  top: 8px;
-  left: 9.02px;
-}
-
-#key_hole {
-  width: 2.091px;
-  height: 3.919px;
-  flex-shrink: 0;
-  position: absolute;
-  top: 9.78px;
-  left: 11.46px;
+  top: 179px;
+  right: 40px;
 }
 /* 도감 페이징 코드 */
 
@@ -201,7 +174,6 @@ nav > ul > li > li + li {
   column-gap: 20px;
   width: 80%;
   height: 360px;
-
   align-items: center;
   justify-content: center;
   border: 3px solid #0466c2;
@@ -209,12 +181,21 @@ nav > ul > li > li + li {
   border-radius: 32px;
   position: absolute;
   bottom: 60px;
+  left: 38px;
 }
 
-#data-container img {
+.grayPNG {
   width: 70px;
   height: 70px;
   object-fit: cover;
+  border-radius: 21px;
+}
+
+.colorGIF {
+  width: 70px;
+  height: 70px;
+  object-fit: scale-down;
+  background-color: white;
   border-radius: 21px;
 }
 
@@ -225,6 +206,7 @@ nav > ul > li > li + li {
   position: absolute;
   bottom: 20px;
   font-size: 20px;
+  left: 138px;
 }
 
 .page-item {
@@ -307,6 +289,35 @@ nav > ul > li > li + li {
   color: #bbb;
   text-decoration: none;
   cursor: pointer;
+}
+
+.modal-buttons {
+  margin: auto;
+  margin-top: 10px;
+  font-family: "LaundryGothic";
+  text-align: center;
+  justify-content: space-between;
+  width: 200px;
+  display: flex;
+}
+
+.modal-btn {
+  width: 70px;
+  height: 40px;
+  font-family: "LaundryGothic";
+  font-size: 11px;
+  background-color: #0466c2;
+  color: white;
+  border-radius: 10px;
+  border: 0;
+}
+
+.modal-btn:hover {
+  background-color: #3e82c2;
+}
+
+.modal-btn:active {
+  background-color: #00488b;
 }
 
 @font-face {

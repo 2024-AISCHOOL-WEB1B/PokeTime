@@ -33,28 +33,24 @@
       <div class="dict_box" id="top_box">
         {{ userInfo.poke_count }}개의 포켓몬을 수집했어요!
       </div>
-      <div class="bar1"></div>
-      <div class="pickup_box">
-        <img src="../../public/images/random_box.svg" id="box" />
-        <div>
-          <img src="../../public/images/yellowcircle.svg" id="circle" />
-          <div>
-            <img src="../../public/images/key.svg" id="key_hole" />
-          </div>
+      <div>
+        <form class="search">
+          <input type="text" id="search_name" />
+          <input type="submit" id="search_btn" value="검색!" />
+        </form>
+
+        <div id="data-container"></div>
+        <div id="pagination"></div>
+        <div id="myModal" class="modal">
+          <span class="close">&times;</span>
+          <img class="modal-content" id="modalImage" />
+          <div id="caption"></div>
+          <div id="modalButtons" class="modal-buttons"></div>
         </div>
       </div>
-      <div id="data-container"></div>
-      <div id="pagination"></div>
-      <div id="myModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="modalImage" />
-        <div id="caption"></div>
-        <div id="modalButtons" class="modal-buttons"></div>
-      </div>
     </div>
-  </div>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <script src="../../public/js/dict.js"></script>
+    <script src="../../public/js/dict.js"></script>
   </body>
 </html>
