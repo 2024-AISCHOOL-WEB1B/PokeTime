@@ -182,7 +182,7 @@ router.post("/pickuppoke", (req, res) => {
           let updatePickupCntSql = `
             UPDATE user_info
             SET user_pickup_cnt = user_pickup_cnt + 1, user_point = user_point - 100
-            WHERE user_id = ?
+            WHERE user_id = ? AND user_point >= 100
           `;
 
           conn.query(updatePickupCntSql, [id], (err, updateResult) => {
@@ -196,10 +196,15 @@ router.post("/pickuppoke", (req, res) => {
                 console.error("세션 저장 오류:", err);
                 return res.status(500).json({ result: "서버 오류" });
               }
-              console.log("뽑기 성공, 세션 저장됨:", req.session);
-              console.log("뽑은 포켓몬 값 DB 저장 완료");
-              console.log("user_pickup_cnt 증가 완료");
-              res.json({ result: "뽑기성공", pickuppoke });
+
+              if (updateResult.affectedRows > 0) {
+                console.log("뽑기 성공, 세션 저장됨:", req.session);
+                console.log("뽑은 포켓몬 값 DB 저장 완료");
+                console.log("user_pickup_cnt 증가 완료");
+                res.json({ result: "뽑기성공", pickuppoke });
+              } else {
+                res.json({ result: "포인트부족" });
+              }
             });
           });
         }
