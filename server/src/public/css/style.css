@@ -1,79 +1,141 @@
-body{
-    margin: 0 ;
-    padding: 0 ;
-    box-sizing: border-box ;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif ;
-    background-color:rgb(207, 204, 193) ;
-    display: flex ;
-    justify-content: center ;
-    align-items: center ;
-    height: 100vh ;
-    overflow: hidden ;
+  font-family: Arial, sans-serif;
+  background-color: rgb(207, 204, 193);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.container{
-    width: 375px ;
-    height: 667px ;
-    background: whitesmoke ;
-    border-radius: 35px ;
-    border : 10px solid rgb(179, 172, 163) ;
-    justify-content: center ;
-    align-items: center ;
-    display : flex ;
-    overflow: hidden ;
-    position: relative ;
+#sky_background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #eaf3ff;
 }
 
-.container #skyblue_circle{
-    width: 359px ;
-    height: 359px ;
-    flex-shrink: 0 ;
-    border-radius: 359px ;
-    background: #9DC8FF ;
-    left : -110px ;
-    top : -240px ;
-    position : absolute ;
+#sun {
+  width: 220px;
+  position: fixed;
+  filter: blur(5px);
+  right: 80px;
+  top: 50px;
 }
 
-.container #skyblue_circle2{
-    width: 359px ;
-    height: 359px ;
-    flex-shrink: 0;
-    border-radius: 359px ;
-    background: #9DC8FF ;
-    left : 220px ;
-    top : 550px ;
-    position : absolute ;
-
+#tree {
+  width: 500px;
+  position: fixed;
+  filter: blur(5px);
+  left: 80px;
+  bottom: 150px;
+}
+#pikachu {
+  width: 160px;
+  position: fixed;
+  filter: blur(5px);
+  left: 550px;
+  bottom: 250px;
 }
 
-.container #blue_circle{
-    width : 466px ;
-    height : 466px ;
-    flex-shrink : 0 ;
-    border-radius : 466px ;
-    background : #0466c2;
-    top : 600px ;
-    right : 50px ;
-    position : absolute ;
+#gugu {
+  width: 160px;
+  position: fixed;
+  filter: blur(5px);
+  right: 450px;
+  top: 100px;
 }
 
-.container #blue_circle2{
-    width : 466px ;
-    height : 466px ;
-    flex-shrink : 0 ;
-    border-radius : 466px ;
-    background : #0466c2;
-    top : -400px ;
-    left : 150px ;
-    position : absolute ;
+#grass {
+  width: 100px;
+  position: fixed;
+  filter: blur(5px);
+  right: 400px;
+  bottom: 100px;
+}
+#grass2 {
+  width: 100px;
+  position: fixed;
+  filter: blur(5px);
+  left: 400px;
+  bottom: 200px;
+}
+
+#background {
+  width: 4000px;
+  height: 4000px;
+  border-radius: 4000px;
+  position: absolute;
+  background-color: rgb(156, 255, 156);
+  top: 60%;
+  filter: blur(5px);
+}
+
+.container {
+  width: 375px;
+  height: 667px;
+  background: whitesmoke;
+  border-radius: 35px;
+  border: 10px solid rgb(179, 172, 163);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.container #skyblue_circle {
+  width: 359px;
+  height: 359px;
+  flex-shrink: 0;
+  border-radius: 359px;
+  background: #9dc8ff;
+  left: -110px;
+  top: -240px;
+  position: absolute;
+}
+
+.container #skyblue_circle2 {
+  width: 359px;
+  height: 359px;
+  flex-shrink: 0;
+  border-radius: 359px;
+  background: #9dc8ff;
+  left: 220px;
+  top: 550px;
+  position: absolute;
+}
+
+.container #blue_circle {
+  width: 466px;
+  height: 466px;
+  flex-shrink: 0;
+  border-radius: 466px;
+  background: #0466c2;
+  top: 600px;
+  right: 50px;
+  position: absolute;
+}
+
+.container #blue_circle2 {
+  width: 466px;
+  height: 466px;
+  flex-shrink: 0;
+  border-radius: 466px;
+  background: #0466c2;
+  top: -400px;
+  left: 150px;
+  position: absolute;
 }
 
 /* start 버튼 css */
-@import url('https://fonts.googleapis.com/css?family=Poppins:900i');
+@import url("https://fonts.googleapis.com/css?family=Poppins:900i");
 
 * {
   box-sizing: border-box;
@@ -92,110 +154,115 @@ body {
 }
 
 .cta {
-    display: flex;
-    padding: 10px 20px;
-    text-decoration: none;
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    color: white;
-    background: #0466c2 ;
-    transition: 1s;
-    box-shadow: 6px 6px 0 black;
-    transform: skewX(-15deg);
-    align-items: center;
-    text-align: center;
+  display: flex;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  color: white;
+  background: #0466c2;
+  transition: 1s;
+  box-shadow: 6px 6px 0 black;
+  transform: skewX(-15deg);
+  align-items: center;
+  text-align: center;
 }
 
 .cta:focus {
-   outline: none; 
+  outline: none;
 }
 
 .cta:hover {
-    transition: 0.5s;
-    box-shadow: 10px 10px 0 #FBC638;
+  transition: 0.5s;
+  box-shadow: 10px 10px 0 #fbc638;
 }
 
 .cta span:nth-child(2) {
-    transition: 0.5s;
-    margin-right: 0px;
+  transition: 0.5s;
+  margin-right: 0px;
 }
 
-.cta:hover  span:nth-child(2) {
-    transition: 0.5s;
-    margin-right: 45px;
+.cta:hover span:nth-child(2) {
+  transition: 0.5s;
+  margin-right: 45px;
 }
 
-  span {
-    transform: skewX(15deg) 
-  }
+span {
+  transform: skewX(15deg);
+}
 
-  span:nth-child(2) {
-    width: 20px;
-    margin-left: 30px;
-    position: relative;
-    top: 12%;
-  }
-  
+span:nth-child(2) {
+  width: 20px;
+  margin-left: 30px;
+  position: relative;
+  top: 12%;
+}
+
 /**************SVG****************/
 
 path.one {
-    transition: 0.4s;
-    transform: translateX(-60%);
+  transition: 0.4s;
+  transform: translateX(-60%);
 }
 
 path.two {
-    transition: 0.5s;
-    transform: translateX(-30%);
+  transition: 0.5s;
+  transform: translateX(-30%);
 }
 
 .cta:hover path.three {
-    animation: color_anim 1s infinite 0.2s;
+  animation: color_anim 1s infinite 0.2s;
 }
 
 .cta:hover path.one {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.6s;
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.6s;
 }
 
 .cta:hover path.two {
-    transform: translateX(0%);
-    animation: color_anim 1s infinite 0.4s;
+  transform: translateX(0%);
+  animation: color_anim 1s infinite 0.4s;
 }
 
 /* SVG animations */
 
 @keyframes color_anim {
-    0% {
-        fill: white;
-    }
-    50% {
-        fill: #FBC638;
-    }
-    100% {
-        fill: white;
-    }
+  0% {
+    fill: white;
+  }
+  50% {
+    fill: #fbc638;
+  }
+  100% {
+    fill: white;
+  }
 }
 
 @font-face {
-    font-family: 'Poppins';
-    font-style: italic;
-    font-weight: 900;
-    src: url(https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLm81xVGdeOcEg.woff2) format('woff2');
-    unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-  }
-
-@font-face {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: italic;
   font-weight: 900;
-  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLm81xVF9eO.woff2) format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLm81xVGdeOcEg.woff2)
+    format("woff2");
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF,
+    U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
-@font-face{
-    font-family: 'LaundryGothic' ;
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff') ;
-    font-weight : normal ;
-    font-style: normal ;
+@font-face {
+  font-family: "Poppins";
+  font-style: italic;
+  font-weight: 900;
+  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiDyp8kv8JHgFVrJJLm81xVF9eO.woff2)
+    format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191,
+    U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
+@font-face {
+  font-family: "LaundryGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
