@@ -32,11 +32,20 @@
       </nav>
       <a href="./mainpage" class="btn_back">< 뒤로</a>
 
+      <img src="../../public/images/bell_icon.png" class="bell_icon">
+
+
+    <div class="overlay">
+        <div class="popup">
+          <span class="current_point"></span>
+        </div>
+      </div>
+
       <div id="left_box" style="cursor: pointer" onclick="">
         <img id="camera" src="../../public/images/camera.svg" alt="" />
         <span id="left_box_text">사진 등록하기</span>
       </div>
-      <div id="right_box" onclick="location.href='/log'">
+      <div id="right_box" style = "cursor : pointer" onclick="location.href='log.html'">
         <span class ="right_box_text1">지금까지</span></br> 
         <span id = "attend_date">{{attend.date}}일</span>
         </br><span class = "right_box_text2">연속 출석했어요 !</span>
@@ -101,6 +110,7 @@
         </div>
       </div>
     </div>
+    <script src="../../public/js/notice.js"></script>
     <script src="../../public/js/manage.js"></script>
   </body>
 </html>
