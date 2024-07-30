@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const icon = document.querySelector(".bell_icon");
   const overlay = document.querySelector(".overlay");
   const popup = overlay.querySelector(".popup .current_point");
+  const point_box = document.getElementById("user_have_point");
 
-  let user_point;
+  let user_point = 0;
 
   try {
     const res = await axios.get("/point/search");
@@ -12,6 +13,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (error) {
     console.error("Error fetching user data:", error);
     user_point = 0; // 에러 발생 시 기본값 설정
+  }
+
+  if (point_box) {
+    point_box.innerHTML = `${user_point}`;
   }
 
   const showPopup = () => {

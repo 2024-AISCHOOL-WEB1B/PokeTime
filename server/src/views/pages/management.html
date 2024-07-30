@@ -45,19 +45,19 @@
         <img id="camera" src="../../public/images/camera.svg" alt="" />
         <span id="left_box_text">사진 등록하기</span>
       </div>
-      <div id="right_box" style = "cursor : pointer" onclick="location.href='./log.html'">
+      <div id="right_box" style = "cursor : pointer" onclick="location.href='/log'">
         <span class ="right_box_text1">지금까지</span></br> 
         <span id = "attend_date">{{attend.date}}일</span>
         </br><span class = "right_box_text2">연속 출석했어요 !</span>
         
           <span class = "have_point">보유 포인트</span>
           <img src="../../public/images/point2.svg" id = "point">
-        </br>
           <span id = "user_have_point">{{user.point}}</span>
+        </br>
         
       </div>
       <!-- 오늘 해야 할 일 -->
-      <div class="calendar-container" style = "cursor : pointer" onclick = "location.href ='./scheduler.html'">
+      <div class="calendar-container" style = "cursor : pointer" onclick = "location.href ='/scheduler'">
         <div class = Todo_Title>오늘 해야 할 일 🔖</div>
         <div class = Todo_list id = todo-list>
           이 공간에 할 일 리스트가 출력된다

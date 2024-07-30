@@ -30,17 +30,20 @@
           </li>
         </ul>
       </nav>
-      <img src="../../public/images/bell_icon.png" class="bell_icon">
-
+      <img src="../../public/images/bell_icon.png" class="bell_icon" />
 
       <div class="overlay">
-          <div class="popup">
-            <span class="current_point"></span>
-          </div>
-        </div>  
+        <div class="popup">
+          <span class="current_point"></span>
+        </div>
+      </div>
 
       <!-- -와 -일 째 함께 중 ! -->
-      <div class="withPokeBox" style = "cursor : pointer" onclick="location.href='./management.html'">
+      <div
+        class="withPokeBox"
+        style="cursor: pointer"
+        onclick="location.href='/management'"
+      >
         <!-- 유저 메인포켓몬 이미지 삽입위치 (임의 포켓몬 이미지 삽입) -->
         {% if userInfo.poke_img %}
         <img

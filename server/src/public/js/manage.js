@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const calendarTitle = document.getElementById("calendarTitle");
   const calendarBody = document.getElementById("calendarBody");
 
@@ -15,17 +15,44 @@ document.addEventListener("DOMContentLoaded", () => {
   const file_choose = document.getElementById("file_choose");
   const preview = document.getElementById("preview");
   const predict_result = document.getElementById("predict_result");
+  const attend_date = document.getElementById("attend_date");
+
+  const todoList = document.getElementById("todo-list");
 
   let uploadFile = null;
   let stream;
 
-     // const TodoListElement = document.getElementById('todo-list');
-    // if(data.length === 0){
-    //     TodoListElement.textContent = '오늘 해야 할 일을 등록해주세요 !';
-    // }
-    // else{
-    //     TodoListElement.innerHTML =
-    // }
+  const res = await axios.get("/user/attendcount");
+
+  console.log(res.data.rows);
+  attend_date.textContent = `${res.data.rows[0].attend_cnt}일`;
+
+  // const TodoListElement = document.getElementById('todo-list');
+  // if(data.length === 0){
+  //     TodoListElement.textContent = '오늘 해야 할 일을 등록해주세요 !';
+  // }
+  // else{
+  //     TodoListElement.innerHTML =
+  // }
+
+  const searchTodo = async () => {
+    try {
+      const res = await axios.get("/user/searchscheduler");
+      console.log(res.data);
+      if (res.data.rows.length === 0) {
+        todoList.textContent = "오늘 해야 할 일을 등록해주세요 !";
+      } else if (res.data.rows.length > 0) {
+        res.data.rows.forEach((todo) => {
+          const listItem = document.createElement("li");
+          todoList.textContent = "";
+          listItem.innerHTML = `${todo.schedule_name} `;
+          todoList.appendChild(listItem);
+        });
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
 
   if (camera) {
     camera.onclick = function () {
@@ -37,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "none";
 
     if (stream) {
-      stream.getTracks().forEach(track => track.stop());
+      stream.getTracks().forEach((track) => track.stop());
       camera_preview.innerHTML = "";
     }
   };
@@ -47,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       modal.style.display = "none";
 
       if (stream) {
-        stream.getTracks().forEach(track => track.stop());
+        stream.getTracks().forEach((track) => track.stop());
         camera_preview.innerHTML = "";
       }
     }
@@ -65,9 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 카메라 이용 중 파일등록 버튼 클릭 시 카메라 종료 및 카메라 화면영역 삭제
     if (stream) {
-      stream.getTracks().forEach(track => track.stop());
+      stream.getTracks().forEach((track) => track.stop());
       camera_preview.innerHTML = "";
-  }
+    }
 
     // 업로드 파일 변수에 저장
     uploadFile = file;
@@ -106,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const captureButton = document.createElement("button");
         captureButton.textContent = "촬영하기";
-        captureButton.classList.add('capture-button');
+        captureButton.classList.add("capture-button");
         captureButton.addEventListener("click", function () {
           const canvas = document.createElement("canvas");
           canvas.width = video.videoWidth;
@@ -161,8 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (res.data.confidence > 0.7) {
           try {
             const pointRes = await axios.post(
-              "http://localhost:3000/point/picture",
-              
+              "http://localhost:3000/point/picture"
             );
             console.log(pointRes.data);
             modalText.textContent = "포인트 10점 획득!";
@@ -186,4 +212,5 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+  searchTodo();
 });

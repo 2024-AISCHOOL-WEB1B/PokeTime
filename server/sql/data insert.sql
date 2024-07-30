@@ -1,4 +1,8 @@
-SELECT * FROM Insa5_JSB_hacksim_4.poke_info;
+SELECT * FROM Attend_info;
+
+select * from poke_info;
+
+delete from Attend_info where user_id='pa375744@gmail.com';
 
 select poke_img from poke_info where poke_num = 1;
 

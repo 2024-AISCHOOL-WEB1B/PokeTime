@@ -130,7 +130,6 @@ router.get("/logout", (req, res) => {
     console.log("로그아웃 성공");
     console.log(req.session.userInfo);
     res.redirect("/");
-    res.json({ result: "삭제 성공" });
   } else {
     res.redirect("/");
   }
@@ -256,13 +255,59 @@ router.post("/scheduler", (req, res) => {
                   .json({ result: "포인트로그실패", error: err.message });
               }
               if (pointlogrows) {
-                console.log("포인트 로그 성공", rows);
-                res.json({ result: "포인트로그성공" });
+                console.log("포인트 로그 성공");
               }
             }
           );
         }
       });
+    }
+  });
+});
+
+// 스케줄 조회
+router.get("/searchscheduler", (req, res) => {
+  let id = req.session.userInfo.user_id;
+  let searchsql = "select * from scheduler where user_id = ?";
+  conn.query(searchsql, [id], (err, rows) => {
+    if (rows) {
+      res.json({ rows: rows });
+    }
+    if (err) {
+      console.log("스케쥴 조회 실패", err);
+      res.status(500).json({ result: "스케쥴조회실패", error: err.message });
+    }
+  });
+});
+
+// 스케줄 삭제
+router.delete("/scheduledelete", (req, res) => {
+  let id = req.session.userInfo.user_id;
+  let { schedule_name } = req.body;
+  let sql = "delete from scheduler where schedule_name = ? and user_id = ?";
+  conn.query(sql, [schedule_name, id], (err, rows) => {
+    if (rows.affectedRows > 0) {
+      console.log("삭제 성공");
+      res.json({ result: "삭제성공" });
+    } else {
+      console.log("삭제 실패");
+      res.json({ result: "삭제 실패" });
+    }
+  });
+});
+
+// 출석일수 조회
+router.get("/attendcount", (req, res) => {
+  let id = req.session.userInfo.user_id;
+  let sql = "select * from Attend_info where user_id = ?";
+  conn.query(sql, [id], (err, rows) => {
+    if (rows) {
+      console.log("출석 횟수 조회 성공", rows);
+      res.json({ rows: rows });
+    }
+    if (err) {
+      console.log("출석 횟수 조회 실패", err);
+      res.status(500).json({ result: "출석횟수조회실패", error: err.message });
     }
   });
 });
