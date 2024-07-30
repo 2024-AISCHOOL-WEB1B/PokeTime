@@ -112,6 +112,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 일정 추가 버튼 클릭 시
   saveTodo.addEventListener("click", async () => {
     const todoText = todoInput.value;
+    modal.style.display = "none";
+    window.location.reload();
     try {
       const res = await axios.post("/user/scheduler", {
         todo: todoText,

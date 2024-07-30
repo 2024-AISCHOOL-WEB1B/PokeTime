@@ -144,10 +144,10 @@ nav > ul > li > li + li {
   left: 27px;
   border-radius: 32px;
   background: #fff;
-  z-index : 0;
+  z-index: 0;
 }
 
-#left_box:hover{
+#left_box:hover {
   background-color: #aaaaaa;
 }
 
@@ -161,7 +161,6 @@ nav > ul > li > li + li {
   border-radius: 32px;
   background: #fff;
 }
-
 
 #camera {
   position: absolute;
@@ -191,53 +190,53 @@ nav > ul > li > li + li {
 
 #attend_date {
   bottom: 35%;
-  left : 12%;
+  left: 12%;
   position: absolute;
   font-family: "LaundryGothic";
-  font-size : 20px;
+  font-size: 20px;
   color: #0466c2;
-}                                                                                      
+}
 
-.right_box_text1{
+.right_box_text1 {
   top: 23%;
   position: absolute;
   left: 12%;
   font-family: "LaundryGothic";
-  font-size : 18px;
+  font-size: 18px;
   color: #0466c2;
 }
 
-.right_box_text2{
+.right_box_text2 {
   bottom: 25%;
   position: absolute;
   left: 12%;
   font-family: "LaundryGothic";
-  font-size : 18px;
+  font-size: 18px;
   color: #0466c2;
 }
 
-.have_point{
+.have_point {
   position: absolute;
   bottom: 13%;
-  left : 12%;
+  left: 12%;
   font-family: "LaundryGothic";
-  font-size : 14px;
+  font-size: 14px;
   color: #3f3f3f;
 }
 
-#point{
-  position : absolute;
-  bottom : 13%;
-  left : 58%;
-  width : 20px;
+#point {
+  position: absolute;
+  bottom: 13%;
+  left: 58%;
+  width: 20px;
 }
 
-#user_have_point{
-  position : absolute;
-  bottom : 3%;
-  left : 12%;
-  font-family : "LaundryGothic";
-  font-size : 14px;
+#user_have_point {
+  position: absolute;
+  bottom: 3%;
+  left: 12%;
+  font-family: "LaundryGothic";
+  font-size: 14px;
   color: #3f3f3f;
 }
 
@@ -249,8 +248,8 @@ nav > ul > li > li + li {
   color: #0466c2;
 }
 
-#predict_result{
-  margin-left : 5%;
+#predict_result {
+  margin-left: 5%;
 }
 
 .calendar-container {
@@ -355,7 +354,6 @@ td.today {
   background-color: #03478a;
 }
 
-
 /* 모달창 */
 .modal {
   display: none;
@@ -366,31 +364,32 @@ td.today {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0,0,0,0.4);
-  font-family: 'LaundryGothic' ;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-family: "LaundryGothic";
 }
 
 .modal-content {
-  border-radius : 24px;
-  margin : 5%;
-  padding : 10px;
+  border-radius: 24px;
+  margin: 5%;
+  padding: 10px;
   background-color: #fefefe;
-  position : fixed;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   margin: auto;
-  width: 320px;  
+  width: 320px;
   height: 220px;
-  font-size : 20px;
+  font-size: 20px;
 }
 
-#modalText{
-  font-size : 20px;
-  margin-top : 5%;
-  margin-bottom : 5%;
-  margin-left : 5%;
+#modalText {
+  font-size: 20px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  color: #0466c2;
 }
 
 .close {
@@ -407,85 +406,97 @@ td.today {
   cursor: pointer;
 }
 
-#file_upload{
-  font-family: 'LaundryGothic';
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  margin-left : 5%;
-  cursor: pointer; 
+#file_upload {
+  font-family: "LaundryGothic";
+  border: 0;
+  margin-left: 5%;
+  cursor: pointer;
+  background-color: #1877f2;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  height: 20px;
 }
 
-#file_upload:hover{
-  background-color: #bbbbbb;
-  border-bottom: 1px solid #ddd;
+#file_upload:hover {
+  background-color: #0e4fa4;
 }
 
 /* 기존 input 디자인 숨기기 */
-#file_choose{
-  visibility : hidden;
+#file_choose {
+  visibility: hidden;
 }
 
-
-
-#camera_upload{
-  font-family: 'LaundryGothic';
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  margin-left : 5%;
-  cursor: pointer; 
+#camera_upload {
+  font-family: "LaundryGothic";
+  border: 0;
+  margin-left: 20%;
+  cursor: pointer;
+  background-color: #1877f2;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  height: 20px;
 }
 
-#camera_upload:hover{
-  background-color: #bbbbbb;
-  border-bottom: 1px solid #ddd;
+#camera_upload:hover {
+  background-color: #0e4fa4;
 }
 
-#preview{
-  max-width : 90px;
-  max-height : 90px;
-  margin-top : 2%;
-  margin-left : 5%;
+#preview {
+  max-width: 90px;
+  max-height: 90px;
+  margin-top: 2%;
+  margin-left: 5%;
 }
 
-#img_submit{
-  font-family: 'LaundryGothic';
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  margin-top : 2%;
-  margin-left : 5%;
-  cursor: pointer; 
+#img_submit {
+  font-family: "LaundryGothic";
+  border: 0;
+  margin-top: 2%;
+  margin-left: 5%;
+  cursor: pointer;
+  background-color: #1877f2;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  height: 20px;
 }
 
-#img_submit:hover{
-  background-color: #bbbbbb;
-  border-bottom: 1px solid #ddd;
+#img_submit:hover {
+  background-color: #0e4fa4;
 }
 
-video{
-  margin-left : 5%;
+video {
+  margin-left: 5%;
 }
 
-button{
-  font-family: 'LaundryGothic';
-  background-color: #fff;
-  border-bottom: 1px solid #ddd;
-  margin-left : 5%;
-  cursor: pointer; 
+button {
+  font-family: "LaundryGothic";
+  border: 0;
+  margin-left: 20%;
+  cursor: pointer;
+  background-color: #1877f2;
+  color: white;
+  border: 0;
+  border-radius: 10px;
+  height: 20px;
 }
 
-button:hover{
-  background-color: #bbbbbb;
-  border-bottom: 1px solid #ddd;
+button:hover {
+  background-color: #0e4fa4;
 }
 
-.capture-button{
-  position : absolute;
-  width : 19%;
-  bottom : 29%;
+.capture-button {
+  position: absolute;
+  width: 19%;
+  bottom: 29%;
 }
 
-#predict_result{
-  margin-top : 1%;
+#predict_result {
+  margin-top: 1%;
+  color: #0466c2;
+  font-size: 16px;
 }
 
 /* 알림창 */
@@ -511,21 +522,21 @@ button:hover{
   background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-  z-index : 1;
+  z-index: 1;
 }
 
 .popup {
   font-family: "LaundryGothic";
-  font-size : 16px;
+  font-size: 16px;
   background-color: white;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 240px;
   height: 140px;
-  position : absolute;
-  display : flex;
-  top : 40%;
+  position: absolute;
+  display: flex;
+  top: 40%;
   justify-content: center;
   align-items: center;
   text-align: left;
@@ -535,36 +546,34 @@ button:hover{
 
 @keyframes slideIn {
   from {
-      opacity: 0;
-      transform: translateY(-20px);
+    opacity: 0;
+    transform: translateY(-20px);
   }
   to {
-      opacity: 1;
-      transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.current_point{
+.current_point {
   font-family: "LaundryGothic";
-  position : absolute;
-  top : 20%;
-  left : 5%;
-  
+  position: absolute;
+  top: 20%;
+  left: 5%;
 }
 
-.Todo_Title{
-  font-family : 'LaundryGothic';
-  font-size : 20px;
+.Todo_Title {
+  font-family: "LaundryGothic";
+  font-size: 20px;
   margin-top: 20px;
-  margin-left : 28%;
+  margin-left: 28%;
 }
 
-.Todo_list{
-  position : absolute;
-  margin-top : 25px;
-  left : 10%;
+.Todo_list {
+  position: absolute;
+  margin-top: 25px;
+  left: 10%;
 }
-
 
 @font-face {
   font-family: "LaundryGothic";
