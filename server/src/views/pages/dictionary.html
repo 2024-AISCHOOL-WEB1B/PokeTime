@@ -29,6 +29,12 @@
           </li>
         </ul>
       </nav>
+      <img src="../../public/images/bell_icon.png" class="bell_icon" />
+      <div class="overlay">
+        <div class="popup">
+          <span class="current_point"></span>
+        </div>
+      </div>
       <a href="./mainpage" class="btn_back">< 뒤로</a>
       <div class="dict_box" id="top_box">
         {{ userInfo.poke_count }}개의 포켓몬을 수집했어요!
@@ -56,7 +62,7 @@
       </div>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
     <script src="../../public/js/dict.js"></script>
+    <script src="../../public/js/notice.js"></script>
   </body>
 </html>

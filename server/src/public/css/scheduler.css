@@ -1,402 +1,452 @@
-body{
-    margin: 0 ;
-    padding: 0 ;
-    box-sizing: border-box ;
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif ;
-    background-color:rgb(207, 204, 193) ;
-    display: flex ;
-    justify-content: center ;
-    align-items: center ;
-    height: 100vh ;
-    overflow: hidden ;
+  font-family: Arial, sans-serif;
+  background-color: rgb(207, 204, 193);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.sub_container{
-    width: 375px ;
-    height: 667px ;
-    background: #E9F3FF ;
-    border-radius: 35px ;
-    border : 10px solid rgb(179, 172, 163) ;
-    justify-content: center ;
-    align-items: center ;
-    display : flex ;
-    overflow: hidden ;
-    position: relative ;
+.sub_container {
+  width: 375px;
+  height: 667px;
+  background: #e9f3ff;
+  border-radius: 35px;
+  border: 10px solid rgb(179, 172, 163);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  overflow: hidden;
+  position: relative;
 }
 
-.skyblue_circle{
-    width: 359px ;
-    height: 359px ;
-    flex-shrink: 0 ;
-    border-radius: 359px ;
-    background: #9DC8FF ;
-    left : -110px ;
-    top : -240px ;
-    position : absolute ;
+.skyblue_circle {
+  width: 359px;
+  height: 359px;
+  flex-shrink: 0;
+  border-radius: 359px;
+  background: #9dc8ff;
+  left: -110px;
+  top: -240px;
+  position: absolute;
 }
 
-.skyblue_circle2{
-    width: 359px ;
-    height: 359px ;
-    flex-shrink: 0;
-    border-radius: 359px ;
-    background: #9DC8FF ;
-    left : 220px ;
-    top : 550px ;
-    position : absolute ;
-
+.skyblue_circle2 {
+  width: 359px;
+  height: 359px;
+  flex-shrink: 0;
+  border-radius: 359px;
+  background: #9dc8ff;
+  left: 220px;
+  top: 550px;
+  position: absolute;
 }
 
-.blue_circle{
-    width : 466px ;
-    height : 466px ;
-    flex-shrink : 0 ;
-    border-radius : 466px ;
-    background : #0466c2;
-    top : 600px ;
-    right : 50px ;
-    position : absolute ;
+.blue_circle {
+  width: 466px;
+  height: 466px;
+  flex-shrink: 0;
+  border-radius: 466px;
+  background: #0466c2;
+  top: 600px;
+  right: 50px;
+  position: absolute;
 }
 
-.blue_circle2{
-    width : 466px ;
-    height : 466px ;
-    flex-shrink : 0 ;
-    border-radius : 466px ;
-    background : #0466c2;
-    top : -400px ;
-    left : 150px ;
-    position : absolute ;
+.blue_circle2 {
+  width: 466px;
+  height: 466px;
+  flex-shrink: 0;
+  border-radius: 466px;
+  background: #0466c2;
+  top: -400px;
+  left: 150px;
+  position: absolute;
 }
 
 /* 톱니바퀴 */
-nav{
-    position : absolute ;
-    top : -8px ;
-    right : 20px ;
+nav {
+  position: absolute;
+  top: -8px;
+  right: 20px;
 }
 
-nav ul{list-style:none;z-index: 2;}
-nav a{color: #0466c2;text-decoration: none;}
-nav > ul{display: flex; justify-content: space-between; padding:10px;}
-nav > ul > li{position: relative; padding: 0px ; margin : 0;}
-nav > ul > li > a{font-size: 20px; font-weight: bold;padding:10px 0;}
-nav > ul > li > a:hover{color:#cee3fe; border-radius: 15px;}
-nav > ul > li > ul{display: none; position: absolute; text-align: center; align-content: center; transform: translateX(-70%);border-radius: 15px;background: #9DC8FF; font-family: 'LaundryGothic'; padding : 0; }
-nav > ul > li:hover ul{display:block;}
-nav > ul > li  li a{display: block; padding:10px;}
-nav > ul > li  li a:hover{background:#cee3fe; border-radius: 15px;}
-nav > ul > li > li + li{margin-top:5px;}
-
+nav ul {
+  list-style: none;
+  z-index: 2;
+}
+nav a {
+  color: #0466c2;
+  text-decoration: none;
+}
+nav > ul {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+nav > ul > li {
+  position: relative;
+  padding: 0px;
+  margin: 0;
+}
+nav > ul > li > a {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+nav > ul > li > a:hover {
+  color: #cee3fe;
+  border-radius: 15px;
+}
+nav > ul > li > ul {
+  display: none;
+  position: absolute;
+  text-align: center;
+  align-content: center;
+  transform: translateX(-70%);
+  border-radius: 15px;
+  background: #9dc8ff;
+  font-family: "LaundryGothic";
+  padding: 0;
+}
+nav > ul > li:hover ul {
+  display: block;
+}
+nav > ul > li li a {
+  display: block;
+  padding: 10px;
+}
+nav > ul > li li a:hover {
+  background: #cee3fe;
+  border-radius: 15px;
+}
+nav > ul > li > li + li {
+  margin-top: 5px;
+}
 
 .btn_back {
-    position: absolute;
-    font-size: 16px;
-    color: #0466c2;
-    text-decoration: none;
-    font-family: "LaundryGothic";
-    top: 25px;
-    left: 30px;
+  position: absolute;
+  font-size: 16px;
+  color: #0466c2;
+  text-decoration: none;
+  font-family: "LaundryGothic";
+  top: 25px;
+  left: 30px;
 }
 /* 달력 CSS */
 
 .calendar-container {
-    font-family: 'LaundryGothic';
-    background-color: #fefefe;
-    border-radius: 32px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    width: 100%;
-    max-width: 343px; /* 최대 너비 조정 */
-    height : 250px;
-    margin-top: 20px;
-    padding: 10px;
-    box-sizing: border-box;
-    position : relative;
-    top : -12%;
+  font-family: "LaundryGothic";
+  background-color: #fefefe;
+  border-radius: 32px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 343px; /* 최대 너비 조정 */
+  height: 250px;
+  margin-top: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+  top: -12%;
 }
 
-.calendar{
-    width : 320px;
-    height : 280px;
-    position : absolute;
-    top : 1%;
+.calendar {
+  width: 320px;
+  height: 280px;
+  position: absolute;
+  top: 1%;
 }
 
 .calendar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
 }
 
 #calendarTitle {
-    font-size: 18px;
-    font-weight: bold;
-    color: #1877F2;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1877f2;
 }
 
-#calendarTable{
-    font-size: 14px;
+#calendarTable {
+  font-size: 14px;
 }
 
-#calendarBody{
-    font-size : 13px;
+#calendarBody {
+  font-size: 13px;
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
-th, td {
-    width: 14.28%;
-    text-align: center;
-    padding: 5px;
+th,
+td {
+  width: 14.28%;
+  text-align: center;
+  padding: 5px;
 }
 
 th {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 
 td {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 #SUN {
-    color: rgb(205, 75, 75);
+  color: rgb(205, 75, 75);
 }
 
-#SAT{
-    color :#1e6dd4;
+#SAT {
+  color: #1e6dd4;
 }
 
 td.today {
-    background-color: #1877F2;
-    color: #fff;
-    border-radius: 30%;
+  background-color: #1877f2;
+  color: #fff;
+  border-radius: 30%;
 }
 
-td.today:hover{
-    background-color : #0466c2;
-    color: #fff;
+td.today:hover {
+  background-color: #0466c2;
+  color: #fff;
 }
 .disabled {
-    cursor: default;
-    pointer-events: none;
+  cursor: default;
+  pointer-events: none;
 }
 
 /* 달력 저번 달, 다음 달 버튼 CSS */
-#prevMonth, #nextMonth {
-    background-color: #0466c2;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+#prevMonth,
+#nextMonth {
+  background-color: #0466c2;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
 }
 
-#prevMonth:hover, #nextMonth:hover {
-    background-color :#9DC8FF;
+#prevMonth:hover,
+#nextMonth:hover {
+  background-color: #9dc8ff;
 }
 
-#prevMonth:active, #nextMonth:active {
-    background-color: #03478a;
+#prevMonth:active,
+#nextMonth:active {
+  background-color: #03478a;
 }
 
 /* 모달창 */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-    font-family: 'LaundryGothic' ;
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  font-family: "LaundryGothic";
 }
 
 .modal-content {
-    border-radius : 24px;
-    margin : 5%;
-    padding : 10px;
-    background-color: #fefefe;
-    position : fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 320px;  
-    height: 220px;
-    font-size : 20px;
+  border-radius: 24px;
+  margin: 5%;
+  padding: 10px;
+  background-color: #fefefe;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 320px;
+  height: 200px;
+  font-size: 20px;
+  display: block;
+  text-align: center;
 }
 
-#modalText{
-    font-size : 25px;
-    margin-top : 5%;
-    margin-bottom : 5%;
-    margin-left : 5%;
+#modalText {
+  font-size: 18px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  color: #1877f2;
 }
 
 .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.Todo{
-    width : 343px;
-    height : 200px;
-    margin-bottom : 5%;
-    flex-shrink: 0;
-    border-radius: 32px;
-    background: #FFF;
-    position :absolute;
-    top : 60%;
-    bottom : 10%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+.Todo {
+  width: 343px;
+  height: 200px;
+  margin-bottom: 5%;
+  flex-shrink: 0;
+  border-radius: 32px;
+  background: #fff;
+  position: absolute;
+  top: 60%;
+  bottom: 10%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-.Todo_Title{
-    font-family : 'LaundryGothic';
-    font-size : 20px;
-    margin-top: 20px;
-    margin-left : 30%;
+.Todo_Title {
+  font-family: "LaundryGothic";
+  font-size: 20px;
+  margin-top: 20px;
+  margin-left: 30%;
 }
 
 #todoList {
-    font-family: 'LaundryGothic' ;
-    margin-top: 20px;
-    margin-left : 20px;
-    list-style: none;
-    padding: 0;
+  font-family: "LaundryGothic";
+  margin-top: 20px;
+  margin-left: 20px;
+  list-style: none;
+  padding: 0;
 }
 
 #todoList li {
-    white-space: pre-wrap;
+  white-space: pre-wrap;
 }
 
-#todoInput{
-    font-family: 'LaundryGothic';
-    width : 250px;
-    height : 80px;
-    margin-left : 5%;
-    margin-bottom : 3%;
+#todoInput {
+  font-family: "LaundryGothic";
+  width: 88%;
+  height: 80px;
+  margin-top: 5%;
 }
 
-#saveTodo{
-    font-family: 'LaundryGothic';
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    margin-left : 5%;
-    cursor: pointer;    
+#saveTodo {
+  font-family: "LaundryGothic";
+  background-color: #0466c2;
+  color: white;
+  border: 0;
+  height: 25px;
+  border-radius: 10px;
+  margin-left: 5%;
+  cursor: pointer;
+  position: absolute;
+  right: 5%;
+  bottom: 8%;
 }
 
 .deleteBtn {
-    font-family: 'LaundryGothic';
-    background-color :crimson;
-    color: white;
-    border: none;
-    padding: 3px 8px;
-    margin-left: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 10px;
-    transition: background-color 0.3s;
+  font-family: "LaundryGothic";
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 3px 8px;
+  margin-left: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 10px;
+  transition: background-color 0.3s;
 }
 
 .deleteBtn:hover {
-    background-color: darkred;
+  background-color: darkred;
 }
 
 /* 알림창 */
 /* 알림 아이콘 */
 .bell_icon {
-    position: absolute;
-    top: 2.4%;
-    right: 18%;
-    width: 29px;
-    height: 29px;
+  position: absolute;
+  top: 2.4%;
+  right: 18%;
+  width: 29px;
+  height: 29px;
 }
 
 .bell_icon:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index : 2;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
 }
 
 .popup {
-    font-family: "LaundryGothic";
-    font-size : 16px;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 240px;
-    height: 140px;
-    position : absolute;
-    display : flex;
-    top : 40%;
-    justify-content: center;
-    align-items: center;
-    text-align: left;
-    z-index: 1;
-    animation: slideIn 0.5s ease-out;
+  font-family: "LaundryGothic";
+  font-size: 16px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 240px;
+  height: 140px;
+  position: absolute;
+  display: flex;
+  top: 40%;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  z-index: 1;
+  animation: slideIn 0.5s ease-out;
 }
 
 @keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.current_point{
-    font-family: "LaundryGothic";
-    position : absolute;
-    top : 20%;
-    left : 5%;
-    
+.current_point {
+  font-family: "LaundryGothic";
+  position: absolute;
+  top: 20%;
+  left: 5%;
 }
 /* 폰트 */
-@font-face{
-    font-family: 'LaundryGothic' ;
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2') format('woff') ;
-    font-weight : normal ;
-    font-style: normal ;
-
+@font-face {
+  font-family: "LaundryGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
