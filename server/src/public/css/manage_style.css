@@ -552,6 +552,20 @@ button:hover{
   
 }
 
+.Todo_Title{
+  font-family : 'LaundryGothic';
+  font-size : 20px;
+  margin-top: 20px;
+  margin-left : 28%;
+}
+
+.Todo_list{
+  position : absolute;
+  margin-top : 25px;
+  left : 10%;
+}
+
+
 @font-face {
   font-family: "LaundryGothic";
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")

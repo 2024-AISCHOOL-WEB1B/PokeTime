@@ -30,8 +30,17 @@
           </li>
         </ul>
       </nav>
+      <img src="../../public/images/bell_icon.png" class="bell_icon">
+
+
+      <div class="overlay">
+          <div class="popup">
+            <span class="current_point"></span>
+          </div>
+        </div>  
+
       <!-- -와 -일 째 함께 중 ! -->
-      <div class="withPokeBox" onclick="location.href='/management'">
+      <div class="withPokeBox" style = "cursor : pointer" onclick="location.href='./management.html'">
         <!-- 유저 메인포켓몬 이미지 삽입위치 (임의 포켓몬 이미지 삽입) -->
         {% if userInfo.poke_img %}
         <img
@@ -179,5 +188,6 @@
     </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="../../public/js/mainpage.js"></script>
+    <script src="../../public/js/notice.js"></script>
   </body>
 </html>
