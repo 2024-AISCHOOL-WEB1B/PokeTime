@@ -5,6 +5,15 @@ const nunjucks = require("nunjucks");
 const bp = require("body-parser");
 const session = require("express-session");
 const fileStore = require("session-file-store")(session);
+const cors = require("cors");
+
+// cors 설정
+app.use(
+  cors({
+    origin:
+      "http://ec2-54-180-231-199.ap-northeast-2.compute.amazonaws.com:3000",
+  })
+);
 
 // 정적 파일 제공 설정(css)
 app.use(
