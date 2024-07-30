@@ -104,19 +104,33 @@ router.post("/attend", (req, res) => {
 });
 
 // 포인트 로그 조회
-router.post("/log", (req, res) => {
+router.get("/log", (req, res) => {
   let id = req.session.userInfo.user_id;
   let sql = "select * from user_point_log where user_id = ?";
   conn.query(sql, [id], (err, rows) => {
     if (rows) {
       console.log("포인트 로그 조회 성공", rows);
-      res.json({ result: "포인트로그조회성공", rows: rows });
+      res.json({ rows: rows });
     }
     if (err) {
       console.log("포인트 로그 조회 실패", err);
       res
         .status(500)
         .json({ result: "포인트로그조회실패", error: err.message });
+    }
+  });
+});
+// 포인트 조회
+router.get("/search", (req, res) => {
+  let id = req.session.userInfo.user_id;
+  let sql = " select user_point from user_info where user_id = ?";
+  conn.query(sql, [id], (err, rows) => {
+    if (rows) {
+      res.json({ rows: rows });
+    }
+    if (err) {
+      console.log("포인트 조회 실패", err);
+      res.status(500).json({ result: "포인트조회실패", error: err.message });
     }
   });
 });

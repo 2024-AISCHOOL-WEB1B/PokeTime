@@ -53,6 +53,11 @@ router.get("/dictionary", (req, res) => {
   res.render("dictionary", { userInfo: req.session.userInfo });
 });
 
+// 사용자가 로그 페이지 요청했을 때
+router.get("/log", (req, res) => {
+  res.render("log");
+});
+
 // 알림
 router.post("/notification", (req, res) => {
   let id = req.session.userInfo.user_id;
