@@ -198,6 +198,15 @@ nav > ul > li > li + li {
   left: 30px;
 }
 
+.home{
+  position : absolute;
+  cursor : pointer;
+  width: 32px;
+  height: 32px;
+  bottom: 1.2%;
+  right: 44%;
+}
+
 #setting_text {
   font-family: "LaundryGothic";
   font-size: 32px;

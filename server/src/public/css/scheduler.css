@@ -203,6 +203,15 @@ nav > ul > li > li + li {
   top: 25px;
   left: 30px;
 }
+
+.home{
+  position : absolute;
+  cursor : pointer;
+  width: 32px;
+  height: 32px;
+  bottom: 1.2%;
+  right: 44%;
+}
 /* 달력 CSS */
 
 .calendar-container {

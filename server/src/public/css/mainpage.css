@@ -194,6 +194,15 @@ nav > ul > li > li + li {
   margin-top: 5px;
 }
 
+.home{
+  position : absolute;
+  cursor : pointer;
+  width: 32px;
+  height: 32px;
+  bottom: 1.2%;
+  right: 44%;
+}
+
 .withPokeBox {
   /* width: 376px;
     height: 243px; */
