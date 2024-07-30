@@ -34,9 +34,15 @@
         {{ userInfo.poke_count }}개의 포켓몬을 수집했어요!
       </div>
       <div>
-        <form class="search">
-          <input type="text" id="search_name" />
-          <input type="submit" id="search_btn" value="검색!" />
+        <form>
+          <div id="search_bar">
+            <input
+              type="text"
+              id="search_name"
+              placeholder="포켓몬 이름 검색"
+            />
+            <input type="submit" id="search_btn" value="" />
+          </div>
         </form>
 
         <div id="data-container"></div>

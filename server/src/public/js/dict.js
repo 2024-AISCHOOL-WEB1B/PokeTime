@@ -243,12 +243,127 @@ function openModal(event) {
   }
 }
 
-// 모달창을 닫는 함수 (닫기 버튼 클릭 시)
-span.onclick = function () {
-  modal.style.display = "none";
-  // 페이지 새로고침
-  location.reload();
-};
+// 검색 기능 추가
+document.getElementById("search_btn").addEventListener("click", (event) => {
+  event.preventDefault(); // 페이지 새로고침 방지
+  const searchTerm = document.getElementById("search_name").value;
+  const foundPokemon = colorGifs.find((gif) =>
+    gif.poke_name.includes(searchTerm)
+  );
+  if (foundPokemon) {
+    openSearchModal(foundPokemon);
+  } else {
+    alert("검색된 포켓몬이 없습니다.");
+  }
+});
+
+function openSearchModal(pokemon) {
+  // 기존 모달창을 여는 이벤트를 제거
+  modal.style.display = "block";
+  modalImg.src = pokemon.poke_img;
+  captionText.innerHTML = `<br> 도감번호 : #${pokemon.poke_num} <br><br> ${pokemon.poke_name} <br> ${pokemon.poke_type} <br> <br> 현재 레벨: ${pokemon.poke_lv}`;
+  modalButtons.innerHTML = ""; // 필요한 버튼 설정을 여기에 추가할 수 있음
+
+  // 버튼 추가 부분 (openModal과 동일하게 적용)
+  let button1, button2, button3;
+  const selectedPokemon = colorGifs.find(
+    (gif) => gif.poke_num === pokemon.poke_num
+  );
+  const poke_lv = selectedPokemon.poke_lv;
+  if (poke_lv < 3) {
+    button1 = document.createElement("button");
+    button1.innerText = "레벨업";
+    button1.classList.add("modal-btn");
+  } else {
+    button1 = document.createElement("button");
+    button1.innerText = "성장불가능";
+  }
+  if (poke_lv == 3) {
+    button2 = document.createElement("button");
+    button2.innerText = "진화";
+    button2.classList.add("modal-btn");
+  } else {
+    button2 = document.createElement("button");
+    button2.innerText = "성장불가능";
+  }
+
+  button3 = document.createElement("button");
+  button3.innerHTML = "대표<br>포켓몬설정";
+  button3.classList.add("modal-btn");
+
+  modalButtons.appendChild(button1);
+  if (button1.innerText === "레벨업") {
+    button1.addEventListener("click", async () => {
+      const img = modalImg.src;
+
+      try {
+        const res = await axios.post("/dictionary/levelup", {
+          img: img,
+        });
+        // res.data
+        // result : "레벨업 성공", newLevel : 레벨업 후 레벨
+        console.log(res.data);
+        if (res.data.result === "레벨업 성공") {
+          fetchUserPokemonsAndRender();
+        }
+      } catch (error) {
+        console.error("레벨업에 실패했습니다:", error);
+      }
+    });
+  } else {
+    button1.disabled = true;
+  }
+  modalButtons.appendChild(button2);
+  if (button2.innerText === "진화") {
+    button2.addEventListener("click", async () => {
+      const img = modalImg.src;
+      const evol_poke_name = colorGifs.find(
+        (gif) => gif.poke_img === img
+      ).evol_poke_name;
+      try {
+        const res = await axios.get("/dictionary/evolution", {
+          params: {
+            name: evol_poke_name,
+            img: img,
+          },
+        });
+        // res.data
+        // result : "진화 성공", img : 진화 후 이미지, type : 진화 후 타입, name : 진화 후 이름
+        console.log(res.data);
+        if (res.data.result === "진화 성공") {
+          fetchUserPokemonsAndRender();
+        }
+      } catch (error) {
+        console.error("진화에 실패했습니다:", error);
+      }
+    });
+  } else {
+    button2.disabled = true;
+  }
+
+  modalButtons.appendChild(button3);
+  button3.addEventListener("click", async () => {
+    const pokenum = pokemon.poke_num;
+    try {
+      const res = await axios.post("/dictionary/mainpoke", {
+        pokenum: pokenum,
+      });
+      // res.data
+      // result : "대표포켓몬설정 성공"
+      console.log(res.data);
+      if (res.data.result === "대표포켓몬설정 성공") {
+        fetchUserPokemonsAndRender();
+      }
+    } catch (error) {
+      console.error("대표포켓몬설정에 실패했습니다:", error);
+    }
+  });
+
+  // 검색 모달을 위한 닫기 이벤트 추가
+  span.onclick = function () {
+    modal.style.display = "none";
+  };
+}
 
 // 모달창을 닫는 함수 (모달창 외부 클릭 시)
 window.onclick = function (event) {
@@ -259,26 +374,12 @@ window.onclick = function (event) {
   }
 };
 
-// 검색 기능 추가
-document.getElementById("search_btn").addEventListener("click", () => {
-  const searchTerm = document.getElementById("search_name").value;
-  const foundPokemon = colorGifs.find((gif) =>
-    gif.poke_name.includes(searchTerm)
-  );
-  if (foundPokemon) {
-    openSearchModal(foundPokemon);
-    console.log("추가된 코드");
-  } else {
-    alert("검색된 포켓몬이 없습니다.");
-  }
-});
-
-function openSearchModal(pokemon) {
-  modal.style.display = "block";
-  modalImg.src = pokemon.poke_img;
-  captionText.innerHTML = `<br> 도감번호 : #${pokemon.poke_num} <br><br> ${pokemon.poke_name} <br> ${pokemon.poke_type} <br> <br> 현재 레벨: ${pokemon.poke_lv}`;
-  modalButtons.innerHTML = ""; // 필요한 버튼 설정을 여기에 추가할 수 있음
-}
+// 모달창을 닫는 함수 (닫기 버튼 클릭 시)
+span.onclick = function () {
+  modal.style.display = "none";
+  // 페이지 새로고침
+  location.reload();
+};
 
 // 초기 렌더링 호출
 fetchUserPokemonsAndRender();
