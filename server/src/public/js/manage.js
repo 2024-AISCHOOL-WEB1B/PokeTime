@@ -175,7 +175,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       try {
         const res = await axios.post(
-          "http://localhost:5000/predict",
+          "https://3iwnosr4ib.execute-api.ap-northeast-2.amazonaws.com/dev3/predict",
           formData,
           {
             headers: {
