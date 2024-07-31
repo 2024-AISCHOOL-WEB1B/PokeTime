@@ -61,10 +61,10 @@
         onclick="location.href='/management'"
       >
         <!-- 유저 메인포켓몬 이미지 삽입위치 (임의 포켓몬 이미지 삽입) -->
-        {% if userInfo.poke_img %}
+        {% if userinforows.poke_img %}
         <img
-          src="{{ userInfo.poke_img }}"
-          class="userInfo_mainPoke_img"
+          src="{{ userinforows.poke_img }}"
+          class="userinforows_mainPoke_img"
           style="
             position: absolute;
             top: 50px;
@@ -99,14 +99,16 @@
           </div>
         </div>
         <!-- text -->
-        <!-- userInfo.main_poke / userInfo.with_date가 null이면 안내문구 출력 -->
-        {% if userInfo.main_poke %}
+        <!-- userinforows.main_poke / userinforows.with_date가 null이면 안내문구 출력 -->
+        {% if userinforows.main_poke %}
         <div class="text_congra">축하해요 !</div>
         <div class="text">
           <div>
-            <span class="with_main">{{ userInfo.with_date | daysSince }}</span>
+            <span class="with_main"
+              >{{ userinforows.with_date | daysSince }}</span
+            >
             <span class="text2">일째<br /></span>
-            <span class="with_main">{{ userInfo.main_poke }}</span>
+            <span class="with_main">{{ userinforows.main_poke }}</span>
             <span class="text2">와<br />함께 중!</span>
           </div>
         </div>
@@ -152,10 +154,10 @@
         <!-- --개의 포켓몬을 수집했어요 ! -->
         <div>
           <div class="collec_text">
-            {% if userInfo.poke_count > 0 %}
+            {% if userinforows.poke_count > 0 %}
             <br />
             <span class="poke_img_text" id="poke-img-text"
-              >{{ userInfo.poke_count }}</span
+              >{{ userinforows.poke_count }}</span
             >
             <span class="poke_img_text">개</span>
             <span class="collected_text"
@@ -171,7 +173,7 @@
             {% endif %}
           </div>
           <div class="collec_gauge" id="collec-gauge">
-            <span class="collect_cnt">{{ userInfo.poke_count }}</span>
+            <span class="collect_cnt">{{ userinforows.poke_count }}</span>
             <span class="total_poke_text">/150</span>
           </div>
         </div>
@@ -189,8 +191,10 @@
         <!-- {{ pickup_cnt }}번 뽑기를 실행했어요 ! -->
         <div class="pickup_text">
           <div>
-            {% if userInfo.pickup_cnt > 0 %}
-            <span class="pickup_cnt">{{ userInfo.pickup_cnt }}번<br /></span>
+            {% if userinforows.pickup_cnt > 0 %}
+            <span class="pickup_cnt"
+              >{{ userinforows.pickup_cnt }}번<br
+            /></span>
             <span class="pickup_cnt_text">뽑기를<br />실행했어요 !</span>
             {% else %}
             <div class="if_null">
@@ -204,9 +208,9 @@
       </div>
     </div>
 
-    <!-- JavaScript에 userInfo 전달 -->
+    <!-- JavaScript에 userinforows 전달 -->
     <script>
-      window.userInfo = {{ userInfo | dump | safe }};
+      window.userinforows = {{ userinforows | dump | safe }};
     </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="../../public/js/mainpage.js"></script>
