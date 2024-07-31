@@ -20,7 +20,7 @@ body {
   position: absolute;
   background-color: #eaf3ff;
 }
-
+/* 
 #sun {
   width: 220px;
   position: fixed;
@@ -75,7 +75,7 @@ body {
   background-color: rgb(156, 255, 156);
   top: 60%;
   filter: blur(5px);
-}
+} */
 
 .sub_container {
   width: 375px;

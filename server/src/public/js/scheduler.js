@@ -96,7 +96,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 data: { schedule_name: todo.schedule_name },
               });
               console.log(res.data);
-              if (res.data.result === "삭제성공") {
+              if (
+                res.data.result ===
+                "스케쥴 삭제 및 포인트 차감 및 포인트 로그 저장 성공"
+              ) {
                 todoList.removeChild(listItem);
               }
             } catch (error) {
