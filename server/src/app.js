@@ -10,8 +10,7 @@ const cors = require('cors');
 // cors 설정
 app.use(
   cors({
-    origin:
-      'http://ec2-54-180-231-199.ap-northeast-2.compute.amazonaws.com:3000',
+    origin: 'http://54.180.231.199:3000',
   })
 );
 
