@@ -10,7 +10,7 @@ const cors = require('cors');
 // cors 설정
 app.use(
   cors({
-    origin: 'http://54.180.231.199:3000/',
+    origin: 'http://54.180.231.199:3000',
   })
 );
 
