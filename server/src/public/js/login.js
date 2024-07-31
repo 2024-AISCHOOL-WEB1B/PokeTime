@@ -39,10 +39,13 @@ const handleLogin = async () => {
 
   // axios 통신
   await axios
-    .post('http://localhost:3000/user/login', {
-      userEmail,
-      userPw,
-    })
+    .post(
+      'http://ec2-54-180-231-199.ap-northeast-2.compute.amazonaws.com:3000/user/login',
+      {
+        userEmail,
+        userPw,
+      }
+    )
     .then((res) => {
       console.log(res);
       if (res.data.result == '로그인실패') {
