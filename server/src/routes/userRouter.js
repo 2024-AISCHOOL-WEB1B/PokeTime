@@ -111,15 +111,11 @@ router.post("/update", (req, res) => {
 // 회원 탈퇴
 router.post("/delete", (req, res) => {
   let id = req.session.userInfo.user_id;
-  let sql = "delete from user_info where user_id = ?";
-  conn.query(sql, [id], (err, rows) => {
-    if (rows.affectedRows > 0) {
-      console.log("삭제 성공");
-      res.json({ result: "삭제 성공" });
-    } else {
-      console.log("삭제 실패! 아이디 비번이 다릅니다!");
-      res.json({ result: "삭제 실패" });
-    }
+  let { pw } = req.body;
+  console.log(id, pw);
+  let sql = "delete from user_info where user_id = ? and user_pw = ?";
+  conn.query(sql, [id, pw], (err, rows) => {
+    console.log(rows);
   });
 });
 

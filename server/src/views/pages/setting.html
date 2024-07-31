@@ -41,7 +41,11 @@
         </ul>
       </nav>
       <a href="./mainpage" class="btn_back">< 뒤로</a>
-      <img src = "../../public//images/home_icon.svg" class="home" onclick = "location.href = '/mainpage'">
+      <img
+        src="../../public//images/home_icon.svg"
+        class="home"
+        onclick="location.href = '/mainpage'"
+      />
       <div id="setting_text">회원정보수정</div>
       <div id="input_container">
         <input
@@ -66,22 +70,12 @@
           id="join_password_check"
         />
         <div id="submit_btn">
-          <input
-            type="submit"
-            id="btn_out"
-            name="frm_out"
-            value="회원탈퇴"
-            onclick=""
-          />
-          <input
-            type="submit"
-            id="btn_join"
-            name="frm_submit"
-            value="확인"
-            onclick=""
-          />
+          <button id="btn_out">회원탈퇴</button>
+          <button id="btn_change">확인</button>
         </div>
       </div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../../public/js/setting.js"></script>
   </body>
 </html>
