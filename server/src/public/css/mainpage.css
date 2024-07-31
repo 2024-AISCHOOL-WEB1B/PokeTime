@@ -71,7 +71,7 @@ body {
   width: 4000px;
   height: 4000px;
   border-radius: 4000px;
-  /* position: absolute; */
+  position: absolute;
   background-color: rgb(156, 255, 156);
   top: 60%;
   filter: blur(5px);
