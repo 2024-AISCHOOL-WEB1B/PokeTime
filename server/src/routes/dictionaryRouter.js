@@ -168,13 +168,13 @@ router.post("/levelup", (req, res) => {
 
       if (currentLevel >= maxLevel) {
         return conn.rollback(() => {
-          res.status(400).json({ result: "이미 최대 레벨입니다" });
+          res.json({ result: "이미 최대 레벨입니다" });
         });
       }
 
       if (userPoint < requiredPoint) {
         return conn.rollback(() => {
-          res.status(400).json({ result: "포인트가 부족합니다" });
+          res.json({ result: "포인트가 부족합니다" });
         });
       }
 

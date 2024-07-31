@@ -145,7 +145,11 @@ function openModal(event) {
   let button1, button2, button3;
   if (userPokemons.includes(pokemonId)) {
     const selectedPokemon = colorGifs.find((gif) => gif.poke_num === pokemonId);
-    captionText.innerHTML = `<br> 도감번호 : #${pokemonId} <br><br> ${selectedPokemon.poke_name} <br> ${selectedPokemon.poke_type} <br> <br> 현재 레벨: ${selectedPokemon.poke_lv}`;
+    if (selectedPokemon.poke_lv <= 3) {
+      captionText.innerHTML = `<br> 도감번호 : #${pokemonId} <br><br> 이름 : ${selectedPokemon.poke_name} <br> 속성 : ${selectedPokemon.poke_type} <br> <br> 현재 레벨: ${selectedPokemon.poke_lv}`;
+    } else if (selectedPokemon.poke_lv == 4) {
+      captionText.innerHTML = `<br> 도감번호 : #${pokemonId} <br><br> 이름 : ${selectedPokemon.poke_name} <br> 속성 : ${selectedPokemon.poke_type} <br> <br> 최고 레벨 입니다.`;
+    }
     const poke_lv = colorGifs.find((gif) => gif.poke_num === pokemonId).poke_lv;
     if (poke_lv < 3) {
       button1 = document.createElement("button");
@@ -156,15 +160,11 @@ function openModal(event) {
       button1.innerText = "성장불가능";
       button1.classList.add("neg-modal-btn");
     }
-    if (poke_lv == 3) {
-      button2 = document.createElement("button");
-      button2.innerText = "진화";
-      button2.classList.add("modal-btn");
-    } else {
-      button2 = document.createElement("button");
-      button2.innerText = "성장불가능";
-      button2.classList.add("neg-modal-btn");
-    }
+
+    button2 = document.createElement("button");
+    button2.innerText = "진화";
+    button2.classList.add("modal-btn");
+    button2.disabled = false;
 
     button3 = document.createElement("button");
     button3.innerHTML = "대표<br>포켓몬설정";
@@ -185,7 +185,18 @@ function openModal(event) {
           // result : "레벨업 성공", newLevel : 레벨업 후 레벨
           console.log(res.data);
           if (res.data.result === "레벨업 성공") {
-            fetchUserPokemonsAndRender();
+            captionText.innerHTML = `<br> 도감번호 : #${pokemonId} <br><br> 이름 : ${selectedPokemon.poke_name} <br> 속성 : ${selectedPokemon.poke_type} <br> <br> 현재 레벨: ${res.data.newLevel}`;
+            if (res.data.newLevel == 3) {
+              button1.innerText = "성장불가능";
+              button1.classList.add("neg-modal-btn");
+              button1.disabled = true;
+              button2.innerText = "진화";
+              button2.classList.add("modal-btn");
+              button2.disabled = false;
+            }
+          }
+          if (res.data.result === "포인트가 부족합니다") {
+            captionText.innerHTML = "<br><br><br>포인트가 부족합니다";
           }
         } catch (error) {
           console.error("레벨업에 실패했습니다:", error);
@@ -211,8 +222,16 @@ function openModal(event) {
           // res.data
           // result : "진화 성공", img : 진화 후 이미지, type : 진화 후 타입, name : 진화 후 이름
           console.log(res.data);
-          if (res.data.result === "진화 성공") {
-            fetchUserPokemonsAndRender();
+          if (res.data.result === "진화성공") {
+            modalImg.src = res.data.rows.img;
+            captionText.innerHTML = `${
+              res.data.rows.name
+            } 진화성공! <br><br> 도감번호 : #${pokemonId + 1} <br><br> 속성 : ${
+              res.data.rows.type
+            } <br> <br> 현재 레벨: 1`;
+            button1.style.display = "none";
+            button2.style.display = "none";
+            button3.style.display = "none";
           }
         } catch (error) {
           console.error("진화에 실패했습니다:", error);
@@ -263,15 +282,20 @@ function openSearchModal(pokemon) {
   // 기존 모달창을 여는 이벤트를 제거
   modal.style.display = "block";
   modalImg.src = pokemon.poke_img;
-  captionText.innerHTML = `<br> 도감번호 : #${pokemon.poke_num} <br><br> ${pokemon.poke_name} <br> ${pokemon.poke_type} <br> <br> 현재 레벨: ${pokemon.poke_lv}`;
+  if (pokemon.poke_lv <= 3) {
+    captionText.innerHTML = `<br> 도감번호 : #${pokemon.poke_num} <br><br> 이름 : ${pokemon.poke_name} <br> 속성 : ${pokemon.poke_type} <br> <br> 현재 레벨: ${pokemon.poke_lv}`;
+  } else if (pokemon.poke_lv == 4) {
+    captionText.innerHTML = `<br> 도감번호 : #${pokemon.poke_num} <br><br> 이름 : ${pokemon.poke_name} <br> 속성 : ${pokemon.poke_type} <br> <br> 최고 레벨 입니다..`;
+  }
   modalButtons.innerHTML = ""; // 필요한 버튼 설정을 여기에 추가할 수 있음
 
-  // 버튼 추가 부분 (openModal과 동일하게 적용)
   let button1, button2, button3;
   const selectedPokemon = colorGifs.find(
     (gif) => gif.poke_num === pokemon.poke_num
   );
   const poke_lv = selectedPokemon.poke_lv;
+
+  // 버튼 추가 부분 (openModal과 동일하게 적용)
   if (poke_lv < 3) {
     button1 = document.createElement("button");
     button1.innerText = "레벨업";
@@ -306,9 +330,8 @@ function openSearchModal(pokemon) {
         });
         // res.data
         // result : "레벨업 성공", newLevel : 레벨업 후 레벨
-        console.log(res.data);
         if (res.data.result === "레벨업 성공") {
-          fetchUserPokemonsAndRender();
+          const levelres = await axios.get("/dictionary/info");
         }
       } catch (error) {
         console.error("레벨업에 실패했습니다:", error);
@@ -333,9 +356,7 @@ function openSearchModal(pokemon) {
         });
         // res.data
         // result : "진화 성공", img : 진화 후 이미지, type : 진화 후 타입, name : 진화 후 이름
-        console.log(res.data);
         if (res.data.result === "진화 성공") {
-          fetchUserPokemonsAndRender();
         }
       } catch (error) {
         console.error("진화에 실패했습니다:", error);
@@ -373,16 +394,14 @@ function openSearchModal(pokemon) {
 window.onclick = function (event) {
   if (event.target === modal) {
     modal.style.display = "none";
-    // 페이지 새로고침
-    location.reload();
+    window.location.reload();
   }
 };
 
 // 모달창을 닫는 함수 (닫기 버튼 클릭 시)
 span.onclick = function () {
   modal.style.display = "none";
-  // 페이지 새로고침
-  location.reload();
+  window.location.reload();
 };
 
 // 초기 렌더링 호출
