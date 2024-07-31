@@ -68,8 +68,8 @@ body {
 }
 
 #background {
-  /* width: 4000px; */
-  /* height: 4000px; */
+  width: 4000px;
+  height: 4000px;
   border-radius: 4000px;
   /* position: absolute; */
   background-color: rgb(156, 255, 156);
