@@ -106,7 +106,8 @@ router.post("/attend", (req, res) => {
 // 포인트 로그 조회
 router.get("/log", (req, res) => {
   let id = req.session.userInfo.user_id;
-  let sql = "select * from user_point_log where user_id = ?";
+  let sql =
+    "select * from user_point_log where user_id = ? order by point_log_num desc";
   conn.query(sql, [id], (err, rows) => {
     if (rows) {
       console.log("포인트 로그 조회 성공", rows);

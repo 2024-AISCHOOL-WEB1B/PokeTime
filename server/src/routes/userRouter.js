@@ -138,81 +138,121 @@ router.get("/logout", (req, res) => {
 // 포켓몬 뽑기
 router.post("/pickuppoke", (req, res) => {
   let id = req.session.userInfo.user_id;
-  let sql = `
-    SELECT a.*
-    FROM poke_info a
-    LEFT JOIN user_poke_info b ON a.poke_name = b.poke_name
-    WHERE a.poke_name NOT IN (SELECT poke_name FROM user_poke_info WHERE user_id = ?) and a.poke_init = 1
-  `;
 
-  conn.query(sql, [id], (err, rows) => {
+  // 트랜잭션 시작
+  conn.beginTransaction((err) => {
     if (err) {
-      console.error("쿼리 실행 중 오류 발생:", err);
+      console.error("트랜잭션 시작 오류:", err);
       return res.status(500).json({ result: "서버 오류" });
     }
 
-    if (rows.length > 0) {
-      const randomIndex = Math.floor(Math.random() * rows.length);
-      const selectedPoke = rows[randomIndex];
+    // 먼저 유저의 포인트를 확인
+    let checkPointSql = "SELECT user_point FROM user_info WHERE user_id = ?";
+    conn.query(checkPointSql, [id], (err, pointResult) => {
+      if (err) {
+        return conn.rollback(() => {
+          console.error("포인트 확인 중 오류 발생:", err);
+          res.status(500).json({ result: "서버 오류" });
+        });
+      }
 
-      const pickuppoke = {
-        pickup_result: selectedPoke.poke_name,
-        poke_img: selectedPoke.poke_img,
-      };
+      if (pointResult[0].user_point < 100) {
+        return conn.rollback(() => {
+          res.json({ result: "포인트부족" });
+        });
+      }
 
-      console.log(pickuppoke);
-      req.session.pickuppoke = pickuppoke;
-
-      let inputpokesql = `
-        INSERT INTO user_poke_info
-        (poke_name, user_id, user_poke_img, user_poke_date)
-        VALUES (?, ?, ?, curdate())
+      // 포인트가 충분하면 뽑기 진행
+      let sql = `
+        SELECT a.*
+        FROM poke_info a
+        LEFT JOIN user_poke_info b ON a.poke_name = b.poke_name
+        WHERE a.poke_name NOT IN (SELECT poke_name FROM user_poke_info WHERE user_id = ?) and a.poke_init = 1
       `;
 
-      conn.query(
-        inputpokesql,
-        [pickuppoke.pickup_result, id, pickuppoke.poke_img],
-        (err, result) => {
-          if (err) {
+      conn.query(sql, [id], (err, rows) => {
+        if (err) {
+          return conn.rollback(() => {
             console.error("쿼리 실행 중 오류 발생:", err);
-            return res.status(500).json({ result: "서버 오류" });
-          }
-
-          // user_info 테이블의 user_pickup_cnt 증가
-          let updatePickupCntSql = `
-            UPDATE user_info
-            SET user_pickup_cnt = user_pickup_cnt + 1, user_point = user_point - 100
-            WHERE user_id = ? AND user_point >= 100
-          `;
-
-          conn.query(updatePickupCntSql, [id], (err, updateResult) => {
-            if (err) {
-              console.error("pickup_cnt 업데이트 중 오류 발생:", err);
-              return res.status(500).json({ result: "서버 오류" });
-            }
-
-            req.session.save((err) => {
-              if (err) {
-                console.error("세션 저장 오류:", err);
-                return res.status(500).json({ result: "서버 오류" });
-              }
-
-              if (updateResult.affectedRows > 0) {
-                console.log("뽑기 성공, 세션 저장됨:", req.session);
-                console.log("뽑은 포켓몬 값 DB 저장 완료");
-                console.log("user_pickup_cnt 증가 완료");
-                res.json({ result: "뽑기성공", pickuppoke });
-              } else {
-                res.json({ result: "포인트부족" });
-              }
-            });
+            res.status(500).json({ result: "서버 오류" });
           });
         }
-      );
-    } else {
-      console.log("뽑기 실패");
-      res.json({ result: "뽑기실패" });
-    }
+
+        if (rows.length > 0) {
+          const randomIndex = Math.floor(Math.random() * rows.length);
+          const selectedPoke = rows[randomIndex];
+
+          const pickuppoke = {
+            pickup_result: selectedPoke.poke_name,
+            poke_img: selectedPoke.poke_img,
+          };
+
+          console.log(pickuppoke);
+          req.session.pickuppoke = pickuppoke;
+
+          let inputpokesql = `
+            INSERT INTO user_poke_info
+            (poke_name, user_id, user_poke_img, user_poke_date)
+            VALUES (?, ?, ?, curdate())
+          `;
+
+          conn.query(
+            inputpokesql,
+            [pickuppoke.pickup_result, id, pickuppoke.poke_img],
+            (err, result) => {
+              if (err) {
+                return conn.rollback(() => {
+                  console.error("쿼리 실행 중 오류 발생:", err);
+                  res.status(500).json({ result: "서버 오류" });
+                });
+              }
+
+              // user_info 테이블의 user_pickup_cnt 증가 및 포인트 차감
+              let updatePickupCntSql = `
+                UPDATE user_info
+                SET user_pickup_cnt = user_pickup_cnt + 1, user_point = user_point - 100
+                WHERE user_id = ?
+              `;
+
+              conn.query(updatePickupCntSql, [id], (err, updateResult) => {
+                if (err) {
+                  return conn.rollback(() => {
+                    console.error("pickup_cnt 업데이트 중 오류 발생:", err);
+                    res.status(500).json({ result: "서버 오류" });
+                  });
+                }
+
+                conn.commit((err) => {
+                  if (err) {
+                    return conn.rollback(() => {
+                      console.error("커밋 중 오류 발생:", err);
+                      res.status(500).json({ result: "서버 오류" });
+                    });
+                  }
+
+                  req.session.save((err) => {
+                    if (err) {
+                      console.error("세션 저장 오류:", err);
+                      return res.status(500).json({ result: "서버 오류" });
+                    }
+
+                    console.log("뽑기 성공, 세션 저장됨:", req.session);
+                    console.log("뽑은 포켓몬 값 DB 저장 완료");
+                    console.log("user_pickup_cnt 증가 및 포인트 차감 완료");
+                    res.json({ result: "뽑기성공", pickuppoke });
+                  });
+                });
+              });
+            }
+          );
+        } else {
+          conn.rollback(() => {
+            console.log("뽑기 실패");
+            res.json({ result: "뽑기실패" });
+          });
+        }
+      });
+    });
   });
 });
 
