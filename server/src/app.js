@@ -1,30 +1,30 @@
-const express = require("express");
-const path = require("path");
+const express = require('express');
+const path = require('path');
 const app = express();
-const nunjucks = require("nunjucks");
-const bp = require("body-parser");
-const session = require("express-session");
-const fileStore = require("session-file-store")(session);
-const cors = require("cors");
+const nunjucks = require('nunjucks');
+const bp = require('body-parser');
+const session = require('express-session');
+const fileStore = require('session-file-store')(session);
+const cors = require('cors');
 
 // cors 설정
 app.use(
   cors({
     origin:
-      "http://ec2-54-180-231-199.ap-northeast-2.compute.amazonaws.com:3000",
+      'http://ec2-54-180-231-199.ap-northeast-2.compute.amazonaws.com:3000',
   })
 );
 
 // 정적 파일 제공 설정(css)
 app.use(
-  "/public",
-  express.static(path.join(__dirname, "public"), {
+  '/public',
+  express.static(path.join(__dirname, 'public'), {
     setHeaders: (res, path, stat) => {
-      if (path.endsWith(".css")) {
-        res.set("Content-Type", "text/css");
+      if (path.endsWith('.css')) {
+        res.set('Content-Type', 'text/css');
       }
-      if (path.endsWith(".svg")) {
-        res.set("Content-Type", "image/svg+xml");
+      if (path.endsWith('.svg')) {
+        res.set('Content-Type', 'image/svg+xml');
       }
     },
   })
@@ -38,26 +38,26 @@ app.use(
   session({
     httpOnly: true,
     resave: false,
-    secret: "secret",
+    secret: 'secret',
     store: new fileStore(),
     saveUninitialized: true, // 세션 초기화 시 저장
   })
 );
 
 // 라우터 등록
-const mainRouter = require("./routes/mainRouter");
-const dictionaryRouter = require("./routes/dictionaryRouter");
-const userRouter = require("./routes/userRouter");
-const pointRouter = require("./routes/pointRouter");
+const mainRouter = require('./routes/mainRouter');
+const dictionaryRouter = require('./routes/dictionaryRouter');
+const userRouter = require('./routes/userRouter');
+const pointRouter = require('./routes/pointRouter');
 
-app.use("/", mainRouter);
-app.use("/user", userRouter);
-app.use("/dictionary", dictionaryRouter);
-app.use("/point", pointRouter);
+app.use('/', mainRouter);
+app.use('/user', userRouter);
+app.use('/dictionary', dictionaryRouter);
+app.use('/point', pointRouter);
 
 // 넌적스 설정
-app.set("view engine", "html");
-const env = nunjucks.configure("views/pages", {
+app.set('view engine', 'html');
+const env = nunjucks.configure('views/pages', {
   express: app,
   watch: true,
 });
@@ -72,8 +72,8 @@ function dateDiffInDays(date1, date2) {
 }
 
 // 커스텀 필터 등록
-env.addFilter("daysSince", function (dateString) {
-  if (typeof dateString !== "string") {
+env.addFilter('daysSince', function (dateString) {
+  if (typeof dateString !== 'string') {
     dateString = dateString.toString();
   }
   const today = new Date();
