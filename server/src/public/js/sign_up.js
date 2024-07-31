@@ -57,7 +57,7 @@ const handleSignUp = () => {
   // axios 통신
   axios
     .post(
-      'http://ec2-54-180-231-199.ap-northeast-2.compute.amazonaws.com:3000/user/join',
+      'http://54.180.231.199:3000/user/join',
       {
         email: userEmail,
         pw: userPw,
