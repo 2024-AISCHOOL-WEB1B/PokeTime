@@ -1,6 +1,6 @@
 // user.js
 
-console.log("User Info:", window.userInfo);
+console.log("User Info:", window.userinforows);
 
 const handleLogout = () => {
   // logout btn ck
@@ -34,10 +34,10 @@ const setGaugeValue = (value) => {
   guageContainer.style.width = `${value}%`;
 };
 
-// userInfo를 사용하여 게이지 값 설정
-if (window.userInfo) {
-  // 예: userInfo에 attendance 필드가 있다고 가정
-  const attendanceValue = window.userInfo.exp || 0;
+// userinforows를 사용하여 게이지 값 설정
+if (window.userinforows) {
+  // 예: userinforows에 attendance 필드가 있다고 가정
+  const attendanceValue = window.userinforows.exp || 0;
   setGaugeValue(attendanceValue);
 } else {
   setGaugeValue(0);
@@ -51,9 +51,9 @@ const setMiniGuageValue = (value) => {
   miniGuageContainer.style.width = `${value}%`;
 };
 
-if (window.userInfo) {
-  // 예: userInfo에 attendance 필드가 있다고 가정
-  const attendanceMiniValue = (window.userInfo.poke_count / 150) * 100;
+if (window.userinforows) {
+  // 예: userinforows에 attendance 필드가 있다고 가정
+  const attendanceMiniValue = (window.userinforows.poke_count / 150) * 100;
   setMiniGuageValue(attendanceMiniValue);
 } else {
   setMiniGuageValue(0);
