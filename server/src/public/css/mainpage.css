@@ -10,7 +10,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -20,7 +20,7 @@ body {
   position: absolute;
   background-color: #eaf3ff;
 }
-
+/* 
 #sun {
   width: 220px;
   position: fixed;
@@ -75,7 +75,7 @@ body {
   background-color: rgb(156, 255, 156);
   top: 60%;
   filter: blur(5px);
-}
+} */
 
 .sub_container {
   width: 375px;
@@ -176,7 +176,7 @@ nav > ul > li > ul {
   transform: translateX(-70%);
   border-radius: 15px;
   background: #9dc8ff;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   padding: 0;
 }
 nav > ul > li:hover ul {
@@ -444,7 +444,7 @@ body > div > div.withPokeBox > div.if_null {
 
 .collec_gauge {
   color: #877777;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 10px;
   font-style: normal;
   font-weight: 500;
@@ -481,7 +481,7 @@ body > div > div.withPokeBox > div.if_null {
 }
 
 .popup {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 16px;
   background-color: white;
   padding: 20px;
@@ -511,16 +511,16 @@ body > div > div.withPokeBox > div.if_null {
 }
 
 .current_point {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   position: absolute;
   top: 20%;
   left: 5%;
 }
 
 @font-face {
-  font-family: 'LaundryGothic';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2')
-    format('woff');
+  font-family: "LaundryGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
