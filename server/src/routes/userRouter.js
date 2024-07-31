@@ -114,8 +114,21 @@ router.post("/delete", (req, res) => {
   let { pw } = req.body;
   console.log(id, pw);
   let sql = "delete from user_info where user_id = ? and user_pw = ?";
+  // 포켓몬 삭제 쿼리
+  let deletepoke = "delete from user_poke_info where user_id = ?";
   conn.query(sql, [id, pw], (err, rows) => {
-    console.log(rows);
+    if (rows.affectedRows > 0) {
+      console.log("탈퇴 성공");
+      conn.query(deletepoke, [id], (err, rows) => {
+        if (rows.affectedRows > 0) {
+          console.log("포켓몬 삭제 성공");
+          res.redirect("/");
+        }
+      });
+    } else {
+      console.log("탈퇴 실패");
+      res.json({ result: "탈퇴실패" });
+    }
   });
 });
 
@@ -375,11 +388,9 @@ router.delete("/scheduledelete", (req, res) => {
         if (pointremoverows.affectedRows === 0) {
           return conn.rollback(() => {
             console.error("포인트 차감 실패: 해당 사용자를 찾을 수 없습니다.");
-            return res
-              .status(404)
-              .json({
-                error: "포인트 차감 실패: 해당 사용자를 찾을 수 없습니다.",
-              });
+            return res.status(404).json({
+              error: "포인트 차감 실패: 해당 사용자를 찾을 수 없습니다.",
+            });
           });
         }
 
