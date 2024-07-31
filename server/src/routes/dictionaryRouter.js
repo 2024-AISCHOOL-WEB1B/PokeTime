@@ -128,79 +128,120 @@ router.get("/evolution", (req, res) => {
   });
 });
 
-// 포켓몬 레벨업
 router.post("/levelup", (req, res) => {
   let id = req.session.userInfo.user_id;
   const { img } = req.body;
 
-  // 현재 레벨 확인 쿼리
-  let checkLevelSql = `
-  SELECT user_poke_lv
-  FROM user_poke_info
-  WHERE user_id = ? AND user_poke_img = ?
-  `;
-
-  conn.query(checkLevelSql, [id, img], (err, rows) => {
+  // 트랜잭션 시작
+  conn.beginTransaction((err) => {
     if (err) {
-      console.log("레벨 확인 중 오류 발생", err);
-      return res.status(500).json({ result: "레벨 확인 중 오류 발생" });
+      console.log("트랜잭션 시작 오류", err);
+      return res.status(500).json({ result: "트랜잭션 시작 오류" });
     }
 
-    if (rows.length === 0) {
-      return res.status(404).json({ result: "포켓몬을 찾을 수 없습니다" });
-    }
-
-    const currentLevel = rows[0].user_poke_lv;
-    const maxLevel = 3; // 최대 레벨 설정 (예: 100)
-
-    if (currentLevel >= maxLevel) {
-      return res.status(400).json({ result: "이미 최대 레벨입니다" });
-    }
-
-    // 레벨업 쿼리
-    let levelUpSql = `
-    UPDATE user_poke_info 
-    SET user_poke_exp = user_poke_exp + 100, user_poke_lv = user_poke_lv + 1
-    WHERE user_id = ? AND user_poke_img = ?
+    // 현재 레벨 및 유저 포인트 확인 쿼리
+    let checkLevelAndPointSql = `
+    SELECT u.user_point, p.user_poke_lv
+    FROM user_info u
+    JOIN user_poke_info p ON u.user_id = p.user_id
+    WHERE u.user_id = ? AND p.user_poke_img = ?
     `;
 
-    conn.query(levelUpSql, [id, img], (err, rows) => {
+    conn.query(checkLevelAndPointSql, [id, img], (err, rows) => {
       if (err) {
-        console.log("쿼리 실행 중 오류 발생", err);
-        return res.status(500).json({ result: "쿼리 실행 중 오류 발생" });
+        return conn.rollback(() => {
+          console.log("레벨 및 포인트 확인 중 오류 발생", err);
+          res.status(500).json({ result: "레벨 및 포인트 확인 중 오류 발생" });
+        });
       }
 
-      let pointSql = `
-      UPDATE user_info SET user_point = user_point - 100
-      WHERE user_id = ?
+      if (rows.length === 0) {
+        return conn.rollback(() => {
+          res.status(404).json({ result: "포켓몬을 찾을 수 없습니다" });
+        });
+      }
+
+      const currentLevel = rows[0].user_poke_lv;
+      const userPoint = rows[0].user_point;
+      const maxLevel = 3; // 최대 레벨 설정
+      const requiredPoint = 100; // 레벨업에 필요한 포인트
+
+      if (currentLevel >= maxLevel) {
+        return conn.rollback(() => {
+          res.status(400).json({ result: "이미 최대 레벨입니다" });
+        });
+      }
+
+      if (userPoint < requiredPoint) {
+        return conn.rollback(() => {
+          res.status(400).json({ result: "포인트가 부족합니다" });
+        });
+      }
+
+      // 레벨업 쿼리
+      let levelUpSql = `
+      UPDATE user_poke_info 
+      SET user_poke_exp = user_poke_exp + 100, user_poke_lv = user_poke_lv + 1
+      WHERE user_id = ? AND user_poke_img = ?
       `;
 
-      conn.query(pointSql, [id], (err, rows) => {
+      conn.query(levelUpSql, [id, img], (err, result) => {
         if (err) {
-          console.log("포인트 차감 중 오류 발생", err);
-          return res.status(500).json({ result: "포인트 차감 중 오류 발생" });
+          return conn.rollback(() => {
+            console.log("레벨업 쿼리 실행 중 오류 발생", err);
+            res.status(500).json({ result: "레벨업 쿼리 실행 중 오류 발생" });
+          });
         }
 
-        console.log("포인트 차감 성공!");
-
-        let pointLogSql = `
-        INSERT INTO user_point_log(user_id, point_log_name, point_log_date, point_log) 
-        VALUES (?, ?, NOW(), ?)
+        // 포인트 차감 쿼리
+        let pointSql = `
+        UPDATE user_info SET user_point = user_point - ?
+        WHERE user_id = ?
         `;
 
-        conn.query(pointLogSql, [id, "레벨업", "-100"], (err, rows) => {
+        conn.query(pointSql, [requiredPoint, id], (err, result) => {
           if (err) {
-            console.log("포인트 로그 실패", err);
-            return res
-              .status(500)
-              .json({ result: "포인트 로그 실패", error: err.message });
+            return conn.rollback(() => {
+              console.log("포인트 차감 중 오류 발생", err);
+              res.status(500).json({ result: "포인트 차감 중 오류 발생" });
+            });
           }
 
-          console.log("포인트 로그 성공", rows);
-          res.json({
-            result: "레벨업 성공",
-            newLevel: currentLevel + 1,
-          });
+          // 포인트 로그 쿼리
+          let pointLogSql = `
+          INSERT INTO user_point_log(user_id, point_log_name, point_log_date, point_log) 
+          VALUES (?, ?, NOW(), ?)
+          `;
+
+          conn.query(
+            pointLogSql,
+            [id, "레벨업", `-${requiredPoint}`],
+            (err, result) => {
+              if (err) {
+                return conn.rollback(() => {
+                  console.log("포인트 로그 실패", err);
+                  res
+                    .status(500)
+                    .json({ result: "포인트 로그 실패", error: err.message });
+                });
+              }
+
+              // 모든 쿼리가 성공적으로 실행되었다면 트랜잭션 커밋
+              conn.commit((err) => {
+                if (err) {
+                  return conn.rollback(() => {
+                    console.log("커밋 실패", err);
+                    res.status(500).json({ result: "커밋 실패" });
+                  });
+                }
+                console.log("레벨업 및 포인트 차감 성공!");
+                res.json({
+                  result: "레벨업 성공",
+                  newLevel: currentLevel + 1,
+                });
+              });
+            }
+          );
         });
       });
     });

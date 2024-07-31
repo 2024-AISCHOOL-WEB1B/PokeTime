@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const res = await axios.get("/user/attendcount");
 
   console.log(res.data.rows);
-  // attend_date.textContent = `${res.data.rows[0].attend_cnt}일`;
+  attend_date.textContent = `${res.data.rows[0].attend_cnt}일`;
 
   // const TodoListElement = document.getElementById('todo-list');
   // if(data.length === 0){

@@ -14,6 +14,69 @@ body {
   overflow: hidden;
 }
 
+#sky_background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #eaf3ff;
+}
+
+#sun {
+  width: 220px;
+  position: fixed;
+  filter: blur(5px);
+  right: 80px;
+  top: 50px;
+}
+
+#tree {
+  width: 500px;
+  position: fixed;
+  filter: blur(5px);
+  left: 80px;
+  bottom: 150px;
+}
+#pikachu {
+  width: 160px;
+  position: fixed;
+  filter: blur(5px);
+  left: 550px;
+  bottom: 250px;
+}
+
+#gugu {
+  width: 160px;
+  position: fixed;
+  filter: blur(5px);
+  right: 450px;
+  top: 100px;
+}
+
+#grass {
+  width: 100px;
+  position: fixed;
+  filter: blur(5px);
+  right: 400px;
+  bottom: 100px;
+}
+#grass2 {
+  width: 100px;
+  position: fixed;
+  filter: blur(5px);
+  left: 400px;
+  bottom: 200px;
+}
+
+#background {
+  width: 4000px;
+  height: 4000px;
+  border-radius: 4000px;
+  position: absolute;
+  background-color: rgb(156, 255, 156);
+  top: 60%;
+  filter: blur(5px);
+}
+
 .sub_container {
   width: 375px;
   height: 667px;
@@ -133,6 +196,15 @@ nav > ul > li > li + li {
   font-family: "LaundryGothic";
   top: 25px;
   left: 30px;
+}
+
+.home{
+  position : absolute;
+  cursor : pointer;
+  width: 32px;
+  height: 32px;
+  bottom: 1.2%;
+  left : 5%;
 }
 
 .bell_icon {

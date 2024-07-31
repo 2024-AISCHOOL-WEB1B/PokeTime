@@ -7,6 +7,17 @@
     <link rel="stylesheet" href="../../public/css/pickuppoke.css" />
   </head>
   <body>
+    <div id="sky_background">
+      <img src="../../public/images/sun.png" id="sun" />
+    </div>
+    <div id="background"></div>
+    <div>
+      <img src="../../public/images/tree.png" id="tree" />
+      <img src="../../public/images/pika.svg" id="pikachu" />
+      <img src="../../public/images/gugu.svg" id="gugu" />
+      <img src="../../public/images/grass.png" id="grass" alt="" />
+      <img src="../../public/images/grass.png" id="grass2" alt="" />
+    </div>
     <div class="sub_container">
       <div class="skyblue_circle"></div>
       <div class="blue_circle2"></div>
@@ -32,6 +43,11 @@
 
       <!-- 알림창 -->
       <img src="../../public/images/bell_icon.png" class="bell_icon" />
+      <img
+        src="../../public//images/home_icon.svg"
+        class="home"
+        onclick="location.href = '/mainpage'"
+      />
 
       <div class="overlay">
         <div class="popup">
@@ -64,7 +80,7 @@
           />
           <div id="pk_result">
             <div class="pickup_result_txt">{{pickuppoke.pickup_result}}</div>
-            <span class="pickup_result">(이)가 나왔습니다!</span>
+            <span class="pickup_result"></span>
           </div>
           <!-- <div><span class = "pickup_result">{{pickup_result}}</span>
               <span class = "pickup_text">가 나왔습니다 !</span></div> -->
