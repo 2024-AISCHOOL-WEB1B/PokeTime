@@ -37,7 +37,7 @@ router.post("/attend", (req, res) => {
   // 마지막 출석일자 조회
   let checkattend = "select check_date from Attend_info where user_id = ?";
   // 출석일자 업데이트
-  let sql = "call checkAttendance(?)";
+  let sql = "call checkAttendance2(?)";
   // 출석 횟수 조회
   let sql2 = "select * from Attend_info where user_id = ?";
   // 기본 출석 5, attend_cnt가 7의 배수일 때 10
