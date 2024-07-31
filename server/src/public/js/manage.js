@@ -42,11 +42,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (res.data.rows.length === 0) {
         todoList.textContent = "오늘 해야 할 일을 등록해주세요 !";
       } else if (res.data.rows.length > 0) {
+        todoList.textContent = "";
         res.data.rows.forEach((todo) => {
           const listItem = document.createElement("li");
-          todoList.textContent = "";
-          listItem.innerHTML = `${todo.schedule_name} `;
+          listItem.innerHTML += `${todo.schedule_name} `;
           todoList.appendChild(listItem);
+          // console.log(todo.schedule_name);
         });
       }
     } catch (error) {
@@ -175,7 +176,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       try {
         const res = await axios.post(
-          "https://3iwnosr4ib.execute-api.ap-northeast-2.amazonaws.com/dev3/predict",
+          "http://localhost:5000/predict",
           formData,
           {
             headers: {

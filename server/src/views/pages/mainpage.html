@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Poketime</title>
+    <title>Main Page</title>
     <link rel="stylesheet" href="../../public/css/mainpage.css" />
   </head>
   <body>
@@ -42,7 +42,11 @@
         </ul>
       </nav>
       <img src="../../public/images/bell_icon.png" class="bell_icon" />
-      <img src = "../../public//images/home_icon.svg" class="home" onclick = "location.href = '/mainpage'">
+      <img
+        src="../../public//images/home_icon.svg"
+        class="home"
+        onclick="location.href = '/mainpage'"
+      />
 
       <div class="overlay">
         <div class="popup">
@@ -144,7 +148,7 @@
           </div>
         </div>
         <!-- text -->
-        <div class="collec_pickup">도감페이지</div>
+        <div class="collec_pickup">도감</div>
         <!-- --개의 포켓몬을 수집했어요 ! -->
         <div>
           <div class="collec_text">
@@ -179,8 +183,9 @@
         style="cursor: pointer"
         onclick="location.href='/pickuppoke'"
       >
+        <img src="../../public/images/open_box.png" id="open_box" />
         <!-- text -->
-        <div class="collec_pickup">뽑기페이지</div>
+        <div class="collec_pickup">뽑기</div>
         <!-- {{ pickup_cnt }}번 뽑기를 실행했어요 ! -->
         <div class="pickup_text">
           <div>

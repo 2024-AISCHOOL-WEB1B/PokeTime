@@ -194,9 +194,9 @@ nav > ul > li > li + li {
   margin-top: 5px;
 }
 
-.home{
-  position : absolute;
-  cursor : pointer;
+.home {
+  position: absolute;
+  cursor: pointer;
   width: 32px;
   height: 32px;
   bottom: 1.2%;
@@ -232,6 +232,13 @@ nav > ul > li > li + li {
   position: absolute;
   bottom: 33px;
   right: 7px;
+}
+
+#open_box {
+  position: absolute;
+  max-width: 50px;
+  bottom: 25px;
+  left: 32%;
 }
 
 .yellow_circle1 {
@@ -376,14 +383,14 @@ body > div > div.withPokeBox > div.if_null {
   /* -- 페이지 */
   color: #877777;
   font-family: LaundryGothic;
-  font-size: 13px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 0.4px;
   position: relative;
-  top: 30px;
-  right: -70px;
+  top: 20px;
+  right: -38%;
 }
 
 .poke_img_text {
@@ -425,14 +432,14 @@ body > div > div.withPokeBox > div.if_null {
 .collec_text {
   /* 텍스트 위치조정 */
   position: absolute;
-  top: 25%;
-  left: 10%;
+  top: 20%;
+  left: 30%;
 }
 
 .pickup_text {
   position: absolute;
-  top: 35%;
-  left: 10%;
+  top: 30%;
+  left: 28%;
 }
 
 .collec_gauge {
