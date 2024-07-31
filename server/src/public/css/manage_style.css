@@ -261,7 +261,7 @@ nav > ul > li > li + li {
 }
 
 #attend_date {
-  bottom: 50%;
+  bottom: 60%;
   left: 12%;
   position: absolute;
   font-family: 'LaundryGothic';
@@ -270,7 +270,7 @@ nav > ul > li > li + li {
 }
 
 .right_box_text1 {
-  top: 23%;
+  top: 33%;
   position: absolute;
   left: 12%;
   font-family: 'LaundryGothic';
@@ -279,7 +279,7 @@ nav > ul > li > li + li {
 }
 
 .right_box_text2 {
-  bottom: 36%;
+  bottom: 46%;
   position: absolute;
   left: 12%;
   font-family: 'LaundryGothic';
