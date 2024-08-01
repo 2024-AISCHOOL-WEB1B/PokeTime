@@ -24,10 +24,9 @@ router.post("/join", (req, res) => {
 router.post("/login", (req, res) => {
   let { userEmail, userPw } = req.body;
   let sql = `
-    SELECT a.user_id, b.user_poke_date, b.poke_name, b.user_poke_img, a.user_pickup_cnt, a.user_point, b.user_poke_exp
-    FROM user_info a
-    LEFT JOIN user_poke_info b ON a.user_id = b.user_id AND a.user_mainpoke_img = b.user_poke_img
-    WHERE a.user_id = ? AND a.user_pw = ?
+    SELECT user_id
+    FROM user_info 
+    WHERE user_id = ? AND user_pw = ?
 `;
   conn.query(sql, [userEmail, userPw], (err, rows) => {
     if (err) {
@@ -39,34 +38,16 @@ router.post("/login", (req, res) => {
       console.log("rows", rows);
       const userInfo = {
         user_id: rows[0].user_id,
-        with_date: rows[0].user_poke_date,
-        main_poke: rows[0].poke_name,
-        poke_img: rows[0].user_poke_img,
-        pickup_cnt: rows[0].user_pickup_cnt,
-        point: rows[0].user_point,
-        exp: rows[0].user_poke_exp,
       };
 
-      // 포켓몬 수 조회 쿼리 추가
-      let pokemonCountSql =
-        "SELECT COUNT(*) as poke_count FROM user_poke_info WHERE user_id = ?";
-      conn.query(pokemonCountSql, [userEmail], (countErr, countResult) => {
-        if (countErr) {
-          console.error("포켓몬 수 조회 중 오류 발생:", countErr);
+      req.session.userInfo = userInfo;
+      req.session.save((saveErr) => {
+        if (saveErr) {
+          console.error("세션 저장 오류:", saveErr);
           return res.status(500).json({ result: "서버 오류" });
         }
-
-        userInfo.poke_count = countResult[0].poke_count;
-
-        req.session.userInfo = userInfo;
-        req.session.save((saveErr) => {
-          if (saveErr) {
-            console.error("세션 저장 오류:", saveErr);
-            return res.status(500).json({ result: "서버 오류" });
-          }
-          console.log("로그인 성공, 세션 저장됨:", req.session);
-          res.json({ result: "로그인성공", rows: rows });
-        });
+        console.log("로그인 성공, 세션 저장됨:", req.session);
+        res.json({ result: "로그인성공", rows: rows });
       });
     } else {
       console.log("로그인 실패");

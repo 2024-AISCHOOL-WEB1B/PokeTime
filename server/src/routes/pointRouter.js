@@ -31,75 +31,134 @@ router.post("/picture", (req, res) => {
   });
 });
 
-// 출석 했을 때 경험치 획득
+// 출석 라우터
 router.post("/attend", (req, res) => {
   let id = req.session.userInfo.user_id;
-  // 마지막 출석일자 조회
-  let checkattend = "select check_date from Attend_info where user_id = ?";
-  // 출석일자 업데이트
-  let sql = "call checkAttendance(?)";
-  // 출석 횟수 조회
-  let sql2 = "select * from Attend_info where user_id = ?";
-  // 기본 출석 5, attend_cnt가 7의 배수일 때 10
-  let sql3 =
-    "update user_info set user_point = user_point + ? where user_id = ?";
-  // 포인트 로그 저장
-  let sql4 =
-    "insert into user_point_log(user_id, point_log_name, point_log_date, point_log) values (?, ?,now(), ?)";
 
-  conn.query(sql, [id], (err, rows) => {
+  conn.beginTransaction((err) => {
     if (err) {
-      console.log("출석 실패", err);
-      res.status(500).json({ result: "출석실패", error: err.message });
+      console.error("트랜잭션 시작 오류:", err);
+      return res.status(500).json({ result: "서버 오류" });
     }
-    if (rows) {
-      console.log("출석 성공", rows);
-      conn.query(sql2, [id], (err, rows) => {
-        if (rows) {
-          let attend_cnt = rows[0].attend_cnt;
-          res.json({ result: rows });
-          if (attend_cnt % 7 == 0) {
-            conn.query(sql3, [10, id], (err, rows) => {
-              if (rows) {
-                console.log("포인트 증가 성공", rows);
-                conn.query(sql4, [id, "출석", "+10"], (err, rows) => {
-                  if (rows) {
-                    console.log("포인트 로그 성공", rows);
-                  }
-                  if (err) {
-                    console.log("포인트 로그 실패", err);
-                    res.status(500);
-                  }
-                });
-              }
-              if (err) {
-                console.log("포인트 증가 실패", err);
-                res.status(500);
-              }
+
+    // 마지막 출석일자 조회
+    conn.query(
+      "SELECT attend_cnt, check_date FROM Attend_info WHERE user_id = ? ORDER BY check_date DESC LIMIT 1",
+      [id],
+      (err, lastAttend) => {
+        if (err) {
+          return conn.rollback(() => {
+            console.error("출석 조회 오류:", err);
+            res.status(500).json({ result: "서버 오류" });
+          });
+        }
+
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        let attendCnt = 1;
+        let pointToAdd = 5;
+
+        if (lastAttend.length > 0) {
+          const lastDate = new Date(lastAttend[0].check_date);
+          lastDate.setHours(0, 0, 0, 0);
+
+          const diffDays = (today - lastDate) / (1000 * 60 * 60 * 24);
+
+          if (diffDays === 1) {
+            // 연속 출석
+            attendCnt = lastAttend[0].attend_cnt + 1;
+            if (attendCnt % 7 === 0) {
+              pointToAdd = 10;
+            }
+          } else if (diffDays === 0) {
+            // 이미 오늘 출석함
+            return conn.rollback(() => {
+              res.json({ result: "이미 출석하셨습니다." });
             });
-          } else if (attend_cnt % 7 != 0) {
-            conn.query(sql3, [5, id], (err, rows) => {
-              if (rows) {
-                console.log("포인트 증가 성공", rows);
-                conn.query(sql4, [id, "출석", "+5"], (err, rows) => {
-                  if (rows) {
-                    console.log("포인트 로그 성공", rows);
-                  }
-                  if (err) {
-                    console.log("포인트 로그 실패", err);
-                    res.status(500);
-                  }
-                });
-              }
-              if (err) {
-                console.log("포인트 증가 실패", err);
-                res.status(500);
-              }
-            });
+          } else {
+            attendCnt = 1;
           }
         }
-      });
-    }
+
+        const updateAttendance = () => {
+          // 출석 정보 업데이트
+          conn.query(
+            "UPDATE Attend_info set attend_cnt = ?, check_date = CURDATE() WHERE user_id = ?",
+            [attendCnt, id],
+            (err) => {
+              if (err) {
+                return conn.rollback(() => {
+                  console.error("출석 업데이트 오류:", err);
+                  res.status(500).json({ result: "서버 오류" });
+                });
+              }
+
+              // 포인트 증가
+              conn.query(
+                "UPDATE user_info SET user_point = user_point + ? WHERE user_id = ?",
+                [pointToAdd, id],
+                (err) => {
+                  if (err) {
+                    return conn.rollback(() => {
+                      console.error("포인트 업데이트 오류:", err);
+                      res.status(500).json({ result: "서버 오류" });
+                    });
+                  }
+
+                  // 포인트 로그 저장
+                  conn.query(
+                    "INSERT INTO user_point_log(user_id, point_log_name, point_log_date, point_log) VALUES (?, '출석', NOW(), ?)",
+                    [id, `+${pointToAdd}`],
+                    (err) => {
+                      if (err) {
+                        return conn.rollback(() => {
+                          console.error("포인트 로그 저장 오류:", err);
+                          res.status(500).json({ result: "서버 오류" });
+                        });
+                      }
+
+                      conn.commit((err) => {
+                        if (err) {
+                          return conn.rollback(() => {
+                            console.error("커밋 오류:", err);
+                            res.status(500).json({ result: "서버 오류" });
+                          });
+                        }
+                        res.json({
+                          result: "출석 성공",
+                          pointsEarned: pointToAdd,
+                          attendanceStreak: attendCnt,
+                        });
+                      });
+                    }
+                  );
+                }
+              );
+            }
+          );
+        };
+
+        // 신규 사용자 처리
+        if (lastAttend.length === 0) {
+          conn.query(
+            "INSERT INTO Attend_info (user_id, attend_cnt, check_date) VALUES (?, 1, CURDATE())",
+            [id],
+            (err) => {
+              if (err) {
+                return conn.rollback(() => {
+                  console.error("신규 사용자 출석 정보 저장 오류:", err);
+                  res.status(500).json({ result: "서버 오류" });
+                });
+              }
+              updateAttendance();
+            }
+          );
+        } else {
+          updateAttendance();
+        }
+      }
+    );
   });
 });
 
