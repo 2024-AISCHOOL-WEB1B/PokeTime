@@ -170,7 +170,7 @@ nav > ul > li > ul {
   transform: translateX(-70%);
   border-radius: 15px;
   background: #9dc8ff;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   padding: 0;
 }
 nav > ul > li:hover ul {
@@ -193,7 +193,7 @@ nav > ul > li > li + li {
   font-size: 16px;
   color: #0466c2;
   text-decoration: none;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   top: 25px;
   left: 30px;
 }
@@ -241,10 +241,10 @@ nav > ul > li > li + li {
 }
 
 #left_box_text {
-  bottom: 23%;
+  bottom: 16%;
   position: absolute;
   left: 20%;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   color: #0466c2;
 }
 
@@ -264,7 +264,7 @@ nav > ul > li > li + li {
   bottom: 60%;
   left: 12%;
   position: absolute;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 20px;
   color: #0466c2;
 }
@@ -273,7 +273,7 @@ nav > ul > li > li + li {
   top: 33%;
   position: absolute;
   left: 12%;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 18px;
   color: #0466c2;
 }
@@ -282,7 +282,7 @@ nav > ul > li > li + li {
   bottom: 46%;
   position: absolute;
   left: 12%;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 18px;
   color: #0466c2;
 }
@@ -291,7 +291,7 @@ nav > ul > li > li + li {
   position: absolute;
   bottom: 23%;
   left: 12%;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 14px;
   color: #3f3f3f;
 }
@@ -307,7 +307,7 @@ nav > ul > li > li + li {
   position: absolute;
   bottom: 13%;
   left: 12%;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 14px;
   color: #3f3f3f;
 }
@@ -316,7 +316,7 @@ nav > ul > li > li + li {
   bottom: 23%;
   position: absolute;
   left: 32%;
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   color: #0466c2;
 }
 
@@ -325,7 +325,7 @@ nav > ul > li > li + li {
 }
 
 .calendar-container {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   background: #fff;
   border-radius: 32px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -437,7 +437,7 @@ td.today {
   height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
 }
 
 .modal-content {
@@ -479,7 +479,7 @@ td.today {
 }
 
 #file_upload {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   border: 0;
   margin-left: 5%;
   cursor: pointer;
@@ -500,7 +500,7 @@ td.today {
 }
 
 #camera_upload {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   border: 0;
   margin-left: 20%;
   cursor: pointer;
@@ -523,7 +523,7 @@ td.today {
 }
 
 #img_submit {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   border: 0;
   margin-top: 2%;
   margin-left: 5%;
@@ -544,7 +544,7 @@ video {
 }
 
 button {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   border: 0;
   margin-left: 20%;
   cursor: pointer;
@@ -598,7 +598,7 @@ button:hover {
 }
 
 .popup {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 16px;
   background-color: white;
   padding: 20px;
@@ -628,14 +628,14 @@ button:hover {
 }
 
 .current_point {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   position: absolute;
   top: 20%;
   left: 5%;
 }
 
 .Todo_Title {
-  font-family: 'LaundryGothic';
+  font-family: "LaundryGothic";
   font-size: 20px;
   margin-top: 20px;
   margin-left: 28%;
@@ -648,9 +648,9 @@ button:hover {
 }
 
 @font-face {
-  font-family: 'LaundryGothic';
-  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2')
-    format('woff');
+  font-family: "LaundryGothic";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/TTLaundryGothicB.woff2")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }

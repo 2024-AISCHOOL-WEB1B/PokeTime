@@ -55,11 +55,40 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
-  if (camera) {
-    camera.onclick = function () {
-      modal.style.display = 'block';
-    };
+  // if (camera) {
+
+  // }
+
+  function checkDivAvailability() {
+    // 현재 시간을 가져옴
+    var now = new Date();
+    var hours = now.getHours();
+    const span_text = document.getElementById('left_box_text');
+    console.log(hours);
+
+    // 11:00 ~ 14:00 사이일 경우 div 활성화
+    if (hours >= 7 && hours < 9) {
+      span_text.innerText = '사진을 등록할 수 있습니다';
+      camera.onclick = function () {
+        modal.style.display = 'block';
+      };
+    } else if (hours >= 11 && hours < 13) {
+      span_text.innerText = '사진을 등록할 수 있습니다';
+      camera.onclick = function () {
+        modal.style.display = 'block';
+      };
+    } else if (hours >= 17 && hours < 19) {
+      span_text.innerText = '사진을 등록할 수 있습니다';
+      camera.onclick = function () {
+        modal.style.display = 'block';
+      };
+    } else {
+      span_text.innerText = '사진 등록 불가 시간입니다';
+      camera.onclick = null;
+    }
   }
+
+  checkDivAvailability();
 
   closeModal.onclick = function () {
     modal.style.display = 'none';
@@ -173,6 +202,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (uploadFile) {
       const formData = new FormData();
       formData.append('image', uploadFile);
+      modal.style.display = 'block';
 
       try {
         const res = await axios.post(
@@ -213,5 +243,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
     }
   });
+
   searchTodo();
 });
