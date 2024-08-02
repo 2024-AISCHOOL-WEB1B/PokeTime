@@ -60,7 +60,7 @@ const handleLogin = async () => {
       // 로그인 성공 후 자동 출석 체크
       try {
         const attendResponse = await axios.post(
-          'http://localhost:3000/point/attend'
+          'http://54.180.231.199:3000/point/attend'
         );
         console.log('출석 체크 결과:', attendResponse.data);
 
