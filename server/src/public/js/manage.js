@@ -55,194 +55,198 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   };
 
-  // if (camera) {
-
-  // }
-
-  function checkDivAvailability() {
-    // 현재 시간을 가져옴
-    var now = new Date();
-    var hours = now.getHours();
+  if (camera) {
     const span_text = document.getElementById('left_box_text');
-    console.log(hours);
+    span_text.innerText = '사진을 등록할 수 있습니다';
+    camera.onclick = function () {
+      modal.style.display = 'block';
+    };
 
-    // 11:00 ~ 14:00 사이일 경우 div 활성화
-    if (hours >= 7 && hours < 9) {
-      span_text.innerText = '사진을 등록할 수 있습니다';
-      camera.onclick = function () {
-        modal.style.display = 'block';
-      };
-    } else if (hours >= 11 && hours < 13) {
-      span_text.innerText = '사진을 등록할 수 있습니다';
-      camera.onclick = function () {
-        modal.style.display = 'block';
-      };
-    } else if (hours >= 17 && hours < 19) {
-      span_text.innerText = '사진을 등록할 수 있습니다';
-      camera.onclick = function () {
-        modal.style.display = 'block';
-      };
-    } else {
-      span_text.innerText = '사진 등록 불가 시간입니다';
-      camera.onclick = null;
-    }
-  }
+    // function checkDivAvailability() {
+    //   // 현재 시간을 가져옴
+    //   var now = new Date();
+    //   var hours = now.getHours();
+    //   const span_text = document.getElementById("left_box_text");
+    //   console.log(hours);
 
-  checkDivAvailability();
+    //   // 11:00 ~ 14:00 사이일 경우 div 활성화
+    //   if (hours >= 7 && hours < 9) {
+    //     span_text.innerText = "사진을 등록할 수 있습니다";
+    //     camera.onclick = function () {
+    //       modal.style.display = "block";
+    //     };
+    //   } else if (hours >= 11 && hours < 13) {
+    //     span_text.innerText = "사진을 등록할 수 있습니다";
+    //     camera.onclick = function () {
+    //       modal.style.display = "block";
+    //     };
+    //   } else if (hours >= 17 && hours < 19) {
+    //     span_text.innerText = "사진을 등록할 수 있습니다";
+    //     camera.onclick = function () {
+    //       modal.style.display = "block";
+    //     };
+    //   } else {
+    //     span_text.innerText = "사진 등록 불가 시간입니다";
+    //     camera.onclick = null;
+    //   }
+    // }
 
-  closeModal.onclick = function () {
-    modal.style.display = 'none';
+    // checkDivAvailability();
 
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
-      camera_preview.innerHTML = '';
-    }
-  };
-
-  window.onclick = function (event) {
-    if (event.target == modal) {
+    closeModal.onclick = function () {
       modal.style.display = 'none';
 
       if (stream) {
         stream.getTracks().forEach((track) => track.stop());
         camera_preview.innerHTML = '';
       }
-    }
-  };
+    };
 
-  // 모달창 내 사진등록 (파일 업로드)
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
 
-  // 사진파일 올리기 버튼 클릭 시 숨겨진 file_choose input태그를 클릭한다.
-  file_upload_btn.addEventListener('click', function () {
-    file_choose.click();
-  });
-
-  file_choose.addEventListener('change', function (event) {
-    const file = event.target.files[0];
-
-    // 카메라 이용 중 파일등록 버튼 클릭 시 카메라 종료 및 카메라 화면영역 삭제
-    if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
-      camera_preview.innerHTML = '';
-    }
-
-    // 업로드 파일 변수에 저장
-    uploadFile = file;
-
-    if (file) {
-      const reader = new FileReader();
-
-      reader.onload = function (e) {
-        // 파일 미리보기
-        const img = document.createElement('img');
-
-        img.src = e.target.result;
-        img.style.maxWidth = '90px';
-        img.style.maxHeight = '90px';
-        preview.innerHTML = '';
-        preview.appendChild(img);
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-
-  // 직접찍기 버튼 클릭 시 사용자의 카메라를 실행시킨다.
-  camera_upload.addEventListener('click', function () {
-    preview.innerHTML = '';
-    navigator.mediaDevices
-      .getUserMedia({ video: true })
-      .then(function (mediaStream) {
-        stream = mediaStream;
-        const video = document.createElement('video');
-        video.srcObject = mediaStream;
-        video.autoplay = true;
-        video.style.maxWidth = '100px';
-        video.style.maxHeight = '100px';
-        camera_preview.innerHTML = '';
-        camera_preview.appendChild(video);
-
-        const captureButton = document.createElement('button');
-        captureButton.textContent = '촬영하기';
-        captureButton.classList.add('capture-button');
-        captureButton.addEventListener('click', function () {
-          const canvas = document.createElement('canvas');
-          canvas.width = video.videoWidth;
-          canvas.height = video.videoHeight;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-          const img = document.createElement('img');
-          img.src = canvas.toDataURL('image/png');
-          img.style.maxWidth = '100px';
-          img.style.maxHeight = '100px';
-          preview.innerHTML = '';
-          preview.appendChild(img);
+        if (stream) {
           stream.getTracks().forEach((track) => track.stop());
           camera_preview.innerHTML = '';
+        }
+      }
+    };
 
-          // 캡처된 이미지를 파일로 저장
-          canvas.toBlob(function (blob) {
-            uploadFile = new File([blob], 'capture_img.png', {
-              type: 'image/png',
+    // 모달창 내 사진등록 (파일 업로드)
+
+    // 사진파일 올리기 버튼 클릭 시 숨겨진 file_choose input태그를 클릭한다.
+    file_upload_btn.addEventListener('click', function () {
+      file_choose.click();
+    });
+
+    file_choose.addEventListener('change', function (event) {
+      const file = event.target.files[0];
+
+      // 카메라 이용 중 파일등록 버튼 클릭 시 카메라 종료 및 카메라 화면영역 삭제
+      if (stream) {
+        stream.getTracks().forEach((track) => track.stop());
+        camera_preview.innerHTML = '';
+      }
+
+      // 업로드 파일 변수에 저장
+      uploadFile = file;
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+          // 파일 미리보기
+          const img = document.createElement('img');
+
+          img.src = e.target.result;
+          img.style.maxWidth = '90px';
+          img.style.maxHeight = '90px';
+          preview.innerHTML = '';
+          preview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // 직접찍기 버튼 클릭 시 사용자의 카메라를 실행시킨다.
+    camera_upload.addEventListener('click', function () {
+      preview.innerHTML = '';
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(function (mediaStream) {
+          stream = mediaStream;
+          const video = document.createElement('video');
+          video.srcObject = mediaStream;
+          video.autoplay = true;
+          video.style.maxWidth = '100px';
+          video.style.maxHeight = '100px';
+          camera_preview.innerHTML = '';
+          camera_preview.appendChild(video);
+
+          const captureButton = document.createElement('button');
+          captureButton.textContent = '촬영하기';
+          captureButton.classList.add('capture-button');
+          captureButton.addEventListener('click', function () {
+            const canvas = document.createElement('canvas');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            const img = document.createElement('img');
+            img.src = canvas.toDataURL('image/png');
+            img.style.maxWidth = '100px';
+            img.style.maxHeight = '100px';
+            preview.innerHTML = '';
+            preview.appendChild(img);
+            stream.getTracks().forEach((track) => track.stop());
+            camera_preview.innerHTML = '';
+
+            // 캡처된 이미지를 파일로 저장
+            canvas.toBlob(function (blob) {
+              uploadFile = new File([blob], 'capture_img.png', {
+                type: 'image/png',
+              });
             });
           });
+          camera_preview.appendChild(captureButton);
+        })
+        .catch(function (err) {
+          console.log('An error occurred: ' + err);
         });
-        camera_preview.appendChild(captureButton);
-      })
-      .catch(function (err) {
-        console.log('An error occurred: ' + err);
-      });
-  });
+    });
 
-  if (!('URL' in window) && 'webkitURL' in window) {
-    window.URL = window.webkitURL;
-  }
+    if (!('URL' in window) && 'webkitURL' in window) {
+      window.URL = window.webkitURL;
+    }
 
-  // 서버 전송
-  img_submit.addEventListener('click', async () => {
-    if (uploadFile) {
-      const formData = new FormData();
-      formData.append('image', uploadFile);
-      modal.style.display = 'block';
+    // 서버 전송
+    img_submit.addEventListener('click', async () => {
+      if (uploadFile) {
+        const formData = new FormData();
+        formData.append('image', uploadFile);
+        modal.style.display = 'block';
 
-      try {
-        const res = await axios.post(
-          'https://3iwnosr4ib.execute-api.ap-northeast-2.amazonaws.com/dev3/predict',
-          formData,
-          {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          }
-        );
+        try {
+          const res = await axios.post(
+            'https://3iwnosr4ib.execute-api.ap-northeast-2.amazonaws.com/dev3/predict',
+            formData,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data',
+              },
+            }
+          );
 
-        console.log(res.data);
-        if (res.data.confidence > 0.7) {
-          try {
-            const pointRes = await axios.post(
-              'http://54.180.231.199:3000/point/picture'
-            );
-            console.log(pointRes.data);
-            modalText.textContent = '포인트 10점 획득!';
-            predict_result.innerHTML = `예측 결과: ${res.data.top}`;
-            modal.style.display = 'block';
-          } catch (error) {
-            console.error('포인트 획득 요청 실패:', error);
+          console.log(res.data);
+          if (res.data.confidence > 0.7) {
+            try {
+              const pointRes = await axios.post(
+                'http://localhost:3000/point/picture'
+              );
+              console.log(pointRes.data);
+              modalText.textContent = '포인트 10점 획득!';
+              predict_result.innerHTML = `예측 결과: ${res.data.top}`;
+              modal.style.display = 'block';
+            } catch (error) {
+              console.error('포인트 획득 요청 실패:', error);
+              modalText.textContent = '포인트 획득 실패!';
+              modal.style.display = 'block';
+            }
+          } else {
+            console.log('포인트 획득 실패');
             modalText.textContent = '포인트 획득 실패!';
+            predict_result.innerHTML = `예측 결과: 먹을만한 음식이 아닙니다.`;
             modal.style.display = 'block';
           }
-        } else {
-          console.log('포인트 획득 실패');
-          modalText.textContent = '포인트 획득 실패!';
-          predict_result.innerHTML = `예측 결과: 먹을만한 음식이 아닙니다.`;
+        } catch (error) {
+          console.error('이미지 예측 요청 실패:', error);
+          modalText.textContent = '이미지 예측 실패!';
           modal.style.display = 'block';
         }
-      } catch (error) {
-        console.error('이미지 예측 요청 실패:', error);
-        modalText.textContent = '이미지 예측 실패!';
-        modal.style.display = 'block';
       }
-    }
-  });
+    });
 
-  searchTodo();
+    searchTodo();
+  }
 });
