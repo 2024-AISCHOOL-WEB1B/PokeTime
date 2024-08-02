@@ -50,50 +50,48 @@ const handleLogin = async () => {
       }
     );
 
-  console.log(loginResponse);
-  if (loginResponse.data.result === '로그인실패') {
-    alert('이메일 또는 비밀번호를 확인하세요.');
-  } else if (loginResponse.data.result === '로그인성공') {
-    console.log('로그인 성공');
-    sessionStorage.setItem('userEmail', userEmail);
+    console.log(loginResponse);
+    if (loginResponse.data.result === '로그인실패') {
+      alert('이메일 또는 비밀번호를 확인하세요.');
+    } else if (loginResponse.data.result === '로그인성공') {
+      console.log('로그인 성공');
+      sessionStorage.setItem('userEmail', userEmail);
 
-    // 로그인 성공 후 자동 출석 체크
-    try {
-      const attendResponse = await axios.post(
-        'http://54.180.231.199:3000/point/attend'
-      );
-      console.log('출석 체크 결과:', attendResponse.data);
-
-      if (attendResponse.data.result === '출석 성공') {
-        alert(
-          `출석 완료! ${attendResponse.data.pointsEarned}포인트를 획득하셨습니다. 연속 출석일: ${attendResponse.data.attendanceStreak}일`
+      // 로그인 성공 후 자동 출석 체크
+      try {
+        const attendResponse = await axios.post(
+          'http://localhost:3000/point/attend'
         );
-      } else if (attendResponse.data.result === '이미 출석하셨습니다.') {
-        console.log('이미 오늘 출석을 완료했습니다.');
+        console.log('출석 체크 결과:', attendResponse.data);
+
+        if (attendResponse.data.result === '출석 성공') {
+          alert(
+            `출석 완료! ${attendResponse.data.pointsEarned}포인트를 획득하셨습니다. 연속 출석일: ${attendResponse.data.attendanceStreak}일`
+          );
+        } else if (attendResponse.data.result === '이미 출석하셨습니다.') {
+          console.log('이미 오늘 출석을 완료했습니다.');
+        }
+      } catch (attendError) {
+        console.error('출석 체크 실패', attendError);
+        // 출석 체크 실패 시 사용자에게 알림을 줄 수 있습니다.
+        // alert('출석 체크 중 오류가 발생했습니다.');
       }
-    } catch (attendError) {
-      console.error('출석 체크 실패', attendError);
-      // 출석 체크 실패 시 사용자에게 알림을 줄 수 있습니다.
-      // alert('출석 체크 중 오류가 발생했습니다.');
-    }
 
-    // 로그인 성공 시 메인 페이지로 리다이렉션
-    window.location.href = '/mainpage';
+      // 로그인 성공 시 메인 페이지로 리다이렉션
+      window.location.href = '/mainpage';
+    }
+  } catch (error) {
+    console.error('로그인 요청 실패', error);
+    alert('로그인 처리 중 오류가 발생했습니다. 다시 시도해 주세요.');
   }
-  // }catch (error) {
-  //   console.error("로그인 요청 실패", error);
-  //   alert("로그인 처리 중 오류가 발생했습니다. 다시 시도해 주세요.");
-  // }
-
-  // 로그인 버튼에 이벤트 리스너 추가
-  document
-    .querySelector('#login_button')
-    .addEventListener('click', handleLogin);
-
-  // 엔터 키 입력 시 로그인 시도
-  inputPw.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      handleLogin();
-    }
-  });
 };
+
+// 로그인 버튼에 이벤트 리스너 추가
+document.querySelector('#login_button').addEventListener('click', handleLogin);
+
+// 엔터 키 입력 시 로그인 시도
+inputPw.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') {
+    handleLogin();
+  }
+});
