@@ -43,7 +43,7 @@ const handleLogin = async () => {
   try {
     // 로그인 요청
     const loginResponse = await axios.post(
-      'http://54.180.231.199:300/user/login',
+      'http://54.180.231.199:3000/user/login',
       {
         userEmail,
         userPw,
