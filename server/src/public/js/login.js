@@ -40,28 +40,15 @@ const handleLogin = async () => {
     return; // 유효성 검사 실패 시 로그인 시도 중단
   }
 
-  // axios 통신
-  await axios
-    .post('http://54.180.231.199:3000/user/login', {
-      userEmail,
-      userPw,
-    })
-    .then((res) => {
-      console.log(res);
-      if (res.data.result == '로그인실패') {
-        alert('이메일 또는 비밀번호를 확인하세요.');
-      } else if (res.data.result == '로그인성공') {
-        console.log('로그인 성공');
-        sessionStorage.setItem('userEmail', userEmail);
-        const checkinres = axios.post('/point/attend');
-        console.log(checkinres.data);
-        // 로그인 성공 시 메인 페이지로 리다이렉션
-        window.location.href = '/mainpage';
+  try {
+    // 로그인 요청
+    const loginResponse = await axios.post(
+      'http://54.180.231.199:3000/user/login',
+      {
+        userEmail,
+        userPw,
       }
-    })
-    .catch((error) => {
-      console.error('로그인 요청 실패');
-    });
+    );
 
   console.log(loginResponse);
   if (loginResponse.data.result === '로그인실패') {
