@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (res.data.confidence > 0.7) {
             try {
               const pointRes = await axios.post(
-                'http://localhost:3000/point/picture'
+                'http://54.180.231.199:3000/point/picture'
               );
               console.log(pointRes.data);
               modalText.textContent = '포인트 10점 획득!';
