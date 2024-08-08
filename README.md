@@ -24,21 +24,35 @@
 
 
 # ⚙ 시스템 아키텍처
+![image](https://github.com/user-attachments/assets/5b05bc55-c9b6-4ea1-ba4e-5733132cf250)
 
 
 # 📌 유스케이스
+![image](https://github.com/user-attachments/assets/99a4b7f1-5283-412f-92c0-3886c1ade277)
 
 
 # 📌 서비스흐름도
+![image](https://github.com/user-attachments/assets/4c798caf-a3f5-4a06-8f71-b04328024d90)
 
 
 # 📌 ER다이어그램
+ ![image](https://github.com/user-attachments/assets/f3fa6207-40fa-4cc3-acbb-e63bc47fb5cc)
 
 
 # 💻 화면 구성
+![image](https://github.com/user-attachments/assets/98b9763e-2925-4f50-bd1b-3883c550ed1c)
+![image](https://github.com/user-attachments/assets/d6ba47a3-747e-45b0-9ae6-0a87a616cfbe)
+![image](https://github.com/user-attachments/assets/b960f499-2113-4302-8818-79669d3eba55)
+![image](https://github.com/user-attachments/assets/f0cf5416-8ad6-4874-b87c-81bfefdc4f83)
+![image](https://github.com/user-attachments/assets/a8411500-9cb2-4e9a-8a73-171b210f33d6)
+![image](https://github.com/user-attachments/assets/1f4ec730-add3-4d25-805a-631693664971)
+![image](https://github.com/user-attachments/assets/e2f03318-df82-4303-9e05-1a2063a885fa)
+![image](https://github.com/user-attachments/assets/55b79ecc-9b5c-422c-b91e-1606fb64278f)
+![image](https://github.com/user-attachments/assets/d605dbb8-264c-4e66-98df-fd56ddadea68)
 
 
 # 🎈 팀원 소개
+![image](https://github.com/user-attachments/assets/2eb5403b-3dd1-492c-8615-ed688908ba96)
 
 
 # 💣 Trouble Shooting
