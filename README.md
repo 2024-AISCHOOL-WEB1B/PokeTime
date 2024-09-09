@@ -14,6 +14,11 @@
   - 지루하고 힘든 생활습관 형성을 게임적요소를 활용하여 재미있게 할 수 있는 서비스
   ![image](https://github.com/user-attachments/assets/6d23feeb-5f13-4c25-ab42-35503a63b574)
 
+# 시연영상
+https://youtu.be/NplO91XFvrg
+
+
+
 # ⏳ 프로젝트 기간
 2024.07.19~2024.08.02
 
