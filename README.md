@@ -3,11 +3,16 @@
 
 # 📃 Introduction
 - 서비스 명 : ViT파인튜닝 이미지 분류기반 포켓몬 키우기 및 루틴 만들기 서비스
-- 설명
-  - 
-  - 
-  - 
-  - 
+- 제안 배경
+  ![image](https://github.com/user-attachments/assets/8fdbbb75-a772-44aa-a210-2dc853a9b952)
+  ![image](https://github.com/user-attachments/assets/de61b3e6-5625-4f63-8d6d-12eb2f160660)
+  ![image](https://github.com/user-attachments/assets/7a34388c-9ab7-416f-b9ec-abac2854fe52)
+  ![image](https://github.com/user-attachments/assets/418eb040-d42d-47f5-a5d2-90695d030430)
+
+- 소개
+  - 습관형성의 가이드라인 제공에서 그치지 않고 이미지 분석을 통해 실제 실천할 수 있게 해주는 서비스
+  - 지루하고 힘든 생활습관 형성을 게임적요소를 활용하여 재미있게 할 수 있는 서비스
+  ![image](https://github.com/user-attachments/assets/6d23feeb-5f13-4c25-ab42-35503a63b574)
 
 # ⏳ 프로젝트 기간
 2024.07.19~2024.08.02
@@ -52,8 +57,19 @@
 
 
 # 🎈 팀원 소개
-![image](https://github.com/user-attachments/assets/2eb5403b-3dd1-492c-8615-ed688908ba96)
+![image](https://github.com/user-attachments/assets/055663e4-c126-4faa-bb20-140e76a43739)
 
 
 # 💣 Trouble Shooting
+![image](https://github.com/user-attachments/assets/29191d52-a421-4479-a799-77dec150a9e0)
+![image](https://github.com/user-attachments/assets/2f272e5b-6c21-41e8-937b-5fcd750c6c6b)
+
+# 기대효과
+![image](https://github.com/user-attachments/assets/f46b53bb-2ad2-4f85-80d3-7b2cf1f23b47)
+
+# 추후 발전 방향
+![image](https://github.com/user-attachments/assets/3f0a4148-ec5d-4d7b-9393-799398997730)
+
+
+
 
